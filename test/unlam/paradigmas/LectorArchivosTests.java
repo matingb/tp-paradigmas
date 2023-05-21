@@ -20,19 +20,20 @@ public class LectorArchivosTests {
 	private ILector lectorDeArchivos;
 	
 	public LectorArchivosTests() {
-		 //lectorDeArchivos = new LectorArchivos();
+		 lectorDeArchivos = new LectorArchivos();
 	}
 
     @Test
-    public void DadoArchivoConUnUsuario_AlLeer_DevuelveUnaListaConEseUsuario() throws IOException {
-    	File inputFile = temporaryFolder.newFile("testfile.in");
+    public void DadoUnArchivoConUnUsuario_AlLeer_DevuelveUnaListaConEseUsuario() throws IOException {
+    	File inputFile = temporaryFolder.newFile("usuarios.in");
         BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
-        writer.write("3\n5\n7\n");
+        writer.write("3 10");
         writer.close();
 
-        //List<Usuario> usuarios = lectorDeArchivos.leerUsuarios();
+        List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(inputFile.getAbsolutePath());
 
-        //assertEquals(1, usuarios.size());
+        assertEquals(3, usuarios.get(0).presupuesto, 0);
+        assertEquals(10, usuarios.get(0).tiempo, 0);
     }
 }
 
