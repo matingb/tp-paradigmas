@@ -20,9 +20,7 @@ public class LectorArchivos implements ILector {
 			File file = new File(pathDelArhivo);
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
-			
-			/*String string = scanner.nextLine();
-			String[] parts = string.split();*/
+			scanner.useDelimiter("\\|");
 			
 			Usuario usuario = new Usuario();
 			Double presupuesto = scanner.nextDouble();
