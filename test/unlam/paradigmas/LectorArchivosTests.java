@@ -30,20 +30,20 @@ public class LectorArchivosTests {
 
 		List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path);
 
-		assertEquals(3, usuarios.get(0).presupuesto, 0);
-		assertEquals(10, usuarios.get(0).tiempo, 0);
-		assertEquals("DEGUSTACION", usuarios.get(0).actividadFavorita);
-		assertEquals("MATI GARCIA", usuarios.get(0).nombre);
+		assertEquals(3, usuarios.get(0).getPresupuesto(), 0);
+		assertEquals(10, usuarios.get(0).getTiempo(), 0);
+		assertEquals("DEGUSTACION", usuarios.get(0).getActividadFavorita());
+		assertEquals("MATI GARCIA", usuarios.get(0).getNombre());
 		
-		assertEquals(7, usuarios.get(1).presupuesto, 0);
-		assertEquals(11, usuarios.get(1).tiempo, 0);
-		assertEquals("AVENTURA", usuarios.get(1).actividadFavorita);
-		assertEquals("AGOS MOTTU", usuarios.get(1).nombre);
+		assertEquals(7, usuarios.get(1).getPresupuesto(), 0);
+		assertEquals(11, usuarios.get(1).getTiempo(), 0);
+		assertEquals("AVENTURA", usuarios.get(1).getActividadFavorita());
+		assertEquals("AGOS MOTTU", usuarios.get(1).getNombre());
 		
-		assertEquals(12, usuarios.get(2).presupuesto, 0);
-		assertEquals(12, usuarios.get(2).tiempo, 0);
-		assertEquals("AVENTURA", usuarios.get(2).actividadFavorita);
-		assertEquals("FEDE CASTRO", usuarios.get(2).nombre);
+		assertEquals(12, usuarios.get(2).getPresupuesto(), 0);
+		assertEquals(12, usuarios.get(2).getTiempo(), 0);
+		assertEquals("AVENTURA", usuarios.get(2).getActividadFavorita());
+		assertEquals("FEDE CASTRO", usuarios.get(2).getNombre());
 	}
 
 	private String dadoUnArchivoConContenido(String contenido) throws IOException {

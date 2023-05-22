@@ -24,15 +24,11 @@ public class LectorArchivos implements ILector {
 
 			while (scanner.hasNext()) {
 				Usuario usuario = new Usuario();
-				Double presupuesto = scanner.nextDouble();
-				Double tiempo = scanner.nextDouble();
-				String actividadFavorita = scanner.next();
-				String nombre = scanner.next();
-
-				usuario.presupuesto = presupuesto;
-				usuario.tiempo = tiempo;
-				usuario.actividadFavorita = actividadFavorita;
-				usuario.nombre = nombre;
+				
+				usuario.setPresupuesto(scanner.nextDouble());
+				usuario.setTiempo(scanner.nextDouble());
+				usuario.setActividadFavorita(scanner.next());
+				usuario.setNombre(scanner.next());
 
 				usuarios.add(usuario);
 			}
