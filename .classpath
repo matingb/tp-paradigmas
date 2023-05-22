@@ -5,9 +5,9 @@
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/Matias/Documents/facultad/tp-paradigmas/TurismoEnLaTierraMedia/byte-buddy-1.9.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Matias/Documents/facultad/tp-paradigmas/TurismoEnLaTierraMedia/byte-buddy-agent-1.9.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Matias/Documents/facultad/tp-paradigmas/TurismoEnLaTierraMedia/mockito-core-2.23.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Matias/Documents/facultad/tp-paradigmas/TurismoEnLaTierraMedia/objenesis-2.6.jar"/>
+	<classpathentry kind="lib" path="byte-buddy-1.9.0.jar"/>
+	<classpathentry kind="lib" path="byte-buddy-agent-1.9.0.jar"/>
+	<classpathentry kind="lib" path="mockito-core-2.23.0.jar"/>
+	<classpathentry kind="lib" path="objenesis-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
