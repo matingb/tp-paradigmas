@@ -7,6 +7,8 @@
 				Asumo que siempre va a tener una y sola una atraccion?
 				
 3. ARCHIVO CON FORMATO INVALIDO
-				Que accion aconseja tomar? ---> Lanzar exception | devolver null
+					Que accion aconseja tomar? ---> Lanzar formatException
+													Ignorar ese usuario(los otros si se procesan)
+													Devolver null
 				
  
