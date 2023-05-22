@@ -6,6 +6,7 @@ public class Usuario {
 	private Double tiempo;
 	private String actividadFavorita;
 	private String nombre;
+	
 	public Double getPresupuesto() {
 		return presupuesto;
 	}

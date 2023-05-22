@@ -24,26 +24,32 @@ public class LectorArchivosTests {
 	}
 
 	@Test
-	public void DadoUnArchivoConUnUsuario_AlLeer_ObtengoUnaListaConEseUsuario() throws IOException {
+	public void DadoUnArchivoConUsuarios_AlLeer_ObtengoUnaListaDeUsuarios() throws IOException {
 		String path = dadoUnArchivoConContenido(
 				"3|10|DEGUSTACION|MATI GARCIA\n" + "7|11|AVENTURA|AGOS MOTTU\n" + "12|12|AVENTURA|FEDE CASTRO\n");
 
 		List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path);
 
-		assertEquals(3, usuarios.get(0).getPresupuesto(), 0);
-		assertEquals(10, usuarios.get(0).getTiempo(), 0);
-		assertEquals("DEGUSTACION", usuarios.get(0).getActividadFavorita());
-		assertEquals("MATI GARCIA", usuarios.get(0).getNombre());
-		
-		assertEquals(7, usuarios.get(1).getPresupuesto(), 0);
-		assertEquals(11, usuarios.get(1).getTiempo(), 0);
-		assertEquals("AVENTURA", usuarios.get(1).getActividadFavorita());
-		assertEquals("AGOS MOTTU", usuarios.get(1).getNombre());
-		
-		assertEquals(12, usuarios.get(2).getPresupuesto(), 0);
-		assertEquals(12, usuarios.get(2).getTiempo(), 0);
-		assertEquals("AVENTURA", usuarios.get(2).getActividadFavorita());
-		assertEquals("FEDE CASTRO", usuarios.get(2).getNombre());
+		validaUsuario(3, 10, "DEGUSTACION", "MATI GARCIA", usuarios.get(0));
+		validaUsuario(7, 11, "AVENTURA", "AGOS MOTTU", usuarios.get(1));
+		validaUsuario(12, 12, "AVENTURA", "FEDE CASTRO", usuarios.get(2));
+
+	}
+
+	@Test
+	public void DadoUnArchivoDeUsuariosVacio_AlLeer_NoObtengoUsuarios() throws IOException {
+		String path = dadoUnArchivoConContenido("");
+
+		List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path);
+
+		assertEquals(0, usuarios.size());
+	}
+	
+	private void validaUsuario(double presupuesto, double tiempo, String actividadFavorita, String nombre, Usuario usuario) {
+		assertEquals(presupuesto, usuario.getPresupuesto(), 0);
+		assertEquals(tiempo, usuario.getTiempo(), 0);
+		assertEquals(actividadFavorita, usuario.getActividadFavorita());
+		assertEquals(nombre, usuario.getNombre());
 	}
 
 	private String dadoUnArchivoConContenido(String contenido) throws IOException {
