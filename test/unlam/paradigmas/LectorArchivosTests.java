@@ -45,7 +45,19 @@ public class LectorArchivosTests {
 		assertEquals(0, usuarios.size());
 	}
 	
-	private void validaUsuario(double presupuesto, double tiempo, String actividadFavorita, String nombre, Usuario usuario) {
+	//PENDIENTE
+	
+	/*
+	@Test
+	public void DadoUnArchivoSinRespetarFormato_AlLeer_() throws IOException {
+		String path = dadoUnArchivoConContenido(
+				"3|10|DEGUSTACION|MATI GARCIA\n" + "7|11|AVENTURAAGOS MOTTU\n" + "12|12|AVENTURA|FEDE CASTRO\n");
+
+		List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path);
+	}*/
+
+	private void validaUsuario(double presupuesto, double tiempo, String actividadFavorita, String nombre,
+			Usuario usuario) {
 		assertEquals(presupuesto, usuario.getPresupuesto(), 0);
 		assertEquals(tiempo, usuario.getTiempo(), 0);
 		assertEquals(actividadFavorita, usuario.getActividadFavorita());

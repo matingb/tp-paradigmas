@@ -1,0 +1,12 @@
+1. Paquetes 
+				Hace falta hacer la distinción que plantea el enunciado?
+				No especifica ningun tipo de manejo
+				Se podría únicamente cargar una lista atracciones con un precio final
+				Por ej |valor|atraccion1|atraccion2
+2. ATRACCION	
+				Asumo que siempre va a tener una y sola una atraccion?
+				
+3. ARCHIVO CON FORMATO INVALIDO
+				Que accion aconseja tomar? ---> Lanzar exception | devolver null
+				
+ 

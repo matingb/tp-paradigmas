@@ -35,7 +35,8 @@ public class LectorArchivos implements ILector {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			scanner.close();
 		}
 
