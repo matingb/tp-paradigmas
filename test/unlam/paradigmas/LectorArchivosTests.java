@@ -25,7 +25,8 @@ public class LectorArchivosTests {
 
 	@Test
 	public void DadoUnArchivoConUnUsuario_AlLeer_ObtengoUnaListaConEseUsuario() throws IOException {
-		String path = dadoUnArchivoConContenido("3|10|DEGUSTACION|MATI GARCIA");
+		String path = dadoUnArchivoConContenido(
+				"3|10|DEGUSTACION|MATI GARCIA\n" + "7|11|AVENTURA|AGOS MOTTU\n" + "12|12|AVENTURA|FEDE CASTRO\n");
 
 		List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path);
 
@@ -33,6 +34,16 @@ public class LectorArchivosTests {
 		assertEquals(10, usuarios.get(0).tiempo, 0);
 		assertEquals("DEGUSTACION", usuarios.get(0).actividadFavorita);
 		assertEquals("MATI GARCIA", usuarios.get(0).nombre);
+		
+		assertEquals(7, usuarios.get(1).presupuesto, 0);
+		assertEquals(11, usuarios.get(1).tiempo, 0);
+		assertEquals("AVENTURA", usuarios.get(1).actividadFavorita);
+		assertEquals("AGOS MOTTU", usuarios.get(1).nombre);
+		
+		assertEquals(12, usuarios.get(2).presupuesto, 0);
+		assertEquals(12, usuarios.get(2).tiempo, 0);
+		assertEquals("AVENTURA", usuarios.get(2).actividadFavorita);
+		assertEquals("FEDE CASTRO", usuarios.get(2).nombre);
 	}
 
 	private String dadoUnArchivoConContenido(String contenido) throws IOException {
