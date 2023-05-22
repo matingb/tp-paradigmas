@@ -2,3 +2,4 @@ bin/
 tmp/
 .metadata
 .classpath
+.project
