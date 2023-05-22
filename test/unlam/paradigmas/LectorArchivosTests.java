@@ -25,12 +25,14 @@ public class LectorArchivosTests {
 
     @Test
     public void DadoUnArchivoConUnUsuario_AlLeer_ObtengoUnaListaConEseUsuario() throws IOException {
-    	String path = dadoUnArchivoConContenido("3 10");
+    	String path = dadoUnArchivoConContenido("3 10 DEGUSTACION MATI");
 
         List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path);
 
         assertEquals(3, usuarios.get(0).presupuesto, 0);
         assertEquals(10, usuarios.get(0).tiempo, 0);
+        assertEquals("DEGUSTACION", usuarios.get(0).actividadFavorita);
+        assertEquals("MATI", usuarios.get(0).nombre);
     }
 
 	private String dadoUnArchivoConContenido(String contenido) throws IOException {

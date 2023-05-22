@@ -21,11 +21,20 @@ public class LectorArchivos implements ILector {
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
 			
+			/*String string = scanner.nextLine();
+			String[] parts = string.split();*/
+			
 			Usuario usuario = new Usuario();
 			Double presupuesto = scanner.nextDouble();
 			Double tiempo = scanner.nextDouble();
+			String actividadFavorita = scanner.next();
+			String nombre = scanner.next();
+			
 			usuario.presupuesto = presupuesto;
 			usuario.tiempo = tiempo;
+			usuario.actividadFavorita = actividadFavorita;
+			usuario.nombre = nombre;
+			
 			usuarios.add(usuario);
 			
 		} catch (Exception e){
