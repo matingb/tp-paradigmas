@@ -1,4 +1,4 @@
-package unlam.paradigmas;
+package unlam.paradigmas.modelos;
 
 public class Usuario {
 
@@ -6,7 +6,7 @@ public class Usuario {
 	private Double tiempo;
 	private String actividadFavorita;
 	private String nombre;
-	
+
 	public Double getPresupuesto() {
 		return presupuesto;
 	}
@@ -31,5 +31,5 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 }

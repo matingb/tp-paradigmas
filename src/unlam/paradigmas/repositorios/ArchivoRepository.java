@@ -1,18 +1,18 @@
-package unlam.paradigmas;
+package unlam.paradigmas.repositorios;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
-import java.io.File;
-import java.util.ArrayList;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
-public class LectorArchivos implements ILector {
+import unlam.paradigmas.modelos.Usuario;
+import unlam.paradigmas.modelos.Atraccion;
+
+public class ArchivoRepository implements IUsuarioRepository, IAtraccionRepository {
 
 	@Override
-	public List<Usuario> leerUsuarios(String path) {
+	public List<Usuario> getUsuarios(String path) {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		Scanner scanner = null;
 
@@ -24,7 +24,7 @@ public class LectorArchivos implements ILector {
 
 			while (scanner.hasNext()) {
 				Usuario usuario = new Usuario();
-				
+
 				usuario.setPresupuesto(scanner.nextDouble());
 				usuario.setTiempo(scanner.nextDouble());
 				usuario.setActividadFavorita(scanner.next());
@@ -44,7 +44,7 @@ public class LectorArchivos implements ILector {
 	}
 
 	@Override
-	public List<Atraccion> leerAtracciones(String path){
+	public List<Atraccion> getAtracciones(String path){
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Scanner scanner = null;
 
@@ -56,7 +56,7 @@ public class LectorArchivos implements ILector {
 
 			while (scanner.hasNext()) {
 				Atraccion atraccion = new Atraccion();
-				
+
 				atraccion.setNombre(scanner.next());
 				atraccion.setCosto(scanner.nextDouble());
 				atraccion.setDuracionHoras(scanner.nextDouble());
@@ -76,10 +76,10 @@ public class LectorArchivos implements ILector {
 		return atracciones;
 
 	}
-	
+
 	private void seteaPipeYSaltoDeLineaComoDelimitador(Scanner scanner) {
 		scanner.useDelimiter("\\||\n");
 	}
-	
-	
+
+
 }
