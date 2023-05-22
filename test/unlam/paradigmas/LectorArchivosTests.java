@@ -24,16 +24,22 @@ public class LectorArchivosTests {
 	}
 
     @Test
-    public void DadoUnArchivoConUnUsuario_AlLeer_DevuelveUnaListaConEseUsuario() throws IOException {
-    	File inputFile = temporaryFolder.newFile("usuarios.in");
-        BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
-        writer.write("3 10");
-        writer.close();
+    public void DadoUnArchivoConUnUsuario_AlLeer_ObtengoUnaListaConEseUsuario() throws IOException {
+    	String path = dadoUnArchivoConContenido("3 10");
 
-        List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(inputFile.getAbsolutePath());
+        List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path);
 
         assertEquals(3, usuarios.get(0).presupuesto, 0);
         assertEquals(10, usuarios.get(0).tiempo, 0);
     }
+
+	private String dadoUnArchivoConContenido(String contenido) throws IOException {
+		File inputFile = temporaryFolder.newFile("archivoTemporal.in");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
+        writer.write(contenido);
+        writer.close();
+        
+		return inputFile.getAbsolutePath();
+	}
 }
 
