@@ -3,7 +3,6 @@ package unlam.paradigmas;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Hola Mundo");
 		/*
 		 	Cargar Información
 			- Usuarios

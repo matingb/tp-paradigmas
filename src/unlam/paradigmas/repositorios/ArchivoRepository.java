@@ -4,19 +4,27 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.Scanner;
 
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.Atraccion;
 
 public class ArchivoRepository implements IUsuarioRepository, IAtraccionRepository {
+	
+	private Properties properties;
+	
+	public ArchivoRepository(Properties properties) {
+		this.properties = properties;
+	}
 
 	@Override
-	public List<Usuario> getUsuarios(String path) {
+	public List<Usuario> getUsuarios() {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		Scanner scanner = null;
 
 		try {
+			String path = properties.getProperty("PathUsuarios");
 			File file = new File(path);
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
@@ -44,11 +52,12 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 	}
 
 	@Override
-	public List<Atraccion> getAtracciones(String path){
+	public List<Atraccion> getAtracciones(){
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Scanner scanner = null;
 
 		try {
+			String path = properties.getProperty("PathAtracciones");
 			File file = new File(path);
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);

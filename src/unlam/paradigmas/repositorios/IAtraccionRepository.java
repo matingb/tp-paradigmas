@@ -4,5 +4,5 @@ import java.util.List;
 import unlam.paradigmas.modelos.Atraccion;
 
 public interface IAtraccionRepository {
-	public List<Atraccion> getAtracciones(String path);
+	public List<Atraccion> getAtracciones();
 }
