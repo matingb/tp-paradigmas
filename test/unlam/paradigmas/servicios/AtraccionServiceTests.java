@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.mockito.Mockito;
 
 import unlam.paradigmas.modelos.Atraccion;
+import unlam.paradigmas.modelos.TipoAtraccion;
 import unlam.paradigmas.repositorios.IAtraccionRepository;
 
 public class AtraccionServiceTests {
@@ -40,7 +41,7 @@ public class AtraccionServiceTests {
 		atraccion.setCosto(costo);
 		atraccion.setDuracionHoras(duracion);
 		atraccion.setCupo(cupo);
-		atraccion.setTipoAtraccion(tipoAtraccion);
+		atraccion.setTipoAtraccion(TipoAtraccion.valueOf(tipoAtraccion));
 		
 		return atraccion;
 	}

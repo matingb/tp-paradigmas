@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.Atraccion;
+import unlam.paradigmas.modelos.TipoAtraccion;
 
 public class ArchivoRepository implements IUsuarioRepository, IAtraccionRepository {
 
@@ -71,7 +72,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 				atraccion.setCosto(scanner.nextDouble());
 				atraccion.setDuracionHoras(scanner.nextDouble());
 				atraccion.setCupo(scanner.nextInt());
-				atraccion.setTipoAtraccion(scanner.next());
+				atraccion.setTipoAtraccion(TipoAtraccion.valueOf(scanner.next()));
 
 				atracciones.add(atraccion);
 			}

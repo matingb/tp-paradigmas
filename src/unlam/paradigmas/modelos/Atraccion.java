@@ -1,11 +1,12 @@
 package unlam.paradigmas.modelos;
 
 public class Atraccion {
+		
 	private String nombre;
 	private Double costo;
 	private Double duracionHoras;
 	private Integer cupo;
-	private String tipoAtraccion;
+	private TipoAtraccion tipoAtraccion;
 
 	public String getNombre() {
 		return nombre;
@@ -31,10 +32,10 @@ public class Atraccion {
 	public void setCupo(Integer cupo) {
 		this.cupo = cupo;
 	}
-	public String getTipoAtraccion() {
+	public TipoAtraccion getTipoAtraccion() {
 		return tipoAtraccion;
 	}
-	public void setTipoAtraccion(String tipoAtraccion) {
+	public void setTipoAtraccion(TipoAtraccion tipoAtraccion) {
 		this.tipoAtraccion = tipoAtraccion;
 	}
 }

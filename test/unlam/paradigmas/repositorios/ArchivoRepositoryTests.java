@@ -2,17 +2,17 @@ package unlam.paradigmas.repositorios;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.mockito.Mockito;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+import org.mockito.Mockito;
 
 import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Usuario;
@@ -94,7 +94,7 @@ public class ArchivoRepositoryTests {
 		assertEquals(costo, atraccion.getCosto());
 		assertEquals(duracionHoras, atraccion.getDuracionHoras());
 		assertEquals(cupo, atraccion.getCupo());
-		assertEquals(tipoAtraccion, atraccion.getTipoAtraccion());
+		assertEquals(tipoAtraccion, (atraccion.getTipoAtraccion().name()));
 
 	}
 
