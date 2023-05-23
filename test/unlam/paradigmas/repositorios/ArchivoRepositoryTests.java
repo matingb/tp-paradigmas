@@ -23,14 +23,12 @@ public class ArchivoRepositoryTests {
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private ArchivoRepository repository;
-	
-	private Properties properties;
+
+	private static Properties properties = Mockito.mock(Properties.class);
 
 	public ArchivoRepositoryTests() {
-		properties = Mockito.mock(Properties.class);
-		repository = new ArchivoRepository(properties);
+		repository = ArchivoRepository.init(properties);
 	}
-
 
 	@Test
 	public void DadoUnArchivoConUsuarios_AlLeer_ObtengoUnaListaDeUsuarios() throws IOException {
@@ -45,7 +43,7 @@ public class ArchivoRepositoryTests {
 		validarUsuario(12.0, 12.0, "AVENTURA", "FEDE CASTRO", usuarios.get(2));
 
 	}
-	
+
 	@Test
 	public void DadoUnArchivoDeUsuariosVacio_AlLeer_NoObtengoUsuarios() throws IOException {
 		String path = dadoUnArchivoConContenido("");
@@ -56,16 +54,15 @@ public class ArchivoRepositoryTests {
 		assertEquals(0, usuarios.size());
 	}
 
-	//PENDIENTE
-
+	// PENDIENTE
 	/*
-	@Test
-	public void DadoUnArchivoSinRespetarFormato_AlLeer_() throws IOException {
-		String path = dadoUnArchivoConContenido(
-				"3|10|DEGUSTACION|MATI GARCIA\n" + "7|11|AVENTURAAGOS MOTTU\n" + "12|12|AVENTURA|FEDE CASTRO\n");
-
-		List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path);
-	}*/
+	 * @Test public void DadoUnArchivoSinRespetarFormato_AlLeer_() throws
+	 * IOException { String path = dadoUnArchivoConContenido(
+	 * "3|10|DEGUSTACION|MATI GARCIA\n" + "7|11|AVENTURAAGOS MOTTU\n" +
+	 * "12|12|AVENTURA|FEDE CASTRO\n");
+	 * 
+	 * List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path); }
+	 */
 
 	@Test
 	public void DadoUnArchivoConAtracciones_AlLeer_ObtengoUnaListaDeAtracciones() throws IOException {
@@ -76,7 +73,7 @@ public class ArchivoRepositoryTests {
 		List<Atraccion> atraccion = repository.getAtracciones();
 
 		validarAtraccion("LA COMARCA", 30.0, 1.0, 20, "DEGUSTACION", atraccion.get(0));
-		validarAtraccion("MINAS TIRITH" , 7.0, 11.0, 7, "PAISAJE", atraccion.get(1));
+		validarAtraccion("MINAS TIRITH", 7.0, 11.0, 7, "PAISAJE", atraccion.get(1));
 		validarAtraccion("MORDOR", 12.0, 12.0, 2, "AVENTURA", atraccion.get(2));
 
 	}
@@ -91,7 +88,8 @@ public class ArchivoRepositoryTests {
 		assertEquals(0, atracciones.size());
 	}
 
-	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, String tipoAtraccion, Atraccion atraccion) {
+	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, String tipoAtraccion,
+			Atraccion atraccion) {
 		assertEquals(nombre, atraccion.getNombre());
 		assertEquals(costo, atraccion.getCosto());
 		assertEquals(duracionHoras, atraccion.getDuracionHoras());

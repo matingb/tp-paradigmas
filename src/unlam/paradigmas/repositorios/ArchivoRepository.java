@@ -11,10 +11,11 @@ import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.Atraccion;
 
 public class ArchivoRepository implements IUsuarioRepository, IAtraccionRepository {
-	
+
 	private Properties properties;
-	
-	public ArchivoRepository(Properties properties) {
+	private static ArchivoRepository instance;
+
+	private ArchivoRepository(Properties properties) {
 		this.properties = properties;
 	}
 
@@ -43,8 +44,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			scanner.close();
 		}
 
@@ -52,7 +52,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 	}
 
 	@Override
-	public List<Atraccion> getAtracciones(){
+	public List<Atraccion> getAtracciones() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		Scanner scanner = null;
 
@@ -77,8 +77,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			scanner.close();
 		}
 
@@ -86,9 +85,23 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 
 	}
 
+	public static ArchivoRepository getInstance() {
+		if (instance == null) {
+			throw new AssertionError("Debe llamarse primero al init");
+		}
+
+		return instance;
+	}
+
+	public synchronized static ArchivoRepository init(Properties properties) {
+		if (instance == null) {
+			instance = new ArchivoRepository(properties);
+		}
+		return instance;
+	}
+
 	private void seteaPipeYSaltoDeLineaComoDelimitador(Scanner scanner) {
 		scanner.useDelimiter("\\||\n");
 	}
-
 
 }
