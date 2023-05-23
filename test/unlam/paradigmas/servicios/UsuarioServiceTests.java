@@ -14,23 +14,23 @@ import unlam.paradigmas.repositorios.IUsuarioRepository;
 public class UsuarioServiceTests {
 
 	private static IUsuarioRepository usuarioRepository = Mockito.mock(IUsuarioRepository.class);
-	
+
 	private UsuarioService usuarioService;
-	
+
 	public UsuarioServiceTests() {
 		usuarioService = UsuarioService.init(usuarioRepository);
 	}
-	
+
 	@Test
 	public void dados3Usuarios_AlObtenerUsuarios_DeberiaObtenerLosUsuarios() {
-		List<Usuario> usuarios = new ArrayList();
+		List<Usuario> usuarios = new ArrayList<Usuario>();
 		usuarios.add(usuario("Valentin", 10.0, 20.0, "AVENTURA"));
 		usuarios.add(usuario("Agustin", 30.0, 70.0, "DEGUSTACION"));
 		usuarios.add(usuario("Tomas", 5.0, 10.0, "AVENTURA"));
-		Mockito.when(usuarioService.getUsuarios()).thenReturn(usuarios);
-		
+		Mockito.when(usuarioRepository.getUsuarios()).thenReturn(usuarios);
+
 		List<Usuario> usuariosActuales = usuarioService.getUsuarios();
-		
+
 		assertEquals(usuarios, usuariosActuales);
 	}
 
@@ -40,7 +40,7 @@ public class UsuarioServiceTests {
 		usuario.setPresupuesto(presupuesto);
 		usuario.setTiempo(tiempo);
 		usuario.setActividadFavorita(actividadFavorita);
-		
+
 		return usuario;
 	}
 }
