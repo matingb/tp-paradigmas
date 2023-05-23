@@ -26,6 +26,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 
 		try {
 			String path = properties.getProperty("PathUsuarios");
+			
 			File file = new File(path);
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
@@ -50,7 +51,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 
 		return usuarios;
 	}
-
+	
 	@Override
 	public List<Atraccion> getAtracciones() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();

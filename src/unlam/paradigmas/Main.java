@@ -1,8 +1,23 @@
 package unlam.paradigmas;
 
+import unlam.paradigmas.servicios.UsuarioService;
+import unlam.paradigmas.servicios.IUsuarioService;
+import unlam.paradigmas.modelos.Usuario;
+
+import java.util.List;
+
 public class Main {
 
 	public static void main(String[] args) {
+		Initializer initialize = new Initializer();
+		initialize.initialize();
+		
+		IUsuarioService usuarioService = UsuarioService.getInstance();
+		List<Usuario> usuarios = usuarioService.getUsuarios();
+		
+		for(Usuario usuario : usuarios) {
+			System.out.println(usuario.getNombre());
+		}
 		/*
 		 	Cargar Información
 			- Usuarios
