@@ -95,13 +95,17 @@ public class ArchivoRepositoryTests {
 	@Test
 	public void DadoUnArchivoConPromociones_AlLeer_ObtengoUnaListaDePromociones() throws IOException {
 		String path = dadoUnArchivoConContenido(
-				"MONTO FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO\n");
+				"MONTO FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO\n" +
+		"PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN\n" +
+		"COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
 		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(path);
 
-		List<Promocion> promocion = repository.getPromociones();
-		System.out.print("Llega");
+		List<Promocion> promociones = repository.getPromociones();
 		
-		System.out.println(promocion.get(0).toString());
+			
+		for (Promocion p : promociones) {
+			System.out.println(p.toString());
+		}
 		/*
 		System.out.println(promocion.get(0).getTipoPaquete());
 		System.out.println(promocion.get(0).get);

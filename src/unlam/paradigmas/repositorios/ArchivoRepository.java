@@ -113,11 +113,12 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 				String lineaAtracciones = campos[3];
 				String[] vectorAtracciones = lineaAtracciones.split("-");
 
-				if (campos[0] == "MONTO FIJO") {
+							
+				if (campos[0].equals("MONTO FIJO")) {
 					PromocionMontoFijo promocion = new PromocionMontoFijo(TipoAtraccion.valueOf(campos[1]),
 							vectorAtracciones, Double.parseDouble(campos[2]));
 					promociones.add(promocion);
-				} else if (campos[0] == "PORCENTUAL") {
+				} else if (campos[0].equals("PORCENTUAL")) {
 					PromocionPorcentual promocion = new PromocionPorcentual(TipoAtraccion.valueOf(campos[1]),
 							vectorAtracciones, Double.parseDouble(campos[2]));
 					promociones.add(promocion);

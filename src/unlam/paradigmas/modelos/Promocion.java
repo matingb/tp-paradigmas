@@ -38,25 +38,8 @@ public abstract class Promocion {
 		return tipoPaquete;
 	}
 
-	public void setAtraccionesIncluidas(List<String> atraccionesIncluidas) {
-		this.atraccionesIncluidas = atraccionesIncluidas;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(atraccionesIncluidas, tipoPaquete);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Promocion other = (Promocion) obj;
-		return Objects.equals(atraccionesIncluidas, other.atraccionesIncluidas) && tipoPaquete == other.tipoPaquete;
-	}
-
+	//TODO:
+	//public Double getDuracionPromocion()
+	//public Double getPrecioOriginal()
+	//PROPIO DE CADA SUBCLASE: public Double getPrecioConDescuento()
 }
