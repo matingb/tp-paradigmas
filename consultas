@@ -1,3 +1,10 @@
+CONSULTAS 2:
+ 1. PROMOCIONES:
+ 				Que pasa si en el archivo de promociones tengo atracciones que no estan en el
+ 				archivo de atracciones ?
+
+--------------------------------------------------------------------------------------------------------------------
+CONSULTAS 1:
 1. Paquetes 
 				Hace falta hacer la distinción que plantea el enunciado?
 				No especifica ningun tipo de manejo
@@ -14,7 +21,3 @@
  	ATRACCIONES:	Si el TipoAtraccion (enum) es invalida --> IllegalArgumentException
  
  ----------------------------------------------------------------------------------------------
- 1. PROMOCIONES:
- 				Que pasa si en el archivo de promociones tengo atracciones que no estan en el
- 				archivo de atracciones ?
- 

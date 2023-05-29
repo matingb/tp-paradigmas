@@ -105,7 +105,12 @@ public class ArchivoRepositoryTests {
 
 		List<Promocion> promociones = repository.getPromociones(atraccionesVigentes);
 		
-			
+		//TODO: 
+		//revisar la visibilidad de los metodos de TODAS las clases de Promocion
+		//probrar los casos con assertEquals para el test (pues ahora solo estoy imprimiendo)
+		//crear otro caso de prueba un poco mas complejo
+		//
+		
 		for (Promocion p : promociones) {
 			System.out.println(p.toString());
 		}		

@@ -113,7 +113,6 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 				String lineaAtracciones = campos[3];
 				String[] vectorAtracciones = lineaAtracciones.split("-");
 
-							
 				if (campos[0].equals("MONTO FIJO")) {
 					PromocionMontoFijo promocion = new PromocionMontoFijo(TipoAtraccion.valueOf(campos[1]),
 							 Double.parseDouble(campos[2]), vectorAtracciones, atraccionesVigentes);
@@ -127,7 +126,6 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 							Integer.parseInt(campos[2]), vectorAtracciones, atraccionesVigentes);
 					promociones.add(promocion);
 				}
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

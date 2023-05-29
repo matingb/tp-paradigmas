@@ -22,8 +22,12 @@ public class PromocionMontoFijo extends Promocion {
 
 	@Override
 	public String toString() {
-		return "Promocion de monto fijo (" + this.getTipoPaquete() + "):\n" + "Precio Final = " + this.getPrecioFinal()
-				+ "\nAtracciones Incluidas: " + this.getAtraccionesIncluidas() + "\n";
+		return "Promocion de monto fijo (" + this.getTipoPaquete() + "):" 
+				+ "\n-Duracion en Horas del paquete = " + this.getDuracionHorasPromocion()
+				+ "\n-Precio Original = " + this.getPrecioOriginal() 
+				+ "\n-Precio Final = " + this.getPrecioFinal() 
+				+ "\n-Atracciones Incluidas: "
+				+ this.getAtraccionesIncluidas() + "\n";
 	}
 
 }
