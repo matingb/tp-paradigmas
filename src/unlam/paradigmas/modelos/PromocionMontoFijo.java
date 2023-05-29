@@ -1,11 +1,14 @@
 package unlam.paradigmas.modelos;
 
+import java.util.List;
+
 public class PromocionMontoFijo extends Promocion {
 
 	private Double precioFinal;
 
-	public PromocionMontoFijo(TipoAtraccion tipoPaquete, String[] atracciones, Double precioFinal) {
-		super(tipoPaquete, atracciones);
+	public PromocionMontoFijo(TipoAtraccion tipoPaquete, Double precioFinal, String[] atraccionesEnPromo,
+			List<Atraccion> atraccionesVigentes) {
+		super(tipoPaquete, atraccionesEnPromo, atraccionesVigentes);
 		this.setPrecioFinal(precioFinal);
 	}
 
@@ -20,7 +23,7 @@ public class PromocionMontoFijo extends Promocion {
 	@Override
 	public String toString() {
 		return "Promocion de monto fijo (" + this.getTipoPaquete() + "):\n" + "Precio Final = " + this.getPrecioFinal()
-				+ "\n";
+				+ "\nAtracciones Incluidas: " + this.getAtraccionesIncluidas() + "\n";
 	}
 
 }

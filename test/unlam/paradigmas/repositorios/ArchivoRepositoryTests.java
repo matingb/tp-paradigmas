@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -58,16 +59,6 @@ public class ArchivoRepositoryTests {
 		assertEquals(0, usuarios.size());
 	}
 
-	// PENDIENTE
-	/*
-	 * @Test public void DadoUnArchivoSinRespetarFormato_AlLeer_() throws
-	 * IOException { String path = dadoUnArchivoConContenido(
-	 * "3|10|DEGUSTACION|MATI GARCIA\n" + "7|11|AVENTURAAGOS MOTTU\n" +
-	 * "12|12|AVENTURA|FEDE CASTRO\n");
-	 * 
-	 * List<Usuario> usuarios = lectorDeArchivos.leerUsuarios(path); }
-	 */
-
 	@Test
 	public void DadoUnArchivoConAtracciones_AlLeer_ObtengoUnaListaDeAtracciones() throws IOException {
 		String path = dadoUnArchivoConContenido(
@@ -94,25 +85,30 @@ public class ArchivoRepositoryTests {
 
 	@Test
 	public void DadoUnArchivoConPromociones_AlLeer_ObtengoUnaListaDePromociones() throws IOException {
-		String path = dadoUnArchivoConContenido(
+		String pathAtracciones = dadoUnArchivoConContenido(
+				"LA COMARCA|30|1|20|DEGUSTACION\n" + 
+				"MINAS TIRITH|7|11|7|PAISAJE\n" + 
+				"MORIA|12|12|2|AVENTURA\n" +
+				"BOSQUE NEGRO|12|12|2|AVENTURA\n" +
+				"LOTHLORIEN|12|12|2|DEGUSTACION\n" +
+				"EREBOR|12|12|2|PAISAJE\n" +
+				"ABISMO DE HLEM|12|12|2|PAISAJE\n");
+		Mockito.when(properties.getProperty("PathAtracciones")).thenReturn(pathAtracciones);
+		
+		List<Atraccion> atraccionesVigentes = repository.getAtracciones();
+		
+		String pathPromociones = dadoUnArchivoConContenido(
 				"MONTO FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO\n" +
-		"PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN\n" +
-		"COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
-		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(path);
+				"PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN\n" +
+				"COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
+		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(pathPromociones);
 
-		List<Promocion> promociones = repository.getPromociones();
+		List<Promocion> promociones = repository.getPromociones(atraccionesVigentes);
 		
 			
 		for (Promocion p : promociones) {
 			System.out.println(p.toString());
-		}
-		/*
-		System.out.println(promocion.get(0).getTipoPaquete());
-		System.out.println(promocion.get(0).get);
-		for(String s : promocion.get(0).getAtraccionesIncluidas()) {
-			System.out.println(s);
-		}*/
-		
+		}		
 	}
 	
 	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, String tipoAtraccion,
@@ -134,7 +130,7 @@ public class ArchivoRepositoryTests {
 	}
 
 	private String dadoUnArchivoConContenido(String contenido) throws IOException {
-		File inputFile = temporaryFolder.newFile("archivoTemporal.in");
+		File inputFile = temporaryFolder.newFile("archivoTemporal" + new Random().nextInt() +".in");
 		BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
 		writer.write(contenido);
 		writer.close();

@@ -4,33 +4,31 @@ package unlam.paradigmas.modelos;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class Promocion {
 
 	private TipoAtraccion tipoPaquete;
-	private List <String> atraccionesIncluidas;
+	private List <Atraccion> atraccionesIncluidas;
 	
-	public Promocion (TipoAtraccion tipoPaquete, String[] atracciones) {
+	public Promocion (TipoAtraccion tipoPaquete, String[] atraccionesEnPromo, List<Atraccion> atraccionesVigentes) {
 		setTipoPaquete(tipoPaquete);
-		atraccionesIncluidas = new LinkedList <String> ();
-		setAtraccionesIncluidas(atracciones);
+		atraccionesIncluidas = new LinkedList <Atraccion> ();
+		setAtraccionesIncluidas(atraccionesEnPromo, atraccionesVigentes);
 	}
 	
-	private void setAtraccionesIncluidas(String[] atracciones) {
-		for(String s : atracciones)
-			this.addAtracciones(s);
+	private void setAtraccionesIncluidas(String[] atraccionesEnPromo, List <Atraccion> atraccionesVigentes) {
+		Atraccion nuevaAtraccion = null;
+		for(String s : atraccionesEnPromo) {
+			nuevaAtraccion = Atraccion.buscarAtraccionPorNombre(atraccionesVigentes, s);
+			this.atraccionesIncluidas.add(nuevaAtraccion);
+		}
 	}
 	
 	private void setTipoPaquete(TipoAtraccion tipoPaquete) {
 		this.tipoPaquete = tipoPaquete;
 	}
-	
-	private void addAtracciones (String atraccion) {	// Funciona como set de las atracciones incluidas
-		this.atraccionesIncluidas.add(atraccion);
-	}
 
-	public List<String> getAtraccionesIncluidas() {
+	public List<Atraccion> getAtraccionesIncluidas() {
 		return atraccionesIncluidas;
 	}
 

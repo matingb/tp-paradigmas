@@ -1,13 +1,14 @@
 package unlam.paradigmas.modelos;
 
-import java.util.Objects;
+import java.util.List;
+//import java.util.Objects;
 
 public class PromocionPorcentual extends Promocion {
 
 	private Double procentajeDescuento;
 
-	public PromocionPorcentual(TipoAtraccion tipoPaquete, String[] atracciones, Double porcentajeDescuento) {
-		super(tipoPaquete, atracciones);
+	public PromocionPorcentual(TipoAtraccion tipoPaquete, Double porcentajeDescuento, String[] atraccionesEnPromo, List<Atraccion> atraccionesVigentes) {
+		super(tipoPaquete, atraccionesEnPromo, atraccionesVigentes);
 		setProcentajeDescuento(porcentajeDescuento);
 	}
 
@@ -22,7 +23,7 @@ public class PromocionPorcentual extends Promocion {
 	@Override
 	public String toString() {
 		return "Promocion Porcentual (" + this.getTipoPaquete() + "):\n" + "Porcentaje de descuento = "
-				+ this.getProcentajeDescuento() + "%\n";
+				+ this.getProcentajeDescuento() + "%" + "\nAtracciones Incluidas: " + this.getAtraccionesIncluidas() + "\n";
 	}
 
 }

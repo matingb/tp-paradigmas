@@ -94,7 +94,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 	}
 
 	@Override
-	public List<Promocion> getPromociones() {
+	public List<Promocion> getPromociones(List<Atraccion> atraccionesVigentes) {
 		List<Promocion> promociones = new ArrayList<Promocion>();
 		Scanner scanner = null;
 
@@ -116,15 +116,15 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 							
 				if (campos[0].equals("MONTO FIJO")) {
 					PromocionMontoFijo promocion = new PromocionMontoFijo(TipoAtraccion.valueOf(campos[1]),
-							vectorAtracciones, Double.parseDouble(campos[2]));
+							 Double.parseDouble(campos[2]), vectorAtracciones, atraccionesVigentes);
 					promociones.add(promocion);
 				} else if (campos[0].equals("PORCENTUAL")) {
 					PromocionPorcentual promocion = new PromocionPorcentual(TipoAtraccion.valueOf(campos[1]),
-							vectorAtracciones, Double.parseDouble(campos[2]));
+							Double.parseDouble(campos[2]), vectorAtracciones, atraccionesVigentes);
 					promociones.add(promocion);
 				} else {
-					PromocionCombo promocion = new PromocionCombo(TipoAtraccion.valueOf(campos[1]), vectorAtracciones,
-							Integer.parseInt(campos[2]));
+					PromocionCombo promocion = new PromocionCombo(TipoAtraccion.valueOf(campos[1]),
+							Integer.parseInt(campos[2]), vectorAtracciones, atraccionesVigentes);
 					promociones.add(promocion);
 				}
 

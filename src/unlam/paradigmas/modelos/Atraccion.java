@@ -1,5 +1,7 @@
 package unlam.paradigmas.modelos;
 
+import java.util.List;
+
 public class Atraccion {
 		
 	private String nombre;
@@ -38,4 +40,18 @@ public class Atraccion {
 	public void setTipoAtraccion(TipoAtraccion tipoAtraccion) {
 		this.tipoAtraccion = tipoAtraccion;
 	}
+	public static Atraccion buscarAtraccionPorNombre(List<Atraccion> atracciones, String nombre) {
+		for(Atraccion a : atracciones) {
+			if(a.getNombre().equals(nombre)) {
+				return a;
+			}
+		}
+		return null;
+	}
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	
 }
