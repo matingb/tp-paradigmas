@@ -7,11 +7,16 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.Scanner;
 
-import unlam.paradigmas.modelos.Usuario;
-import unlam.paradigmas.modelos.Atraccion;
-import unlam.paradigmas.modelos.TipoAtraccion;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 
-public class ArchivoRepository implements IUsuarioRepository, IAtraccionRepository {
+import unlam.paradigmas.modelos.Atraccion;
+import unlam.paradigmas.modelos.Promocion;
+import unlam.paradigmas.modelos.PromocionMontoFijo;
+import unlam.paradigmas.modelos.TipoAtraccion;
+import unlam.paradigmas.modelos.TipoPromocion;
+import unlam.paradigmas.modelos.Usuario;
+
+public class ArchivoRepository implements IUsuarioRepository, IAtraccionRepository, IPromocionRepository {
 
 	private Properties properties;
 	private static ArchivoRepository instance;
@@ -86,6 +91,42 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 		return atracciones;
 
 	}
+	
+	@Override
+	public List<Promocion> getPromociones() {
+		List<Promocion> promociones = new ArrayList<Promocion>();
+		Scanner scanner = null;
+
+		try {
+			String path = properties.getProperty("PathPromociones");
+			
+			File file = new File(path);
+			scanner = new Scanner(file);
+			scanner.useLocale(Locale.ENGLISH);
+			seteaSaltoDeLineaComoDelimitador(scanner);
+
+			while (scanner.hasNext()) {
+				 
+				String lineaPromocion = scanner.next();
+				String[] partes = lineaPromocion.split("\\|");
+				
+				PromocionMontoFijo promocion = new PromocionMontoFijo();
+				promocion.setTipoPaquete(TipoAtraccion.valueOf(partes[1]));
+				promocion.setPrecioFinal(Double.parseDouble(partes[2]));
+				for (int i = 3; i < partes.length; i++)
+					promocion.addAtracciones(partes[i]);
+				
+				promociones.add(promocion);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			scanner.close();
+		}
+
+		return promociones;
+	}
 
 	public static ArchivoRepository getInstance() {
 		if (instance == null) {
@@ -104,6 +145,10 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 
 	private void seteaPipeYSaltoDeLineaComoDelimitador(Scanner scanner) {
 		scanner.useDelimiter("\\||\n");
+	}
+	
+	private void seteaSaltoDeLineaComoDelimitador (Scanner scanner) {
+		scanner.useDelimiter("\n");
 	}
 
 }

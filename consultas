@@ -12,3 +12,9 @@
 													Devolver null
 																									RESPUESTA: Los archivos siempre son validos
  	ATRACCIONES:	Si el TipoAtraccion (enum) es invalida --> IllegalArgumentException
+ 
+ ----------------------------------------------------------------------------------------------
+ 1. PROMOCIONES:
+ 				Que pasa si en el archivo de promociones tengo atracciones que no estan en el
+ 				archivo de atracciones ?
+ 
