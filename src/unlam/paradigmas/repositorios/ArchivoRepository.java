@@ -7,13 +7,14 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
+//import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Promocion;
+import unlam.paradigmas.modelos.PromocionCombo;
 import unlam.paradigmas.modelos.PromocionMontoFijo;
+import unlam.paradigmas.modelos.PromocionPorcentual;
 import unlam.paradigmas.modelos.TipoAtraccion;
-import unlam.paradigmas.modelos.TipoPromocion;
 import unlam.paradigmas.modelos.Usuario;
 
 public class ArchivoRepository implements IUsuarioRepository, IAtraccionRepository, IPromocionRepository {
@@ -32,7 +33,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 
 		try {
 			String path = properties.getProperty("PathUsuarios");
-			
+
 			File file = new File(path);
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
@@ -57,7 +58,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 
 		return usuarios;
 	}
-	
+
 	@Override
 	public List<Atraccion> getAtracciones() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
@@ -91,7 +92,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 		return atracciones;
 
 	}
-	
+
 	@Override
 	public List<Promocion> getPromociones() {
 		List<Promocion> promociones = new ArrayList<Promocion>();
@@ -99,25 +100,33 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 
 		try {
 			String path = properties.getProperty("PathPromociones");
-			
+
 			File file = new File(path);
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
 			seteaSaltoDeLineaComoDelimitador(scanner);
 
 			while (scanner.hasNext()) {
-				 
+
 				String lineaPromocion = scanner.next();
-				String[] partes = lineaPromocion.split("\\|");
-				
-				PromocionMontoFijo promocion = new PromocionMontoFijo();
-				promocion.setTipoPaquete(TipoAtraccion.valueOf(partes[1]));
-				promocion.setPrecioFinal(Double.parseDouble(partes[2]));
-				for (int i = 3; i < partes.length; i++)
-					promocion.addAtracciones(partes[i]);
-				
-				promociones.add(promocion);
-				
+				String[] campos = lineaPromocion.split("\\|");
+				String lineaAtracciones = campos[3];
+				String[] vectorAtracciones = lineaAtracciones.split("-");
+
+				if (campos[0] == "MONTO FIJO") {
+					PromocionMontoFijo promocion = new PromocionMontoFijo(TipoAtraccion.valueOf(campos[1]),
+							vectorAtracciones, Double.parseDouble(campos[2]));
+					promociones.add(promocion);
+				} else if (campos[0] == "PORCENTUAL") {
+					PromocionPorcentual promocion = new PromocionPorcentual(TipoAtraccion.valueOf(campos[1]),
+							vectorAtracciones, Double.parseDouble(campos[2]));
+					promociones.add(promocion);
+				} else {
+					PromocionCombo promocion = new PromocionCombo(TipoAtraccion.valueOf(campos[1]), vectorAtracciones,
+							Integer.parseInt(campos[2]));
+					promociones.add(promocion);
+				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,8 +155,8 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 	private void seteaPipeYSaltoDeLineaComoDelimitador(Scanner scanner) {
 		scanner.useDelimiter("\\||\n");
 	}
-	
-	private void seteaSaltoDeLineaComoDelimitador (Scanner scanner) {
+
+	private void seteaSaltoDeLineaComoDelimitador(Scanner scanner) {
 		scanner.useDelimiter("\n");
 	}
 

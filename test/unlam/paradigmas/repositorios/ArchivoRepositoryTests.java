@@ -16,6 +16,9 @@ import org.mockito.Mockito;
 
 import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Promocion;
+import unlam.paradigmas.modelos.PromocionMontoFijo;
+import unlam.paradigmas.modelos.TipoAtraccion;
+import unlam.paradigmas.modelos.TipoPromocion;
 import unlam.paradigmas.modelos.Usuario;
 
 public class ArchivoRepositoryTests {
@@ -92,16 +95,20 @@ public class ArchivoRepositoryTests {
 	@Test
 	public void DadoUnArchivoConPromociones_AlLeer_ObtengoUnaListaDePromociones() throws IOException {
 		String path = dadoUnArchivoConContenido(
-				"MONTO FIJO|AVENTURA|50|MORIA|BOSQUE NEGRO\n");
+				"MONTO FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO\n");
 		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(path);
 
 		List<Promocion> promocion = repository.getPromociones();
-
+		System.out.print("Llega");
+		
+		System.out.println(promocion.get(0).toString());
+		/*
 		System.out.println(promocion.get(0).getTipoPaquete());
+		System.out.println(promocion.get(0).get);
 		for(String s : promocion.get(0).getAtraccionesIncluidas()) {
 			System.out.println(s);
-		}
-
+		}*/
+		
 	}
 	
 	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, String tipoAtraccion,
