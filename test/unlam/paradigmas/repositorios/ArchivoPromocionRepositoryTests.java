@@ -45,9 +45,9 @@ public class ArchivoPromocionRepositoryTests {
 	public void DadoUnArchivoConPromociones_AlLeer_ObtengoUnaListaConLosDistintosTiposPromociones() throws IOException {
 		dadaUnaListaDeAtracciones();
 		dadoUnArchivoConContenido(
-				"MONTO_FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO-MORDOR\n" +
-				"PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN\n" +
-				"COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
+			"MONTO_FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO-MORDOR\n" +
+			"PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN\n" +
+			"COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
 
 		List<Promocion> promociones = repository.getPromociones();
 		
@@ -96,16 +96,13 @@ public class ArchivoPromocionRepositoryTests {
 		assertEquals(1, promocionDeCombo.getCantAtraccionesGratis(), 0);
 	}
 
-	private String dadoUnArchivoConContenido(String contenido) throws IOException {
+	private void dadoUnArchivoConContenido(String contenido) throws IOException {
 		File inputFile = temporaryFolder.newFile("archivoTemporal" + new Random().nextInt() +".in");
 		BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
 		writer.write(contenido);
 		writer.close();
 
-		String absolutPath = inputFile.getAbsolutePath();
-		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(absolutPath);
-		
-		return absolutPath;
+		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(inputFile.getAbsolutePath());
 	}
 	
 	private List<Atraccion> dadaUnaListaDeAtracciones() {

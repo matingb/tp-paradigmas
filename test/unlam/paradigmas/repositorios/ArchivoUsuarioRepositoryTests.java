@@ -40,9 +40,10 @@ public class ArchivoUsuarioRepositoryTests {
 
 	@Test
 	public void DadoUnArchivoConUsuarios_AlLeer_ObtengoUnaListaDeUsuarios() throws IOException {
-		String path = dadoUnArchivoConContenido(
-				"3|10|DEGUSTACION|MATI GARCIA\n" + "7|11|AVENTURA|AGOS MOTTU\n" + "12|12|AVENTURA|FEDE CASTRO\n");
-		Mockito.when(properties.getProperty("PathUsuarios")).thenReturn(path);
+		dadoUnArchivoConContenido(
+			"3|10|DEGUSTACION|MATI GARCIA\n" + 
+			"7|11|AVENTURA|AGOS MOTTU\n" + 
+			"12|12|AVENTURA|FEDE CASTRO\n");
 
 		List<Usuario> usuarios = repository.getUsuarios();
 
@@ -54,8 +55,7 @@ public class ArchivoUsuarioRepositoryTests {
 
 	@Test
 	public void DadoUnArchivoDeUsuariosVacio_AlLeer_NoObtengoUsuarios() throws IOException {
-		String path = dadoUnArchivoConContenido("");
-		Mockito.when(properties.getProperty("PathUsuarios")).thenReturn(path);
+		dadoUnArchivoConContenido("");
 
 		List<Usuario> usuarios = repository.getUsuarios();
 
@@ -70,12 +70,12 @@ public class ArchivoUsuarioRepositoryTests {
 		assertEquals(nombre, usuario.getNombre());
 	}
 
-	private String dadoUnArchivoConContenido(String contenido) throws IOException {
+	private void dadoUnArchivoConContenido(String contenido) throws IOException {
 		File inputFile = temporaryFolder.newFile("archivoTemporal" + new Random().nextInt() +".in");
 		BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
 		writer.write(contenido);
 		writer.close();
 
-		return inputFile.getAbsolutePath();
+		Mockito.when(properties.getProperty("PathUsuarios")).thenReturn(inputFile.getAbsolutePath());
 	}
 }

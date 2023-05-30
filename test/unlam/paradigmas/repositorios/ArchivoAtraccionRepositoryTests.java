@@ -40,10 +40,11 @@ public class ArchivoAtraccionRepositoryTests {
 
 	@Test
 	public void DadoUnArchivoConAtracciones_AlLeer_ObtengoUnaListaDeAtracciones() throws IOException {
-		String path = dadoUnArchivoConContenido(
-				"LA COMARCA|30|1|20|DEGUSTACION\n" + "MINAS TIRITH|7|11|7|PAISAJE\n" + "MORDOR|12|12|2|AVENTURA\n");
-		Mockito.when(properties.getProperty("PathAtracciones")).thenReturn(path);
-
+		dadoUnArchivoConContenido(
+			"LA COMARCA|30|1|20|DEGUSTACION\n" + 
+			"MINAS TIRITH|7|11|7|PAISAJE\n" + 
+			"MORDOR|12|12|2|AVENTURA\n");
+		
 		List<Atraccion> atraccion = repository.getAtracciones();
 
 		validarAtraccion("LA COMARCA", 30.0, 1.0, 20, "DEGUSTACION", atraccion.get(0));
@@ -54,8 +55,7 @@ public class ArchivoAtraccionRepositoryTests {
 
 	@Test
 	public void DadoUnArchivoDeAtraccionesVacio_AlLeer_NoObtengoAtracciones() throws IOException {
-		String path = dadoUnArchivoConContenido("");
-		Mockito.when(properties.getProperty("PathAtracciones")).thenReturn(path);
+		dadoUnArchivoConContenido("");
 
 		List<Atraccion> atracciones = repository.getAtracciones();
 
@@ -72,12 +72,12 @@ public class ArchivoAtraccionRepositoryTests {
 
 	}
 
-	private String dadoUnArchivoConContenido(String contenido) throws IOException {
+	private void dadoUnArchivoConContenido(String contenido) throws IOException {
 		File inputFile = temporaryFolder.newFile("archivoTemporal" + new Random().nextInt() +".in");
 		BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
 		writer.write(contenido);
 		writer.close();
-
-		return inputFile.getAbsolutePath();
+		
+		Mockito.when(properties.getProperty("PathAtracciones")).thenReturn(inputFile.getAbsolutePath());
 	}
 }
