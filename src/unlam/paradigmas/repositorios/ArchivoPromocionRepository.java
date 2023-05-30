@@ -46,17 +46,22 @@ public class ArchivoPromocionRepository implements IPromocionRepository{
 				TipoPromocion tipoDePromocion = TipoPromocion.valueOf(scanner.next());
 				TipoAtraccion tipoDeAtracciones = TipoAtraccion.valueOf(scanner.next());
 				Double valor = scanner.nextDouble();				
-				String atracciones = scanner.next();
-				String[] vectorAtracciones = atracciones.split("-");
+				String nombresDeAtraccionesIncluidas = scanner.next();
+
+				List<Atraccion> atracciones = new ArrayList<Atraccion>();
+				for (String nombreAtraccion : nombresDeAtraccionesIncluidas.split("-")) {
+					Atraccion atraccion = atraccionService.getAtraccionByNombre(nombreAtraccion);
+					atracciones.add(atraccion);
+				}
 				
 				Promocion promocion = null;
 				
 				if (TipoPromocion.MONTO_FIJO.equals(tipoDePromocion)) {
-					promocion = new PromocionMontoFijo(tipoDeAtracciones, valor, vectorAtracciones, atraccionesVigentes);
+					promocion = new PromocionMontoFijo(tipoDeAtracciones, valor, atracciones);
 				} else if (TipoPromocion.PORCENTUAL.equals(tipoDePromocion)) {
-					promocion = new PromocionPorcentual(tipoDeAtracciones, valor, vectorAtracciones, atraccionesVigentes);
+					promocion = new PromocionPorcentual(tipoDeAtracciones, valor, atracciones);
 				} else if (TipoPromocion.COMBO.equals(tipoDePromocion)){
-					promocion = new PromocionCombo(tipoDeAtracciones, valor.intValue(), vectorAtracciones, atraccionesVigentes);
+					promocion = new PromocionCombo(tipoDeAtracciones, valor.intValue(), atracciones);
 				}
 				
 				promociones.add(promocion);

@@ -6,17 +6,13 @@ public class PromocionCombo extends Promocion {
 
 	private Integer cantAtraccionesGratis;
 
-	public PromocionCombo(TipoAtraccion tipoPaquete, Integer cantAtraccionesGratis, String[] atraccionesEnPromo, List<Atraccion> atraccionesVigentes ) {
-		super(tipoPaquete, atraccionesEnPromo, atraccionesVigentes);
-		this.setCantAtraccionesGratis(cantAtraccionesGratis);
+	public PromocionCombo(TipoAtraccion tipoPaquete, Integer cantAtraccionesGratis, List<Atraccion> atracciones ) {
+		super(tipoPaquete, atracciones);
+		this.cantAtraccionesGratis = cantAtraccionesGratis;
 	}
 
 	public Integer getCantAtraccionesGratis() {
 		return cantAtraccionesGratis;
-	}
-
-	private void setCantAtraccionesGratis(Integer cantAtraccionesGratis) {
-		this.cantAtraccionesGratis = cantAtraccionesGratis;
 	}
 	
 	public Double getPrecioFinal() {
@@ -36,4 +32,4 @@ public class PromocionCombo extends Promocion {
 				+ "\n-Cantidad de atracciones gratis = " + this.getCantAtraccionesGratis()
 				+ "\n-Atracciones Incluidas: " + this.getAtraccionesIncluidas() + "\n";
 	}
-	}
+}

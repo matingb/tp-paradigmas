@@ -46,7 +46,7 @@ public class ArchivoPromocionRepositoryTests {
 		List<Atraccion> atracciones = dadaUnaListaDeAtracciones();
 		
 		String pathPromociones = dadoUnArchivoConContenido(
-				"MONTO_FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO\n" +
+				"MONTO_FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO-MORDOR\n" +
 				"PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN\n" +
 				"COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
 		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(pathPromociones);
@@ -54,6 +54,12 @@ public class ArchivoPromocionRepositoryTests {
 		List<Promocion> promociones = repository.getPromociones(atracciones);
 		
 		assertEquals(3, promociones.size());
+		assertEquals(3, promociones.get(0).getAtraccionesIncluidas().size());
+		Atraccion moria = promociones.get(0).getAtraccionesIncluidas().get(0);
+		assertEquals("MORIA", moria.getNombre());
+		assertEquals(12, moria.getCosto(), 0);
+		assertEquals(2, moria.getCupo(), 0);
+		assertEquals(12, moria.getDuracionHoras(), 0);
 	}
 	
 	@Test
@@ -111,10 +117,17 @@ public class ArchivoPromocionRepositoryTests {
 	}
 	
 	private List<Atraccion> dadaUnaListaDeAtracciones() {
+		Atraccion moria = new Atraccion("MORIA", 12.0, 12.0, 2, TipoAtraccion.AVENTURA);
+		Atraccion laComarca = new Atraccion("LA COMARCA", 30.0, 12.0, 20, TipoAtraccion.DEGUSTACION);
+		Atraccion minasTirith = new Atraccion("MINAS TIRITH", 7.0, 11.0, 7, TipoAtraccion.PAISAJE);
+		
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion("LA COMARCA", 30.0, 12.0, 20, TipoAtraccion.DEGUSTACION));
-		atracciones.add(new Atraccion("MINAS TIRITH", 7.0, 11.0, 7, TipoAtraccion.PAISAJE));
-		atracciones.add(new Atraccion("MORIA", 12.0, 12.0, 2, TipoAtraccion.AVENTURA));
+		atracciones.add(moria);
+		atracciones.add(laComarca);
+		atracciones.add(minasTirith);
+		
+		Mockito.when(atraccionService.getAtraccionByNombre("MORIA")).thenReturn(moria);
+		
 		return atracciones;
 	}
 }

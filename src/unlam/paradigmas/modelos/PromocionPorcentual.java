@@ -1,15 +1,13 @@
 package unlam.paradigmas.modelos;
 
 import java.util.List;
-//import java.util.Objects;
 
 public class PromocionPorcentual extends Promocion {
 
 	private Double procentajeDescuento;
 
-	public PromocionPorcentual(TipoAtraccion tipoPaquete, Double porcentajeDescuento, String[] atraccionesEnPromo,
-			List<Atraccion> atraccionesVigentes) {
-		super(tipoPaquete, atraccionesEnPromo, atraccionesVigentes);
+	public PromocionPorcentual(TipoAtraccion tipoPaquete, Double porcentajeDescuento, List<Atraccion> atracciones) {
+		super(tipoPaquete, atracciones);
 		setProcentajeDescuento(porcentajeDescuento);
 	}
 

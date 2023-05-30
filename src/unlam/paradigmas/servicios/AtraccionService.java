@@ -32,4 +32,9 @@ public class AtraccionService implements IAtraccionService {
 		}
 		return instance;
 	}
+
+	public Atraccion getAtraccionByNombre(String nombreAtraccion) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
