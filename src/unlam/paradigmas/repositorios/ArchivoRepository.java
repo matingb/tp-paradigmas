@@ -105,28 +105,24 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 			File file = new File(path);
 			scanner = new Scanner(file);
 			scanner.useLocale(Locale.ENGLISH);
-			seteaSaltoDeLineaComoDelimitador(scanner);
+			seteaPipeYSaltoDeLineaComoDelimitador(scanner);
 
 			while (scanner.hasNext()) {
 
-				String lineaPromocion = scanner.next();
-				String[] campos = lineaPromocion.split("\\|");
-				String lineaAtracciones = campos[3];
-				String[] vectorAtracciones = lineaAtracciones.split("-");
-
-				TipoPromocion tipoDePromocion = TipoPromocion.valueOf(campos[0]);
+				TipoPromocion tipoDePromocion = TipoPromocion.valueOf(scanner.next());
+				TipoAtraccion tipoDeAtracciones = TipoAtraccion.valueOf(scanner.next());
+				Double valor = scanner.nextDouble();				
+				String atracciones = scanner.next();
+				String[] vectorAtracciones = atracciones.split("-");
 				
 				Promocion promocion = null;
 				
 				if (TipoPromocion.MONTO_FIJO.equals(tipoDePromocion)) {
-					promocion = new PromocionMontoFijo(TipoAtraccion.valueOf(campos[1]),
-							 Double.parseDouble(campos[2]), vectorAtracciones, atraccionesVigentes);
+					promocion = new PromocionMontoFijo(tipoDeAtracciones, valor, vectorAtracciones, atraccionesVigentes);
 				} else if (TipoPromocion.PORCENTUAL.equals(tipoDePromocion)) {
-					promocion = new PromocionPorcentual(TipoAtraccion.valueOf(campos[1]),
-							Double.parseDouble(campos[2]), vectorAtracciones, atraccionesVigentes);
+					promocion = new PromocionPorcentual(tipoDeAtracciones, valor, vectorAtracciones, atraccionesVigentes);
 				} else if (TipoPromocion.COMBO.equals(tipoDePromocion)){
-					promocion = new PromocionCombo(TipoAtraccion.valueOf(campos[1]),
-							Integer.parseInt(campos[2]), vectorAtracciones, atraccionesVigentes);
+					promocion = new PromocionCombo(tipoDeAtracciones, valor.intValue(), vectorAtracciones, atraccionesVigentes);
 				}
 				
 				promociones.add(promocion);
@@ -158,9 +154,4 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 	private void seteaPipeYSaltoDeLineaComoDelimitador(Scanner scanner) {
 		scanner.useDelimiter("\\||\n");
 	}
-
-	private void seteaSaltoDeLineaComoDelimitador(Scanner scanner) {
-		scanner.useDelimiter("\n");
-	}
-
 }
