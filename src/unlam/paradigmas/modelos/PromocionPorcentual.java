@@ -4,23 +4,23 @@ import java.util.List;
 
 public class PromocionPorcentual extends Promocion {
 
-	private Double procentajeDescuento;
+	private Double porcentajeDescuento;
 
 	public PromocionPorcentual(TipoAtraccion tipoPaquete, Double porcentajeDescuento, List<Atraccion> atracciones) {
 		super(tipoPaquete, atracciones);
-		setProcentajeDescuento(porcentajeDescuento);
+		setPorcentajeDescuento(porcentajeDescuento);
 	}
 
-	public Double getProcentajeDescuento() {
-		return procentajeDescuento;
+	public Double getPorcentajeDescuento() {
+		return porcentajeDescuento;
 	}
 
-	private void setProcentajeDescuento(Double procentajeDescuento) {
-		this.procentajeDescuento = procentajeDescuento;
+	private void setPorcentajeDescuento(Double porcentajeDescuento) {
+		this.porcentajeDescuento = porcentajeDescuento;
 	}
 	
 	public Double getPrecioFinal() {
-		return this.getPrecioOriginal()-(this.getPrecioOriginal()*(this.getProcentajeDescuento()/100));
+		return this.getPrecioOriginal()-(this.getPrecioOriginal()*(this.getPorcentajeDescuento()/100));
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class PromocionPorcentual extends Promocion {
 		return "Promocion Porcentual (" + this.getTipoPaquete() + "):" 
 				+ "\n-Duracion en Horas del paquete = " + this.getDuracionHorasPromocion()
 				+ "\n-Precio Original = " + this.getPrecioOriginal()
-				+ "\n-Porcentaje de descuento = " + this.getProcentajeDescuento() + "%"
+				+ "\n-Porcentaje de descuento = " + this.getPorcentajeDescuento() + "%"
 				+ "\n-Precio final = " +  this.getPrecioFinal()
 				+ "\n-Atracciones Incluidas: " + this.getAtraccionesIncluidas() + "\n";
 	}
