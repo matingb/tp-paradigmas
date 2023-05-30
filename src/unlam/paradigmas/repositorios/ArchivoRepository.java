@@ -15,6 +15,7 @@ import unlam.paradigmas.modelos.PromocionCombo;
 import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
 import unlam.paradigmas.modelos.TipoAtraccion;
+import unlam.paradigmas.modelos.TipoPromocion;
 import unlam.paradigmas.modelos.Usuario;
 
 public class ArchivoRepository implements IUsuarioRepository, IAtraccionRepository, IPromocionRepository {
@@ -113,19 +114,22 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 				String lineaAtracciones = campos[3];
 				String[] vectorAtracciones = lineaAtracciones.split("-");
 
-				if (campos[0].equals("MONTO FIJO")) {
-					PromocionMontoFijo promocion = new PromocionMontoFijo(TipoAtraccion.valueOf(campos[1]),
+				TipoPromocion tipoDePromocion = TipoPromocion.valueOf(campos[0]);
+				
+				Promocion promocion = null;
+				
+				if (TipoPromocion.MONTO_FIJO.equals(tipoDePromocion)) {
+					promocion = new PromocionMontoFijo(TipoAtraccion.valueOf(campos[1]),
 							 Double.parseDouble(campos[2]), vectorAtracciones, atraccionesVigentes);
-					promociones.add(promocion);
-				} else if (campos[0].equals("PORCENTUAL")) {
-					PromocionPorcentual promocion = new PromocionPorcentual(TipoAtraccion.valueOf(campos[1]),
+				} else if (TipoPromocion.PORCENTUAL.equals(tipoDePromocion)) {
+					promocion = new PromocionPorcentual(TipoAtraccion.valueOf(campos[1]),
 							Double.parseDouble(campos[2]), vectorAtracciones, atraccionesVigentes);
-					promociones.add(promocion);
-				} else {
-					PromocionCombo promocion = new PromocionCombo(TipoAtraccion.valueOf(campos[1]),
+				} else if (TipoPromocion.COMBO.equals(tipoDePromocion)){
+					promocion = new PromocionCombo(TipoAtraccion.valueOf(campos[1]),
 							Integer.parseInt(campos[2]), vectorAtracciones, atraccionesVigentes);
-					promociones.add(promocion);
 				}
+				
+				promociones.add(promocion);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

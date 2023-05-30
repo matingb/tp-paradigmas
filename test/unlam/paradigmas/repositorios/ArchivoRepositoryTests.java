@@ -100,7 +100,7 @@ public class ArchivoRepositoryTests {
 		List<Atraccion> atraccionesVigentes = repository.getAtracciones();
 		
 		String pathPromociones = dadoUnArchivoConContenido(
-				"MONTO FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO\n" +
+				"MONTO_FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO\n" +
 				"PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN\n" +
 				"COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
 		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(pathPromociones);
@@ -125,7 +125,7 @@ public class ArchivoRepositoryTests {
 		List<Atraccion> atraccionesVigentes = repository.getAtracciones();
 		
 		String pathPromociones = dadoUnArchivoConContenido(
-				"MONTO FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO");
+				"MONTO_FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO");
 		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(pathPromociones);
 
 		List<Promocion> promociones = repository.getPromociones(atraccionesVigentes);

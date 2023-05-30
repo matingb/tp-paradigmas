@@ -1,5 +1,5 @@
 package unlam.paradigmas.modelos;
 
 public enum TipoPromocion {
-	PORCENTUAL, FIJA, COMBO
+	PORCENTUAL, MONTO_FIJO, COMBO
 }
