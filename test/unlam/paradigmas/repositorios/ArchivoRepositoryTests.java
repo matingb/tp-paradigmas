@@ -131,6 +131,8 @@ public class ArchivoRepositoryTests {
 		List<Promocion> promociones = repository.getPromociones(atraccionesVigentes);
 		
 		assertEquals(PromocionMontoFijo.class , promociones.get(0).getClass());
+		PromocionMontoFijo promocionDeMontoFijo = (PromocionMontoFijo) promociones.get(0); 
+		assertEquals(50, promocionDeMontoFijo.getPrecioFinal(), 0);
 	}
 	
 	@Test
@@ -154,6 +156,8 @@ public class ArchivoRepositoryTests {
 		List<Promocion> promociones = repository.getPromociones(atraccionesVigentes);
 		
 		assertEquals(PromocionPorcentual.class , promociones.get(0).getClass());
+		PromocionPorcentual promocionPorcentual = (PromocionPorcentual) promociones.get(0); 
+		assertEquals(10, promocionPorcentual.getProcentajeDescuento(), 0);
 	}
 	
 	@Test
@@ -177,6 +181,8 @@ public class ArchivoRepositoryTests {
 		List<Promocion> promociones = repository.getPromociones(atraccionesVigentes);
 		
 		assertEquals(PromocionCombo.class , promociones.get(0).getClass());
+		PromocionCombo promocionDeCombo = (PromocionCombo) promociones.get(0); 
+		assertEquals(1, promocionDeCombo.getCantAtraccionesGratis(), 0);
 	}
 	
 	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, String tipoAtraccion,
