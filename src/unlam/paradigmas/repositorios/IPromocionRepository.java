@@ -6,5 +6,5 @@ import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Promocion;
 
 public interface IPromocionRepository {
-	public List<Promocion> getPromociones(List<Atraccion> atraccionesVigentes);
+	public List<Promocion> getPromociones();
 }

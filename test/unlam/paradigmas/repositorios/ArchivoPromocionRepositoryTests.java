@@ -43,34 +43,29 @@ public class ArchivoPromocionRepositoryTests {
 
 	@Test
 	public void DadoUnArchivoConPromociones_AlLeer_ObtengoUnaListaConLosDistintosTiposPromociones() throws IOException {
-		List<Atraccion> atracciones = dadaUnaListaDeAtracciones();
-		
-		String pathPromociones = dadoUnArchivoConContenido(
+		dadaUnaListaDeAtracciones();
+		dadoUnArchivoConContenido(
 				"MONTO_FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO-MORDOR\n" +
 				"PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN\n" +
 				"COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
-		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(pathPromociones);
 
-		List<Promocion> promociones = repository.getPromociones(atracciones);
+		List<Promocion> promociones = repository.getPromociones();
 		
 		assertEquals(3, promociones.size());
 		assertEquals(3, promociones.get(0).getAtraccionesIncluidas().size());
-		Atraccion moria = promociones.get(0).getAtraccionesIncluidas().get(0);
-		assertEquals("MORIA", moria.getNombre());
-		assertEquals(12, moria.getCosto(), 0);
-		assertEquals(2, moria.getCupo(), 0);
-		assertEquals(12, moria.getDuracionHoras(), 0);
+		
+		List<Atraccion> atraccionesActuales = promociones.get(0).getAtraccionesIncluidas();
+		assertEquals(new Atraccion("MORIA", 12.0, 12.0, 2, TipoAtraccion.AVENTURA), atraccionesActuales.get(0));
+		assertEquals(new Atraccion("BOSQUE NEGRO", 2.0, 22.0, 5, TipoAtraccion.AVENTURA), atraccionesActuales.get(1));
+		assertEquals(new Atraccion("MORDOR", 6.0, 32.0, 3, TipoAtraccion.AVENTURA), atraccionesActuales.get(2));
 	}
-	
+
 	@Test
 	public void DadoUnArchivoConPromocionDeMontoFijo_AlLeer_ObtengoUnaPromocionDelTipoMontoFijo() throws IOException {
-		List<Atraccion> atracciones = dadaUnaListaDeAtracciones();
-		
-		String pathPromociones = dadoUnArchivoConContenido(
-				"MONTO_FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO");
-		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(pathPromociones);
+		dadaUnaListaDeAtracciones();
+		dadoUnArchivoConContenido("MONTO_FIJO|AVENTURA|50|MORIA-BOSQUE NEGRO");
 
-		List<Promocion> promociones = repository.getPromociones(atracciones);
+		List<Promocion> promociones = repository.getPromociones();
 		
 		assertEquals(PromocionMontoFijo.class , promociones.get(0).getClass());
 		PromocionMontoFijo promocionDeMontoFijo = (PromocionMontoFijo) promociones.get(0); 
@@ -79,13 +74,10 @@ public class ArchivoPromocionRepositoryTests {
 	
 	@Test
 	public void DadoUnArchivoConPromocionPorcentual_AlLeer_ObtengoUnaPromocionDelTipoPorcentual() throws IOException {
-		List<Atraccion> atracciones = dadaUnaListaDeAtracciones();
-		
-		String pathPromociones = dadoUnArchivoConContenido(
-				"PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN");
-		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(pathPromociones);
+		dadaUnaListaDeAtracciones();
+		dadoUnArchivoConContenido("PORCENTUAL|DEGUSTACION|10|LA COMARCA-LOTHLORIEN");
 
-		List<Promocion> promociones = repository.getPromociones(atracciones);
+		List<Promocion> promociones = repository.getPromociones();
 		
 		assertEquals(PromocionPorcentual.class , promociones.get(0).getClass());
 		PromocionPorcentual promocionPorcentual = (PromocionPorcentual) promociones.get(0); 
@@ -94,13 +86,10 @@ public class ArchivoPromocionRepositoryTests {
 	
 	@Test
 	public void DadoUnArchivoConPromocionDeCombo_AlLeer_ObtengoUnaPromocionDelTipoCombo() throws IOException {
-		List<Atraccion> atracciones = dadaUnaListaDeAtracciones();
+		dadaUnaListaDeAtracciones();
+		dadoUnArchivoConContenido("COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
 
-		String pathPromociones = dadoUnArchivoConContenido(
-				"COMBO|PAISAJE|1|ABISMO DE HLEM-EREBOR");
-		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(pathPromociones);
-
-		List<Promocion> promociones = repository.getPromociones(atracciones);
+		List<Promocion> promociones = repository.getPromociones();
 		
 		assertEquals(PromocionCombo.class , promociones.get(0).getClass());
 		PromocionCombo promocionDeCombo = (PromocionCombo) promociones.get(0); 
@@ -113,20 +102,23 @@ public class ArchivoPromocionRepositoryTests {
 		writer.write(contenido);
 		writer.close();
 
-		return inputFile.getAbsolutePath();
+		String absolutPath = inputFile.getAbsolutePath();
+		Mockito.when(properties.getProperty("PathPromociones")).thenReturn(absolutPath);
+		
+		return absolutPath;
 	}
 	
 	private List<Atraccion> dadaUnaListaDeAtracciones() {
-		Atraccion moria = new Atraccion("MORIA", 12.0, 12.0, 2, TipoAtraccion.AVENTURA);
-		Atraccion laComarca = new Atraccion("LA COMARCA", 30.0, 12.0, 20, TipoAtraccion.DEGUSTACION);
-		Atraccion minasTirith = new Atraccion("MINAS TIRITH", 7.0, 11.0, 7, TipoAtraccion.PAISAJE);
-		
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(moria);
-		atracciones.add(laComarca);
-		atracciones.add(minasTirith);
+		atracciones.add(new Atraccion("LA COMARCA", 30.0, 12.0, 20, TipoAtraccion.DEGUSTACION));
+		atracciones.add(new Atraccion("MINAS TIRITH", 7.0, 11.0, 7, TipoAtraccion.PAISAJE));
+		atracciones.add(new Atraccion("MORIA", 12.0, 12.0, 2, TipoAtraccion.AVENTURA));
+		atracciones.add(new Atraccion("BOSQUE NEGRO", 2.0, 22.0, 5, TipoAtraccion.AVENTURA));
+		atracciones.add(new Atraccion("MORDOR", 6.0, 32.0, 3, TipoAtraccion.AVENTURA));
 		
-		Mockito.when(atraccionService.getAtraccionByNombre("MORIA")).thenReturn(moria);
+		for(Atraccion atraccion : atracciones) {			
+			Mockito.when(atraccionService.getAtraccionByNombre(atraccion.getNombre())).thenReturn(atraccion);
+		}
 		
 		return atracciones;
 	}

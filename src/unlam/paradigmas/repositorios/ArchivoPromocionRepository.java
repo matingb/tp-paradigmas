@@ -29,7 +29,7 @@ public class ArchivoPromocionRepository implements IPromocionRepository{
 	}
 	
 	@Override
-	public List<Promocion> getPromociones(List<Atraccion> atraccionesVigentes) {
+	public List<Promocion> getPromociones() {
 		List<Promocion> promociones = new ArrayList<Promocion>();
 		Scanner scanner = null;
 
