@@ -1,6 +1,7 @@
 package unlam.paradigmas.repositorios;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -63,12 +64,26 @@ public class ArchivoAtraccionRepositoryTests {
 	}
 	
 	@Test
-	public void DadaLaAtraccionMoria_AlBuscarPorNombre_ObtengoSuPrecioCupoYDuracion() throws IOException {
+	public void DadoElNombreDeAtraccionMoria_AlBuscarPorNombre_ObtengoSuPrecioCupoDuracionTTipoDeAtraccion() throws IOException {
 		dadoUnArchivoConContenido("MORIA|12|12|2|AVENTURA");
+		repository.getAtracciones();
 
 		Atraccion moria = repository.getAtraccionByNombre("MORIA");
 
-		assertEquals(new Atraccion("MORIA", 12.0, 12.0, 2, TipoAtraccion.AVENTURA), moria);
+		assertEquals(12.0, moria.getCosto(), 0);
+		assertEquals(12, moria.getDuracionHoras(), 0);
+		assertEquals(2, moria.getCupo(), 0);
+		assertEquals(TipoAtraccion.AVENTURA, moria.getTipoAtraccion());
+	}
+	
+	@Test
+	public void DadoUnNombreInvalido_AlBuscarPorNombre_ObtengoNull() throws IOException {
+		dadoUnArchivoConContenido("MORIA|12|12|2|AVENTURA");
+		repository.getAtracciones();
+
+		Atraccion atraccion = repository.getAtraccionByNombre("NOMBRE_INVALIDO");
+
+		assertNull(atraccion);
 	}
 	
 	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, String tipoAtraccion,

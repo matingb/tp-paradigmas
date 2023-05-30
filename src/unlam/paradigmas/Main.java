@@ -1,10 +1,13 @@
 package unlam.paradigmas;
 
 import unlam.paradigmas.modelos.Atraccion;
+import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.repositorios.ArchivoAtraccionRepository;
+import unlam.paradigmas.repositorios.ArchivoPromocionRepository;
 import unlam.paradigmas.repositorios.ArchivoUsuarioRepository;
 import unlam.paradigmas.repositorios.IAtraccionRepository;
+import unlam.paradigmas.repositorios.IPromocionRepository;
 import unlam.paradigmas.repositorios.IUsuarioRepository;
 
 import java.util.List;
@@ -20,6 +23,9 @@ public class Main {
 
 		IAtraccionRepository atraccionRepository = ArchivoAtraccionRepository.getInstance();
 		List<Atraccion> atracciones = atraccionRepository.getAtracciones();
+		
+		IPromocionRepository promocionRepository = ArchivoPromocionRepository.getInstance();
+		List<Promocion> promociones = promocionRepository.getPromociones();
 
 		for (Usuario usuario : usuarios) {
 			System.out.println(usuario.getNombre());
@@ -27,6 +33,10 @@ public class Main {
 
 		for (Atraccion atraccion : atracciones) {
 			System.out.println(atraccion.getNombre());
+		}
+		
+		for (Promocion promocion : promociones) {
+			System.out.println(promocion);
 		}
 		/*
 		 * Cargar Información - Usuarios - Atracciones - Paquetes Hace falta hacer la
