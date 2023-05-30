@@ -73,14 +73,13 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 			seteaPipeYSaltoDeLineaComoDelimitador(scanner);
 
 			while (scanner.hasNext()) {
-				Atraccion atraccion = new Atraccion();
+				String nombre = scanner.next();
+				Double costo = scanner.nextDouble();
+				Double duracionHoras = scanner.nextDouble();
+				Integer cupo = scanner.nextInt();
+				TipoAtraccion tipoAtraccion = TipoAtraccion.valueOf(scanner.next());
 
-				atraccion.setNombre(scanner.next());
-				atraccion.setCosto(scanner.nextDouble());
-				atraccion.setDuracionHoras(scanner.nextDouble());
-				atraccion.setCupo(scanner.nextInt());
-				atraccion.setTipoAtraccion(TipoAtraccion.valueOf(scanner.next()));
-
+				Atraccion atraccion = new Atraccion(nombre, costo, duracionHoras, cupo, tipoAtraccion);
 				atracciones.add(atraccion);
 			}
 

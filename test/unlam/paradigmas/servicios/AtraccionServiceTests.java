@@ -25,9 +25,9 @@ public class AtraccionServiceTests {
 	@Test
 	public void dados3Usuarios_AlObtenerUsuarios_DeberiaObtenerLosUsuarios() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(atraccion("LA COMARCA", 10.0, 20.0, 5, "DEGUSTACION"));
-		atracciones.add(atraccion("MINAS TIRITH", 30.0, 70.0, 20, "PAISAJE"));
-		atracciones.add(atraccion("MORDOR", 5.0, 10.0, 30, "AVENTURA"));
+		atracciones.add(atraccion("LA COMARCA", 10.0, 20.0, 5, TipoAtraccion.DEGUSTACION));
+		atracciones.add(atraccion("MINAS TIRITH", 30.0, 70.0, 20, TipoAtraccion.PAISAJE));
+		atracciones.add(atraccion("MORDOR", 5.0, 10.0, 30, TipoAtraccion.AVENTURA));
 		Mockito.when(atraccionRepository.getAtracciones()).thenReturn(atracciones);
 		
 		List<Atraccion> atraccionesActuales = atraccionService.getAtracciones();
@@ -35,14 +35,7 @@ public class AtraccionServiceTests {
 		assertEquals(atracciones, atraccionesActuales);
 	}
 
-	private Atraccion atraccion(String nombre, Double costo, Double duracion, Integer cupo, String tipoAtraccion) {
-		Atraccion atraccion = new Atraccion();
-		atraccion.setNombre(nombre);
-		atraccion.setCosto(costo);
-		atraccion.setDuracionHoras(duracion);
-		atraccion.setCupo(cupo);
-		atraccion.setTipoAtraccion(TipoAtraccion.valueOf(tipoAtraccion));
-		
-		return atraccion;
+	private Atraccion atraccion(String nombre, Double costo, Double duracion, Integer cupo, TipoAtraccion tipoAtraccion) {
+		return new Atraccion(nombre, costo, duracion, cupo, tipoAtraccion);
 	}
 }
