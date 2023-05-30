@@ -78,7 +78,7 @@ public class ArchivoPromocionRepositoryTests {
 		
 		assertEquals(PromocionPorcentual.class , promociones.get(0).getClass());
 		PromocionPorcentual promocionPorcentual = (PromocionPorcentual) promociones.get(0); 
-		assertEquals(10, promocionPorcentual.getProcentajeDescuento(), 0);
+		assertEquals(10, promocionPorcentual.getPorcentajeDescuento(), 0);
 	}
 	
 	@Test
