@@ -7,8 +7,6 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.Scanner;
 
-//import javax.swing.plaf.synth.SynthOptionPaneUI;
-
 import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.PromocionCombo;
@@ -16,83 +14,20 @@ import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
 import unlam.paradigmas.modelos.TipoAtraccion;
 import unlam.paradigmas.modelos.TipoPromocion;
-import unlam.paradigmas.modelos.Usuario;
+import unlam.paradigmas.servicios.AtraccionService;
 
-public class ArchivoRepository implements IUsuarioRepository, IAtraccionRepository, IPromocionRepository {
-
+public class ArchivoPromocionRepository implements IPromocionRepository{
+	
 	private Properties properties;
-	private static ArchivoRepository instance;
+	private AtraccionService atraccionService;
+	
+	private static ArchivoPromocionRepository instance;
 
-	private ArchivoRepository(Properties properties) {
+	private ArchivoPromocionRepository(Properties properties, AtraccionService atraccionService) {
 		this.properties = properties;
+		this.atraccionService = atraccionService;
 	}
-
-	@Override
-	public List<Usuario> getUsuarios() {
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-		Scanner scanner = null;
-
-		try {
-			String path = properties.getProperty("PathUsuarios");
-
-			File file = new File(path);
-			scanner = new Scanner(file);
-			scanner.useLocale(Locale.ENGLISH);
-			seteaPipeYSaltoDeLineaComoDelimitador(scanner);
-
-			while (scanner.hasNext()) {
-				Usuario usuario = new Usuario();
-
-				usuario.setPresupuesto(scanner.nextDouble());
-				usuario.setTiempo(scanner.nextDouble());
-				usuario.setActividadFavorita(scanner.next());
-				usuario.setNombre(scanner.next());
-
-				usuarios.add(usuario);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			scanner.close();
-		}
-
-		return usuarios;
-	}
-
-	@Override
-	public List<Atraccion> getAtracciones() {
-		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		Scanner scanner = null;
-
-		try {
-			String path = properties.getProperty("PathAtracciones");
-			File file = new File(path);
-			scanner = new Scanner(file);
-			scanner.useLocale(Locale.ENGLISH);
-			seteaPipeYSaltoDeLineaComoDelimitador(scanner);
-
-			while (scanner.hasNext()) {
-				String nombre = scanner.next();
-				Double costo = scanner.nextDouble();
-				Double duracionHoras = scanner.nextDouble();
-				Integer cupo = scanner.nextInt();
-				TipoAtraccion tipoAtraccion = TipoAtraccion.valueOf(scanner.next());
-
-				Atraccion atraccion = new Atraccion(nombre, costo, duracionHoras, cupo, tipoAtraccion);
-				atracciones.add(atraccion);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			scanner.close();
-		}
-
-		return atracciones;
-
-	}
-
+	
 	@Override
 	public List<Promocion> getPromociones(List<Atraccion> atraccionesVigentes) {
 		List<Promocion> promociones = new ArrayList<Promocion>();
@@ -135,7 +70,7 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 		return promociones;
 	}
 
-	public static ArchivoRepository getInstance() {
+	public static ArchivoPromocionRepository getInstance() {
 		if (instance == null) {
 			throw new AssertionError("Debe llamarse primero al init");
 		}
@@ -143,9 +78,9 @@ public class ArchivoRepository implements IUsuarioRepository, IAtraccionReposito
 		return instance;
 	}
 
-	public synchronized static ArchivoRepository init(Properties properties) {
+	public synchronized static ArchivoPromocionRepository init(Properties properties, AtraccionService atraccionService) {
 		if (instance == null) {
-			instance = new ArchivoRepository(properties);
+			instance = new ArchivoPromocionRepository(properties, atraccionService);
 		}
 		return instance;
 	}
