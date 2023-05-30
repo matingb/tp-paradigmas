@@ -39,15 +39,6 @@ public class Atraccion {
 		return tipoAtraccion;
 	}
 
-	public static Atraccion buscarAtraccionPorNombre(List<Atraccion> atracciones, String nombre) {
-		for (Atraccion a : atracciones) {
-			if (a.getNombre().equals(nombre)) {
-				return a;
-			}
-		}
-		return null;
-	}
-
 	@Override
 	public String toString() {
 		return nombre;
