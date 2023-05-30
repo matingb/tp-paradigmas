@@ -14,18 +14,17 @@ import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
 import unlam.paradigmas.modelos.TipoAtraccion;
 import unlam.paradigmas.modelos.TipoPromocion;
-import unlam.paradigmas.servicios.AtraccionService;
 
 public class ArchivoPromocionRepository implements IPromocionRepository{
 	
 	private Properties properties;
-	private AtraccionService atraccionService;
+	private IAtraccionRepository atraccionRepository;
 	
 	private static ArchivoPromocionRepository instance;
 
-	private ArchivoPromocionRepository(Properties properties, AtraccionService atraccionService) {
+	private ArchivoPromocionRepository(Properties properties, IAtraccionRepository atraccionRepository) {
 		this.properties = properties;
-		this.atraccionService = atraccionService;
+		this.atraccionRepository = atraccionRepository;
 	}
 	
 	@Override
@@ -50,7 +49,7 @@ public class ArchivoPromocionRepository implements IPromocionRepository{
 
 				List<Atraccion> atracciones = new ArrayList<Atraccion>();
 				for (String nombreAtraccion : nombresDeAtraccionesIncluidas.split("-")) {
-					Atraccion atraccion = atraccionService.getAtraccionByNombre(nombreAtraccion);
+					Atraccion atraccion = atraccionRepository.getAtraccionByNombre(nombreAtraccion);
 					atracciones.add(atraccion);
 				}
 				
@@ -83,9 +82,9 @@ public class ArchivoPromocionRepository implements IPromocionRepository{
 		return instance;
 	}
 
-	public synchronized static ArchivoPromocionRepository init(Properties properties, AtraccionService atraccionService) {
+	public synchronized static ArchivoPromocionRepository init(Properties properties, IAtraccionRepository atraccionRepository) {
 		if (instance == null) {
-			instance = new ArchivoPromocionRepository(properties, atraccionService);
+			instance = new ArchivoPromocionRepository(properties, atraccionRepository);
 		}
 		return instance;
 	}

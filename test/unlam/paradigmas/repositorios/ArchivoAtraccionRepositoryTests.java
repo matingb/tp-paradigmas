@@ -62,6 +62,15 @@ public class ArchivoAtraccionRepositoryTests {
 		assertEquals(0, atracciones.size());
 	}
 	
+	@Test
+	public void DadaLaAtraccionMoria_AlBuscarPorNombre_ObtengoSuPrecioCupoYDuracion() throws IOException {
+		dadoUnArchivoConContenido("MORIA|12|12|2|AVENTURA");
+
+		Atraccion moria = repository.getAtraccionByNombre("MORIA");
+
+		assertEquals(new Atraccion("MORIA", 12.0, 12.0, 2, TipoAtraccion.AVENTURA), moria);
+	}
+	
 	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, String tipoAtraccion,
 			Atraccion atraccion) {
 		assertEquals(nombre, atraccion.getNombre());

@@ -5,4 +5,6 @@ import unlam.paradigmas.modelos.Atraccion;
 
 public interface IAtraccionRepository {
 	public List<Atraccion> getAtracciones();
+
+	public Atraccion getAtraccionByNombre(String nombreAtraccion);
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Promocion;
@@ -20,11 +21,12 @@ public class ArchivoAtraccionRepository implements IAtraccionRepository {
 
 	private Properties properties;
 	private static ArchivoAtraccionRepository instance;
+	private List<Atraccion> atracciones = null;
 
 	private ArchivoAtraccionRepository(Properties properties) {
 		this.properties = properties;
 	}
-
+	
 	@Override
 	public List<Atraccion> getAtracciones() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
@@ -54,8 +56,20 @@ public class ArchivoAtraccionRepository implements IAtraccionRepository {
 			scanner.close();
 		}
 
+		this.atracciones = atracciones;
 		return atracciones;
-
+	}
+	
+	@Override
+	public Atraccion getAtraccionByNombre(String nombreAtraccion) {
+		
+		if(atracciones == null) {
+			this.getAtracciones();
+		}
+		
+		return this.atracciones.stream()
+	    .filter(atraccion -> atraccion.getNombre().equals(nombreAtraccion)).findFirst()
+	    .orElse(null);
 	}
 
 	public static ArchivoAtraccionRepository getInstance() {

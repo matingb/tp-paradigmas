@@ -7,9 +7,6 @@ import unlam.paradigmas.repositorios.ArchivoAtraccionRepository;
 import unlam.paradigmas.repositorios.ArchivoPromocionRepository;
 import unlam.paradigmas.repositorios.ArchivoUsuarioRepository;
 import unlam.paradigmas.repositorios.IUsuarioRepository;
-import unlam.paradigmas.servicios.AtraccionService;
-import unlam.paradigmas.servicios.PromocionService;
-import unlam.paradigmas.servicios.UsuarioService;
 import unlam.paradigmas.repositorios.IAtraccionRepository;
 import unlam.paradigmas.repositorios.IPromocionRepository;
 
@@ -23,14 +20,8 @@ public class Initializer {
 			properties.load(input);
 
 			IUsuarioRepository usuarioRepository = ArchivoUsuarioRepository.init(properties);
-			UsuarioService.init(usuarioRepository);
-
 			IAtraccionRepository atraccionRepository = ArchivoAtraccionRepository.init(properties);
-			AtraccionService atraccionService = AtraccionService.init(atraccionRepository);
-			
-			IPromocionRepository promocionRepository = ArchivoPromocionRepository.init(properties, atraccionService);
-			PromocionService.init(promocionRepository);
-
+			IPromocionRepository promocionRepository = ArchivoPromocionRepository.init(properties, atraccionRepository);
 
 		} catch (Exception e) {
 			e.printStackTrace();

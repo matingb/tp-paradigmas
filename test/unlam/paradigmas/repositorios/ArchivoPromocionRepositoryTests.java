@@ -22,9 +22,6 @@ import unlam.paradigmas.modelos.PromocionCombo;
 import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
 import unlam.paradigmas.modelos.TipoAtraccion;
-import unlam.paradigmas.modelos.TipoPromocion;
-import unlam.paradigmas.modelos.Usuario;
-import unlam.paradigmas.servicios.AtraccionService;
 
 public class ArchivoPromocionRepositoryTests {
 
@@ -35,10 +32,10 @@ public class ArchivoPromocionRepositoryTests {
 
 	private static Properties properties = Mockito.mock(Properties.class);
 	
-	private static AtraccionService atraccionService = Mockito.mock(AtraccionService.class);
+	private static IAtraccionRepository atraccionRepository = Mockito.mock(IAtraccionRepository.class);
 
 	public ArchivoPromocionRepositoryTests() {
-		repository = ArchivoPromocionRepository.init(properties, atraccionService);
+		repository = ArchivoPromocionRepository.init(properties, atraccionRepository);
 	}
 
 	@Test
@@ -114,7 +111,7 @@ public class ArchivoPromocionRepositoryTests {
 		atracciones.add(new Atraccion("MORDOR", 6.0, 32.0, 3, TipoAtraccion.AVENTURA));
 		
 		for(Atraccion atraccion : atracciones) {			
-			Mockito.when(atraccionService.getAtraccionByNombre(atraccion.getNombre())).thenReturn(atraccion);
+			Mockito.when(atraccionRepository.getAtraccionByNombre(atraccion.getNombre())).thenReturn(atraccion);
 		}
 		
 		return atracciones;

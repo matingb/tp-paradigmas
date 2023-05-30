@@ -1,11 +1,11 @@
 package unlam.paradigmas;
 
-import unlam.paradigmas.servicios.UsuarioService;
-import unlam.paradigmas.servicios.IUsuarioService;
-import unlam.paradigmas.servicios.AtraccionService;
-import unlam.paradigmas.servicios.IAtraccionService;
 import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Usuario;
+import unlam.paradigmas.repositorios.ArchivoAtraccionRepository;
+import unlam.paradigmas.repositorios.ArchivoUsuarioRepository;
+import unlam.paradigmas.repositorios.IAtraccionRepository;
+import unlam.paradigmas.repositorios.IUsuarioRepository;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ public class Main {
 		Initializer initialize = new Initializer();
 		initialize.initialize();
 
-		IUsuarioService usuarioService = UsuarioService.getInstance();
-		List<Usuario> usuarios = usuarioService.getUsuarios();
+		IUsuarioRepository usuarioRepository = ArchivoUsuarioRepository.getInstance();
+		List<Usuario> usuarios = usuarioRepository.getUsuarios();
 
-		IAtraccionService atraccionService = AtraccionService.getInstance();
-		List<Atraccion> atracciones = atraccionService.getAtracciones();
+		IAtraccionRepository atraccionRepository = ArchivoAtraccionRepository.getInstance();
+		List<Atraccion> atracciones = atraccionRepository.getAtracciones();
 
 		for (Usuario usuario : usuarios) {
 			System.out.println(usuario.getNombre());
