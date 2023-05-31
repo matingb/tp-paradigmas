@@ -1,6 +1,5 @@
 package unlam.paradigmas.modelos;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Promocion {
@@ -24,8 +23,8 @@ public abstract class Promocion {
 	public Double getDuracionHorasPromocion() {
 		Double horasDuracionTotalPromocion = 0.0;
 
-		for (Atraccion a : this.getAtraccionesIncluidas()) {
-			horasDuracionTotalPromocion += a.getDuracionHoras();
+		for (Atraccion atraccion : this.getAtraccionesIncluidas()) {
+			horasDuracionTotalPromocion += atraccion.getDuracionHoras();
 		}
 		return horasDuracionTotalPromocion;
 	}
