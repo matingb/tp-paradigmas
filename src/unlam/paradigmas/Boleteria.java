@@ -24,6 +24,29 @@ public class Boleteria {
 	}
 	
 	public void atender(Usuario usuario) {
+		List<Promocion> promocionesPosibles = promociones.stream().filter(promocion ->
+		promocion.getTipoPaquete() == usuario.getActividadFavorita() &&
+		promocion.getPrecioOriginal() < usuario.getPresupuesto() && 
+		promocion.getDuracionHorasPromocion() < usuario.getTiempo()).toList();
+		
+		while(!promocionesPosibles.isEmpty()) {
+			Promocion oferta = ofertador.generarPromocion(promocionesPosibles);
+			if(sugeridor.sugerir(oferta)) {
+				usuario.pagarBoleteria(oferta.getPrecioOriginal());
+				usuario.reducirTiempo(oferta.getDuracionHorasPromocion());
+				
+				// Falta agregar que reduzca el cupo de las atracciones incluidas en la promocion
+			}
+			
+			promocionesPosibles.stream().filter(promocion ->
+			promocion.getAtraccionesIncluidas() != oferta.getAtraccionesIncluidas() && // Como no tiene nombre la promocion la distingui por las atracciones que incluye
+			promocion.getPrecioOriginal() < usuario.getPresupuesto() && 
+			promocion.getDuracionHorasPromocion() < usuario.getTiempo()).toList();
+			
+			// Hay que agregar el filtro del cupo de las atracciones que estan incluidas en la promocion
+		}
+		
+		
 		List<Atraccion> atraccionesPosibles = atracciones.stream().filter(atraccion -> 
 			atraccion.getTipoActividad() == usuario.getActividadFavorita()).toList();
 
@@ -52,12 +75,56 @@ public class Boleteria {
 			
 		}
 		
-		/*List<Atraccion> atraccionesNoPreferidas = atracciones.stream().filter(atraccion -> 
-		atraccion.getTipoActividad() != usuario.getActividadFavorita() &&
-		atraccion.getCosto() < usuario.getPresupuesto() &&
-		atraccion.getDuracionHoras() < usuario.getTiempo()).toList();
+		List<Promocion> promocionesNoPreferidas = promociones.stream().filter(promocion ->
+		promocion.getTipoPaquete() != usuario.getActividadFavorita() &&
+		promocion.getPrecioOriginal() < usuario.getPresupuesto() && 
+		promocion.getDuracionHorasPromocion() < usuario.getTiempo()).toList();
 		
-		Atraccion oferta = ofertador.generarOfertaDeAtraccion(atraccionesPosibles);
-		sugeridor.sugerir(oferta);*/
+		while(!promocionesNoPreferidas.isEmpty()) {
+			Promocion oferta = ofertador.generarPromocion(promocionesNoPreferidas);
+			if(sugeridor.sugerir(oferta)) {
+				usuario.pagarBoleteria(oferta.getPrecioOriginal());
+				usuario.reducirTiempo(oferta.getDuracionHorasPromocion());
+				
+				// Falta agregar que reduzca el cupo de las atracciones incluidas en la promocion
+			}
+			
+			promocionesNoPreferidas.stream().filter(promocion ->
+			promocion.getAtraccionesIncluidas() != oferta.getAtraccionesIncluidas() && // Como no tiene nombre la promocion la distingui por las atracciones que incluye
+			promocion.getPrecioOriginal() < usuario.getPresupuesto() && 
+			promocion.getDuracionHorasPromocion() < usuario.getTiempo()).toList();
+			
+			// Hay que agregar el filtro del cupo de las atracciones que estan incluidas en la promocion
+		}
+		
+		
+		List<Atraccion> atraccionesNoPreferidas = atracciones.stream().filter(atraccion -> 
+		atraccion.getTipoActividad() != usuario.getActividadFavorita()).toList();
+
+		atraccionesNoPreferidas = atraccionesNoPreferidas.stream().filter(atraccion ->
+		atraccion.getCosto() < usuario.getPresupuesto() &&
+		atraccion.getDuracionHoras() < usuario.getTiempo() && 
+		atraccion.getCupo() > 0).toList();
+	
+	
+		while (!atraccionesNoPreferidas.isEmpty()) {
+
+			Atraccion oferta = ofertador.generarOfertaDeAtraccion(atraccionesNoPreferidas);
+			if(sugeridor.sugerir(oferta)) {
+				usuario.pagarBoleteria(oferta.getCosto());
+				usuario.reducirTiempo(oferta.getDuracionHoras());
+				oferta.reducirCupo();
+			}
+		
+			atraccionesNoPreferidas.stream().filter(atraccion -> 
+			atraccion.getNombre() != oferta.getNombre()).toList();	
+		
+			atraccionesNoPreferidas = atraccionesNoPreferidas.stream().filter(atraccion ->
+			atraccion.getCosto() < usuario.getPresupuesto() &&
+			atraccion.getDuracionHoras() < usuario.getTiempo() && 
+			atraccion.getCupo() > 0).toList();
+		
+		}
+		
 	}
 }
