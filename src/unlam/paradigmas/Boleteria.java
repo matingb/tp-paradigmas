@@ -1,7 +1,6 @@
 package unlam.paradigmas;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Promocion;
@@ -24,7 +23,7 @@ public class Boleteria {
 	}
 	
 	public void atender(Usuario usuario) {
-		List<Promocion> promocionesPosibles = promociones.stream().filter(promocion ->
+		/*List<Promocion> promocionesPosibles = promociones.stream().filter(promocion ->
 		promocion.getTipoPaquete() == usuario.getActividadFavorita() &&
 		promocion.getPrecioOriginal() < usuario.getPresupuesto() && 
 		promocion.getDuracionHorasPromocion() < usuario.getTiempo()).toList();
@@ -44,38 +43,30 @@ public class Boleteria {
 			promocion.getDuracionHorasPromocion() < usuario.getTiempo()).toList();
 			
 			// Hay que agregar el filtro del cupo de las atracciones que estan incluidas en la promocion
-		}
+		}*/
 		
 		
 		List<Atraccion> atraccionesPosibles = atracciones.stream().filter(atraccion -> 
 			atraccion.getTipoActividad() == usuario.getActividadFavorita()).toList();
 
-		atraccionesPosibles = atraccionesPosibles.stream().filter(atraccion ->
-		atraccion.getCosto() < usuario.getPresupuesto() &&
-		atraccion.getDuracionHoras() < usuario.getTiempo() && 
-		atraccion.getCupo() > 0).toList();
+		Atraccion oferta = ofertador.generarOfertaDeAtraccion(usuario, atraccionesPosibles);
 		
-		
-		while (!atraccionesPosibles.isEmpty()) {
+		while (oferta != null) {
 
-			Atraccion oferta = ofertador.generarOfertaDeAtraccion(atraccionesPosibles);
 			if(sugeridor.sugerir(oferta)) {
 				usuario.pagarBoleteria(oferta.getCosto());
 				usuario.reducirTiempo(oferta.getDuracionHoras());
 				oferta.reducirCupo();
 			}
 			
+			final String nombreDeOferta = oferta.getNombre();
 			atraccionesPosibles.stream().filter(atraccion -> 
-			atraccion.getNombre() != oferta.getNombre()).toList();	
+			atraccion.getNombre() != nombreDeOferta).toList();	
 			
-			atraccionesPosibles = atraccionesPosibles.stream().filter(atraccion ->
-			atraccion.getCosto() < usuario.getPresupuesto() &&
-			atraccion.getDuracionHoras() < usuario.getTiempo() && 
-			atraccion.getCupo() > 0).toList();
-			
+			oferta = ofertador.generarOfertaDeAtraccion(usuario, atraccionesPosibles);
 		}
 		
-		List<Promocion> promocionesNoPreferidas = promociones.stream().filter(promocion ->
+		/*List<Promocion> promocionesNoPreferidas = promociones.stream().filter(promocion ->
 		promocion.getTipoPaquete() != usuario.getActividadFavorita() &&
 		promocion.getPrecioOriginal() < usuario.getPresupuesto() && 
 		promocion.getDuracionHorasPromocion() < usuario.getTiempo()).toList();
@@ -124,7 +115,7 @@ public class Boleteria {
 			atraccion.getDuracionHoras() < usuario.getTiempo() && 
 			atraccion.getCupo() > 0).toList();
 		
-		}
+		}*/
 		
 	}
 }
