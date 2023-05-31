@@ -22,7 +22,7 @@ import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.PromocionCombo;
 import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
-import unlam.paradigmas.modelos.TipoAtraccion;
+import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.TipoPromocion;
 import unlam.paradigmas.modelos.Usuario;
 
@@ -48,9 +48,9 @@ public class ArchivoAtraccionRepositoryTests {
 		
 		List<Atraccion> atraccion = repository.getAtracciones();
 
-		validarAtraccion("LA COMARCA", 30.0, 1.0, 20, "DEGUSTACION", atraccion.get(0));
-		validarAtraccion("MINAS TIRITH", 7.0, 11.0, 7, "PAISAJE", atraccion.get(1));
-		validarAtraccion("MORDOR", 12.0, 12.0, 2, "AVENTURA", atraccion.get(2));
+		validarAtraccion("LA COMARCA", 30.0, 1.0, 20, TipoActividad.DEGUSTACION, atraccion.get(0));
+		validarAtraccion("MINAS TIRITH", 7.0, 11.0, 7, TipoActividad.PAISAJE, atraccion.get(1));
+		validarAtraccion("MORDOR", 12.0, 12.0, 2, TipoActividad.AVENTURA, atraccion.get(2));
 
 	}
 
@@ -73,7 +73,7 @@ public class ArchivoAtraccionRepositoryTests {
 		assertEquals(12.0, moria.getCosto(), 0);
 		assertEquals(12, moria.getDuracionHoras(), 0);
 		assertEquals(2, moria.getCupo(), 0);
-		assertEquals(TipoAtraccion.AVENTURA, moria.getTipoAtraccion());
+		assertEquals(TipoActividad.AVENTURA, moria.getTipoActividad());
 	}
 	
 	@Test
@@ -86,13 +86,13 @@ public class ArchivoAtraccionRepositoryTests {
 		assertNull(atraccion);
 	}
 	
-	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, String tipoAtraccion,
+	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, TipoActividad tipoActividad,
 			Atraccion atraccion) {
 		assertEquals(nombre, atraccion.getNombre());
 		assertEquals(costo, atraccion.getCosto());
 		assertEquals(duracionHoras, atraccion.getDuracionHoras());
 		assertEquals(cupo, atraccion.getCupo());
-		assertEquals(tipoAtraccion, (atraccion.getTipoAtraccion().name()));
+		assertEquals(tipoActividad, (atraccion.getTipoActividad()));
 
 	}
 

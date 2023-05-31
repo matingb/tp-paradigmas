@@ -1,5 +1,5 @@
 package unlam.paradigmas.modelos;
 
-public enum TipoAtraccion {
+public enum TipoActividad {
 	PAISAJE, AVENTURA, DEGUSTACION
 }

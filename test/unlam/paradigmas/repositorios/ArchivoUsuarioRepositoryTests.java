@@ -21,7 +21,7 @@ import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.PromocionCombo;
 import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
-import unlam.paradigmas.modelos.TipoAtraccion;
+import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.TipoPromocion;
 import unlam.paradigmas.modelos.Usuario;
 
@@ -47,9 +47,9 @@ public class ArchivoUsuarioRepositoryTests {
 
 		List<Usuario> usuarios = repository.getUsuarios();
 
-		validarUsuario(3.0, 10.0, "DEGUSTACION", "MATI GARCIA", usuarios.get(0));
-		validarUsuario(7.0, 11.0, "AVENTURA", "AGOS MOTTU", usuarios.get(1));
-		validarUsuario(12.0, 12.0, "AVENTURA", "FEDE CASTRO", usuarios.get(2));
+		validarUsuario(3.0, 10.0, TipoActividad.DEGUSTACION, "MATI GARCIA", usuarios.get(0));
+		validarUsuario(7.0, 11.0, TipoActividad.AVENTURA, "AGOS MOTTU", usuarios.get(1));
+		validarUsuario(12.0, 12.0, TipoActividad.AVENTURA, "FEDE CASTRO", usuarios.get(2));
 
 	}
 
@@ -62,7 +62,7 @@ public class ArchivoUsuarioRepositoryTests {
 		assertEquals(0, usuarios.size());
 	}
 
-	private void validarUsuario(Double presupuesto, Double tiempo, String actividadFavorita, String nombre,
+	private void validarUsuario(Double presupuesto, Double tiempo, TipoActividad actividadFavorita, String nombre,
 			Usuario usuario) {
 		assertEquals(presupuesto, usuario.getPresupuesto());
 		assertEquals(tiempo, usuario.getTiempo());

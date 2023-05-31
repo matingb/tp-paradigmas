@@ -21,7 +21,7 @@ import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.PromocionCombo;
 import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
-import unlam.paradigmas.modelos.TipoAtraccion;
+import unlam.paradigmas.modelos.TipoActividad;
 
 public class ArchivoPromocionRepositoryTests {
 
@@ -52,9 +52,9 @@ public class ArchivoPromocionRepositoryTests {
 		assertEquals(3, promociones.get(0).getAtraccionesIncluidas().size());
 		
 		List<Atraccion> atraccionesActuales = promociones.get(0).getAtraccionesIncluidas();
-		assertEquals(new Atraccion("MORIA", 12.0, 12.0, 2, TipoAtraccion.AVENTURA), atraccionesActuales.get(0));
-		assertEquals(new Atraccion("BOSQUE NEGRO", 2.0, 22.0, 5, TipoAtraccion.AVENTURA), atraccionesActuales.get(1));
-		assertEquals(new Atraccion("MORDOR", 6.0, 32.0, 3, TipoAtraccion.AVENTURA), atraccionesActuales.get(2));
+		assertEquals(new Atraccion("MORIA", 12.0, 12.0, 2, TipoActividad.AVENTURA), atraccionesActuales.get(0));
+		assertEquals(new Atraccion("BOSQUE NEGRO", 2.0, 22.0, 5, TipoActividad.AVENTURA), atraccionesActuales.get(1));
+		assertEquals(new Atraccion("MORDOR", 6.0, 32.0, 3, TipoActividad.AVENTURA), atraccionesActuales.get(2));
 	}
 
 	@Test
@@ -104,11 +104,11 @@ public class ArchivoPromocionRepositoryTests {
 	
 	private List<Atraccion> dadaUnaListaDeAtracciones() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
-		atracciones.add(new Atraccion("LA COMARCA", 30.0, 12.0, 20, TipoAtraccion.DEGUSTACION));
-		atracciones.add(new Atraccion("MINAS TIRITH", 7.0, 11.0, 7, TipoAtraccion.PAISAJE));
-		atracciones.add(new Atraccion("MORIA", 12.0, 12.0, 2, TipoAtraccion.AVENTURA));
-		atracciones.add(new Atraccion("BOSQUE NEGRO", 2.0, 22.0, 5, TipoAtraccion.AVENTURA));
-		atracciones.add(new Atraccion("MORDOR", 6.0, 32.0, 3, TipoAtraccion.AVENTURA));
+		atracciones.add(new Atraccion("LA COMARCA", 30.0, 12.0, 20, TipoActividad.DEGUSTACION));
+		atracciones.add(new Atraccion("MINAS TIRITH", 7.0, 11.0, 7, TipoActividad.PAISAJE));
+		atracciones.add(new Atraccion("MORIA", 12.0, 12.0, 2, TipoActividad.AVENTURA));
+		atracciones.add(new Atraccion("BOSQUE NEGRO", 2.0, 22.0, 5, TipoActividad.AVENTURA));
+		atracciones.add(new Atraccion("MORDOR", 6.0, 32.0, 3, TipoActividad.AVENTURA));
 		
 		for(Atraccion atraccion : atracciones) {			
 			Mockito.when(atraccionRepository.getAtraccionByNombre(atraccion.getNombre())).thenReturn(atraccion);

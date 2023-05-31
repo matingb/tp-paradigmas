@@ -6,7 +6,7 @@ public class PromocionCombo extends Promocion {
 
 	private Integer cantAtraccionesGratis;
 
-	public PromocionCombo(TipoAtraccion tipoPaquete, Integer cantAtraccionesGratis, List<Atraccion> atracciones ) {
+	public PromocionCombo(TipoActividad tipoPaquete, Integer cantAtraccionesGratis, List<Atraccion> atracciones ) {
 		super(tipoPaquete, atracciones);
 		this.cantAtraccionesGratis = cantAtraccionesGratis;
 	}

@@ -6,7 +6,7 @@ public class PromocionMontoFijo extends Promocion {
 
 	private Double precioFinal;
 
-	public PromocionMontoFijo(TipoAtraccion tipoPaquete, Double precioFinal, List<Atraccion> atracciones) {
+	public PromocionMontoFijo(TipoActividad tipoPaquete, Double precioFinal, List<Atraccion> atracciones) {
 		super(tipoPaquete, atracciones);
 		this.setPrecioFinal(precioFinal);
 	}

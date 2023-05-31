@@ -8,14 +8,14 @@ public class Atraccion {
 	private Double costo;
 	private Double duracionHoras;
 	private Integer cupo;
-	private TipoAtraccion tipoAtraccion;
+	private TipoActividad tipoActividad;
 
-	public Atraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, TipoAtraccion tipoAtraccion) {
+	public Atraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, TipoActividad tipoActividad) {
 		this.nombre = nombre;
 		this.costo = costo;
 		this.duracionHoras = duracionHoras;
 		this.cupo = cupo;
-		this.tipoAtraccion = tipoAtraccion;
+		this.tipoActividad = tipoActividad;
 	}
 
 	public String getNombre() {
@@ -25,6 +25,11 @@ public class Atraccion {
 	public Double getCosto() {
 		return costo;
 	}
+	
+	public void setCosto(Double costo) {
+		this.costo = costo;
+	}
+
 
 	public Double getDuracionHoras() {
 		return duracionHoras;
@@ -34,8 +39,8 @@ public class Atraccion {
 		return cupo;
 	}
 
-	public TipoAtraccion getTipoAtraccion() {
-		return tipoAtraccion;
+	public TipoActividad getTipoActividad() {
+		return tipoActividad;
 	}
 
 	@Override
@@ -54,6 +59,6 @@ public class Atraccion {
 		Atraccion other = (Atraccion) obj;
 		return Objects.equals(costo, other.costo) && Objects.equals(cupo, other.cupo)
 				&& Objects.equals(duracionHoras, other.duracionHoras) && Objects.equals(nombre, other.nombre)
-				&& tipoAtraccion == other.tipoAtraccion;
+				&& tipoActividad == other.tipoActividad;
 	}
 }

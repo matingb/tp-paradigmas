@@ -12,7 +12,7 @@ import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.PromocionCombo;
 import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
-import unlam.paradigmas.modelos.TipoAtraccion;
+import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.TipoPromocion;
 
 public class ArchivoPromocionRepository implements IPromocionRepository{
@@ -43,7 +43,7 @@ public class ArchivoPromocionRepository implements IPromocionRepository{
 			while (scanner.hasNext()) {
 
 				TipoPromocion tipoDePromocion = TipoPromocion.valueOf(scanner.next());
-				TipoAtraccion tipoDeAtracciones = TipoAtraccion.valueOf(scanner.next());
+				TipoActividad tipoDeAtracciones = TipoActividad.valueOf(scanner.next());
 				Double valor = scanner.nextDouble();				
 				String nombresDeAtraccionesIncluidas = scanner.next();
 

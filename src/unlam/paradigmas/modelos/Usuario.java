@@ -4,7 +4,7 @@ public class Usuario {
 
 	private Double presupuesto;
 	private Double tiempo;
-	private String actividadFavorita;
+	private TipoActividad actividadFavorita;
 	private String nombre;
 
 	public Double getPresupuesto() {
@@ -19,10 +19,10 @@ public class Usuario {
 	public void setTiempo(Double tiempo) {
 		this.tiempo = tiempo;
 	}
-	public String getActividadFavorita() {
+	public TipoActividad getActividadFavorita() {
 		return actividadFavorita;
 	}
-	public void setActividadFavorita(String actividadFavorita) {
+	public void setActividadFavorita(TipoActividad actividadFavorita) {
 		this.actividadFavorita = actividadFavorita;
 	}
 	public String getNombre() {

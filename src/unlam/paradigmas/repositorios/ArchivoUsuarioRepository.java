@@ -12,7 +12,7 @@ import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.PromocionCombo;
 import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
-import unlam.paradigmas.modelos.TipoAtraccion;
+import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.TipoPromocion;
 import unlam.paradigmas.modelos.Usuario;
 
@@ -43,7 +43,7 @@ public class ArchivoUsuarioRepository implements IUsuarioRepository {
 
 				usuario.setPresupuesto(scanner.nextDouble());
 				usuario.setTiempo(scanner.nextDouble());
-				usuario.setActividadFavorita(scanner.next());
+				usuario.setActividadFavorita(TipoActividad.valueOf(scanner.next()));
 				usuario.setNombre(scanner.next());
 
 				usuarios.add(usuario);

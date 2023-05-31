@@ -13,7 +13,7 @@ import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.PromocionCombo;
 import unlam.paradigmas.modelos.PromocionMontoFijo;
 import unlam.paradigmas.modelos.PromocionPorcentual;
-import unlam.paradigmas.modelos.TipoAtraccion;
+import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.TipoPromocion;
 import unlam.paradigmas.modelos.Usuario;
 
@@ -44,9 +44,9 @@ public class ArchivoAtraccionRepository implements IAtraccionRepository {
 				Double costo = scanner.nextDouble();
 				Double duracionHoras = scanner.nextDouble();
 				Integer cupo = scanner.nextInt();
-				TipoAtraccion tipoAtraccion = TipoAtraccion.valueOf(scanner.next());
+				TipoActividad tipoActividad = TipoActividad.valueOf(scanner.next());
 
-				Atraccion atraccion = new Atraccion(nombre, costo, duracionHoras, cupo, tipoAtraccion);
+				Atraccion atraccion = new Atraccion(nombre, costo, duracionHoras, cupo, tipoActividad);
 				atracciones.add(atraccion);
 			}
 

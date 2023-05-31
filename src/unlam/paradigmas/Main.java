@@ -18,26 +18,10 @@ public class Main {
 		Initializer initialize = new Initializer();
 		initialize.initialize();
 
-		IUsuarioRepository usuarioRepository = ArchivoUsuarioRepository.getInstance();
-		List<Usuario> usuarios = usuarioRepository.getUsuarios();
-
 		IAtraccionRepository atraccionRepository = ArchivoAtraccionRepository.getInstance();
-		List<Atraccion> atracciones = atraccionRepository.getAtracciones();
-		
 		IPromocionRepository promocionRepository = ArchivoPromocionRepository.getInstance();
-		List<Promocion> promociones = promocionRepository.getPromociones();
 
-		for (Usuario usuario : usuarios) {
-			System.out.println(usuario.getNombre());
-		}
 
-		for (Atraccion atraccion : atracciones) {
-			System.out.println(atraccion.getNombre());
-		}
-		
-		for (Promocion promocion : promociones) {
-			System.out.println(promocion);
-		}
 		/*
 		 * Cargar Información - Usuarios - Atracciones - Paquetes Hace falta hacer la
 		 * distinción que plantea el enunciado? No especifica ningun tipo de manejo Se
@@ -59,8 +43,6 @@ public class Main {
 		/*
 		 * Escribir archivo con los resultados.
 		 */
-		
-		//hola
 	}
 
 }

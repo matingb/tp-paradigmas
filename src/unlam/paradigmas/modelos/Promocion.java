@@ -4,10 +4,10 @@ import java.util.List;
 
 public abstract class Promocion {
 
-	private TipoAtraccion tipoPaquete;
+	private TipoActividad tipoPaquete;
 	private List<Atraccion> atraccionesIncluidas;
 
-	public Promocion(TipoAtraccion tipoPaquete, List<Atraccion> atracciones) {
+	public Promocion(TipoActividad tipoPaquete, List<Atraccion> atracciones) {
 		this.tipoPaquete = tipoPaquete;
 		this.atraccionesIncluidas = atracciones;
 	}
@@ -16,7 +16,7 @@ public abstract class Promocion {
 		return atraccionesIncluidas;
 	}
 
-	public TipoAtraccion getTipoPaquete() {
+	public TipoActividad getTipoPaquete() {
 		return tipoPaquete;
 	}
 
