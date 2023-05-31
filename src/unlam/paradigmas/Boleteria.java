@@ -1,6 +1,7 @@
 package unlam.paradigmas;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Promocion;
@@ -25,22 +26,30 @@ public class Boleteria {
 	public void atender(Usuario usuario) {
 		List<Atraccion> atraccionesPosibles = atracciones.stream().filter(atraccion -> 
 			atraccion.getTipoActividad() == usuario.getActividadFavorita()).toList();
-			
+
+		atraccionesPosibles = atraccionesPosibles.stream().filter(atraccion ->
+		atraccion.getCosto() < usuario.getPresupuesto() &&
+		atraccion.getDuracionHoras() < usuario.getTiempo() && 
+		atraccion.getCupo() > 0).toList();
+		
 		
 		while (!atraccionesPosibles.isEmpty()) {
-			atraccionesPosibles = atracciones.stream().filter(atraccion ->
-			atraccion.getCosto() < usuario.getPresupuesto() &&
-			atraccion.getDuracionHoras() < usuario.getTiempo()).toList();
-			
+
 			Atraccion oferta = ofertador.generarOfertaDeAtraccion(atraccionesPosibles);
 			if(sugeridor.sugerir(oferta)) {
 				usuario.pagarBoleteria(oferta.getCosto());
 				usuario.reducirTiempo(oferta.getDuracionHoras());
-				
 				oferta.reducirCupo();
 			}
 			
-			atraccionesPosibles.remove(oferta);	
+			atraccionesPosibles.stream().filter(atraccion -> 
+			atraccion.getNombre() != oferta.getNombre()).toList();	
+			
+			atraccionesPosibles = atraccionesPosibles.stream().filter(atraccion ->
+			atraccion.getCosto() < usuario.getPresupuesto() &&
+			atraccion.getDuracionHoras() < usuario.getTiempo() && 
+			atraccion.getCupo() > 0).toList();
+			
 		}
 		
 		/*List<Atraccion> atraccionesNoPreferidas = atracciones.stream().filter(atraccion -> 

@@ -8,7 +8,8 @@ import unlam.paradigmas.modelos.Usuario;
 public class Ofertador {
 
 	public Atraccion generarOfertaDeAtraccion(List<Atraccion> atracciones) {	
-		return atracciones.get(0);
+		return atracciones != null	? atracciones.get(0) : null;
+		
 	}
 
 }
