@@ -28,7 +28,7 @@ public class Boleteria {
 			atraccion.getCosto() < usuario.getPresupuesto() &&
 			atraccion.getDuracionHoras() < usuario.getTiempo()).toList();
 		
-		Atraccion oferta = ofertador.generarOfertaDeAtraccion(usuario, atraccionesPosibles);
+		Atraccion oferta = ofertador.generarOfertaDeAtraccion(atraccionesPosibles);
 		sugeridor.sugerir(oferta);
 	}
 }

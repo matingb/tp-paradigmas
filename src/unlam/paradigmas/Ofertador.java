@@ -7,7 +7,7 @@ import unlam.paradigmas.modelos.Usuario;
 
 public class Ofertador {
 
-	public Atraccion generarOfertaDeAtraccion(Usuario usuario, List<Atraccion> atracciones) {	
+	public Atraccion generarOfertaDeAtraccion(List<Atraccion> atracciones) {	
 		return atracciones.get(0);
 	}
 

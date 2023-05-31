@@ -53,7 +53,7 @@ public class BoleteriaTests {
 		boleteria.atender(usuario);
 		
         ArgumentCaptor<List<Atraccion>> captor = ArgumentCaptor.forClass(List.class);
-        verify(ofertador).generarOfertaDeAtraccion(usuario, captor.capture());
+        verify(ofertador).generarOfertaDeAtraccion(captor.capture());
 
         List<Atraccion> atraccionesArgument = captor.getValue();
         for (Atraccion atraccion : atraccionesArgument) {
