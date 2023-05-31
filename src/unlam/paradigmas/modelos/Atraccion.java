@@ -61,4 +61,8 @@ public class Atraccion {
 				&& Objects.equals(duracionHoras, other.duracionHoras) && Objects.equals(nombre, other.nombre)
 				&& tipoActividad == other.tipoActividad;
 	}
+	
+	public void reducirCupo () {
+		this.cupo --;
+	}
 }

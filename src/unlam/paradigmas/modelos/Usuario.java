@@ -31,5 +31,13 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public void pagarBoleteria (double dineroPagar) {
+		this.presupuesto -= dineroPagar;
+	}
+	
+	public void reducirTiempo (double dineroReducir){
+		this.tiempo -= dineroReducir;
+	}
 
 }

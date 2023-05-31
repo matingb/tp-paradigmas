@@ -2,6 +2,7 @@ package unlam.paradigmas;
 
 import unlam.paradigmas.modelos.Atraccion;
 import unlam.paradigmas.modelos.Promocion;
+import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.repositorios.ArchivoAtraccionRepository;
 import unlam.paradigmas.repositorios.ArchivoPromocionRepository;
@@ -20,8 +21,18 @@ public class Main {
 
 		IAtraccionRepository atraccionRepository = ArchivoAtraccionRepository.getInstance();
 		IPromocionRepository promocionRepository = ArchivoPromocionRepository.getInstance();
-
-
+		
+		Usuario usuario = new Usuario();
+		usuario.setPresupuesto(50.0);
+		usuario.setTiempo(20.0);
+		usuario.setActividadFavorita(TipoActividad.AVENTURA);
+		
+		Ofertador ofertador = new Ofertador();
+		Sugeridor sugeridor = new Sugeridor();
+		Boleteria boleteria = new Boleteria(atraccionRepository, promocionRepository, ofertador, sugeridor);
+		
+		boleteria.atender(usuario);
+		
 		/*
 		 * Cargar Información - Usuarios - Atracciones - Paquetes Hace falta hacer la
 		 * distinción que plantea el enunciado? No especifica ningun tipo de manejo Se

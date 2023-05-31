@@ -24,11 +24,31 @@ public class Boleteria {
 	
 	public void atender(Usuario usuario) {
 		List<Atraccion> atraccionesPosibles = atracciones.stream().filter(atraccion -> 
-			atraccion.getTipoActividad() == usuario.getActividadFavorita() &&
+			atraccion.getTipoActividad() == usuario.getActividadFavorita()).toList();
+			
+		
+		while (!atraccionesPosibles.isEmpty()) {
+			atraccionesPosibles = atracciones.stream().filter(atraccion ->
 			atraccion.getCosto() < usuario.getPresupuesto() &&
 			atraccion.getDuracionHoras() < usuario.getTiempo()).toList();
+			
+			Atraccion oferta = ofertador.generarOfertaDeAtraccion(atraccionesPosibles);
+			if(sugeridor.sugerir(oferta)) {
+				usuario.pagarBoleteria(oferta.getCosto());
+				usuario.reducirTiempo(oferta.getDuracionHoras());
+				
+				oferta.reducirCupo();
+			}
+			
+			atraccionesPosibles.remove(oferta);	
+		}
+		
+		/*List<Atraccion> atraccionesNoPreferidas = atracciones.stream().filter(atraccion -> 
+		atraccion.getTipoActividad() != usuario.getActividadFavorita() &&
+		atraccion.getCosto() < usuario.getPresupuesto() &&
+		atraccion.getDuracionHoras() < usuario.getTiempo()).toList();
 		
 		Atraccion oferta = ofertador.generarOfertaDeAtraccion(atraccionesPosibles);
-		sugeridor.sugerir(oferta);
+		sugeridor.sugerir(oferta);*/
 	}
 }
