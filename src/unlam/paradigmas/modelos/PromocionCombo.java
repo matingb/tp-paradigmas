@@ -15,20 +15,21 @@ public class PromocionCombo extends Promocion {
 		return cantAtraccionesGratis;
 	}
 	
-	public Double getPrecioFinal() {
+	@Override
+	public Double getPrecio() {
 		Double precio = this.getPrecioOriginal();
 		for(int i = 0; i < this.getCantAtraccionesGratis(); i++) {
-			precio -= this.getAtraccionesIncluidas().get(i).getCosto();
+			precio -= this.getAtraccionesIncluidas().get(i).getPrecio();
 		}
 		return precio;
 	}
 	
 	@Override
 	public String toString() {
-		return "Promocion combo (" + this.getTipoPaquete() + "):" 
-				+ "\n-Duracion en Horas del paquete = " + this.getDuracionHorasPromocion()
+		return "Promocion combo (" + this.getTipoActividad() + "):" 
+				+ "\n-Duracion en Horas del paquete = " + this.getDuracion()
 				+ "\n-Precio Original = " + this.getPrecioOriginal()
-				+ "\n-Precio Final = " + this.getPrecioFinal() 
+				+ "\n-Precio Final = " + this.getPrecio() 
 				+ "\n-Cantidad de atracciones gratis = " + this.getCantAtraccionesGratis()
 				+ "\n-Atracciones Incluidas: " + this.getAtraccionesIncluidas() + "\n";
 	}

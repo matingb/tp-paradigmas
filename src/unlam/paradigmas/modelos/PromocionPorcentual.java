@@ -19,17 +19,18 @@ public class PromocionPorcentual extends Promocion {
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
 	
-	public Double getPrecioFinal() {
+	@Override
+	public Double getPrecio() {
 		return this.getPrecioOriginal()-(this.getPrecioOriginal()*(this.getPorcentajeDescuento()/100));
 	}
 
 	@Override
 	public String toString() {
-		return "Promocion Porcentual (" + this.getTipoPaquete() + "):" 
-				+ "\n-Duracion en Horas del paquete = " + this.getDuracionHorasPromocion()
+		return "Promocion Porcentual (" + this.getTipoActividad() + "):" 
+				+ "\n-Duracion en Horas del paquete = " + this.getDuracion()
 				+ "\n-Precio Original = " + this.getPrecioOriginal()
 				+ "\n-Porcentaje de descuento = " + this.getPorcentajeDescuento() + "%"
-				+ "\n-Precio final = " +  this.getPrecioFinal()
+				+ "\n-Precio final = " +  this.getPrecio()
 				+ "\n-Atracciones Incluidas: " + this.getAtraccionesIncluidas() + "\n";
 	}
 

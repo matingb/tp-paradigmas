@@ -2,38 +2,61 @@ package unlam.paradigmas.modelos;
 
 import java.util.List;
 
-public abstract class Promocion {
+import unlam.paradigmas.Ofertable;
 
-	private TipoActividad tipoPaquete;
+public abstract class Promocion extends Oferta {
+
+	private TipoActividad tipoActividad;
 	private List<Atraccion> atraccionesIncluidas;
 
 	public Promocion(TipoActividad tipoPaquete, List<Atraccion> atracciones) {
-		this.tipoPaquete = tipoPaquete;
+		this.tipoActividad = tipoPaquete;
 		this.atraccionesIncluidas = atracciones;
 	}
 
+	@Override
 	public List<Atraccion> getAtraccionesIncluidas() {
 		return atraccionesIncluidas;
 	}
 
-	public TipoActividad getTipoPaquete() {
-		return tipoPaquete;
+	@Override
+	public TipoActividad getTipoActividad() {
+		return tipoActividad;
 	}
 
-	public Double getDuracionHorasPromocion() {
+	@Override
+	public Double getDuracion() {
 		Double horasDuracionTotalPromocion = 0.0;
 
 		for (Atraccion atraccion : this.getAtraccionesIncluidas()) {
-			horasDuracionTotalPromocion += atraccion.getDuracionHoras();
+			horasDuracionTotalPromocion += atraccion.getDuracion();
 		}
 		return horasDuracionTotalPromocion;
+	}
+	
+	@Override
+	public void descontarCupo() {
+		for(Atraccion atraccion : atraccionesIncluidas) {
+			atraccion.descontarCupo();
+		}
+	}
+	
+	@Override
+	public Boolean hayDisponibilidad() {
+		Boolean hayDisponibilidad = true;
+		for(Atraccion atraccion : atraccionesIncluidas) {
+			if(atraccion.getCupo() <= 0) {
+				hayDisponibilidad = false;
+			}
+		}
+		return hayDisponibilidad;
 	}
 
 	public Double getPrecioOriginal() {
 		Double precioOriginal = 0.0;
 		
 		for (Atraccion a : this.getAtraccionesIncluidas()) {
-			precioOriginal += a.getCosto();
+			precioOriginal += a.getPrecio();
 		}
 		return precioOriginal;
 	}

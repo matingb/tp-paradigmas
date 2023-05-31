@@ -27,9 +27,7 @@ public class Main {
 		usuario.setTiempo(20.0);
 		usuario.setActividadFavorita(TipoActividad.AVENTURA);
 		
-		Ofertador ofertador = new Ofertador();
-		Sugeridor sugeridor = new Sugeridor();
-		Boleteria boleteria = new Boleteria(atraccionRepository, promocionRepository, ofertador, sugeridor);
+		Boleteria boleteria = new Boleteria(atraccionRepository, promocionRepository, new SesionHandler());
 		
 		boleteria.atender(usuario);
 		

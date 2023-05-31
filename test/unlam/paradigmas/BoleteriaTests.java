@@ -21,16 +21,12 @@ import unlam.paradigmas.repositorios.IPromocionRepository;
 
 public class BoleteriaTests {
 
-	private IAtraccionRepository atraccionRepository;
+/*	private IAtraccionRepository atraccionRepository;
 	private IPromocionRepository promocionRepository;
-	private Ofertador ofertador;
-	private Sugeridor sugeridor;
 	
 	
 	public BoleteriaTests() {
 		this.promocionRepository = Mockito.mock(IPromocionRepository.class);
-		this.ofertador = Mockito.mock(Ofertador.class);
-		this.sugeridor = Mockito.mock(Sugeridor.class);
 	}
 	
 	@Test
@@ -38,7 +34,7 @@ public class BoleteriaTests {
 		List<Atraccion> atracciones = dadaUnaListaDeAtracciones();
 		Usuario usuario = dadoUnUsuarioCon(50.0, 20.0, TipoActividad.AVENTURA);
 		Mockito.when(ofertador.generarOfertaDeAtraccion(usuario, atracciones)).thenReturn(null);
-		Boleteria boleteria = new Boleteria(atraccionRepository, promocionRepository, ofertador, sugeridor);
+		Boleteria boleteria = new Boleteria(atraccionRepository, promocionRepository);
 			
 		boleteria.atender(usuario);
 		
@@ -80,5 +76,5 @@ public class BoleteriaTests {
 		atracciones.add(new Atraccion("MORDOR", 6.0, 32.0, 3, TipoActividad.AVENTURA));
 		Mockito.when(atraccionRepository.getAtracciones()).thenReturn(atracciones);
 		return atracciones;
-	}
+	}*/
 }

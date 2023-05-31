@@ -70,7 +70,7 @@ public class ArchivoAtraccionRepositoryTests {
 
 		Atraccion moria = repository.getAtraccionByNombre("MORIA");
 
-		assertEquals(12.0, moria.getCosto(), 0);
+		assertEquals(12.0, moria.getPrecio(), 0);
 		assertEquals(12, moria.getDuracionHoras(), 0);
 		assertEquals(2, moria.getCupo(), 0);
 		assertEquals(TipoActividad.AVENTURA, moria.getTipoActividad());
@@ -89,7 +89,7 @@ public class ArchivoAtraccionRepositoryTests {
 	private void validarAtraccion(String nombre, Double costo, Double duracionHoras, Integer cupo, TipoActividad tipoActividad,
 			Atraccion atraccion) {
 		assertEquals(nombre, atraccion.getNombre());
-		assertEquals(costo, atraccion.getCosto());
+		assertEquals(costo, atraccion.getPrecio());
 		assertEquals(duracionHoras, atraccion.getDuracionHoras());
 		assertEquals(cupo, atraccion.getCupo());
 		assertEquals(tipoActividad, (atraccion.getTipoActividad()));
