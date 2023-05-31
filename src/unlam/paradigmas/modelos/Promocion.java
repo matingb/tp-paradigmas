@@ -2,8 +2,6 @@ package unlam.paradigmas.modelos;
 
 import java.util.List;
 
-import unlam.paradigmas.Ofertable;
-
 public abstract class Promocion extends Oferta {
 
 	private TipoActividad tipoActividad;

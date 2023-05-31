@@ -19,6 +19,8 @@ public class Atraccion extends Oferta{
 		this.cupo = cupo;
 		this.tipoActividad = tipoActividad;
 	}
+	
+	public Atraccion() {}
 
 	public String getNombre() {
 		return nombre;
