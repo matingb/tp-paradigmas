@@ -11,11 +11,12 @@ import unlam.paradigmas.repositorios.promocionRepository.IPromocionRepository;
 
 public class Boleteria {
 	
-	List<Atraccion> atracciones;
-	List<Promocion> promociones;
-	SesionHandler sesionHandler;
+	private List<Atraccion> atracciones;
+	private List<Promocion> promociones;
+	private SesionHandler sesionHandler;
+	private static Boleteria instance;
 	
-	public Boleteria(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, SesionHandler sesionHandler) {
+	private Boleteria(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, SesionHandler sesionHandler) {
 		this.atracciones = atraccionRepository.getAtracciones();
 		this.promociones = promocionRepository.getPromociones();
 		this.sesionHandler = sesionHandler;
@@ -34,5 +35,24 @@ public class Boleteria {
 
 			oferta = sesion.generarOferta();
 		}
+	}
+	
+	public static Boleteria getInstance() {
+		if (instance == null) {
+			throw new AssertionError("Debe llamarse primero al init");
+		}
+
+		return instance;
+	}
+
+	public synchronized static Boleteria init(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, SesionHandler sesionHandler) {
+		if (instance == null) {
+			instance = new Boleteria(atraccionRepository, promocionRepository, sesionHandler);
+		}
+		return instance;
+	}
+	
+	public static void setSesionHandler(SesionHandler sesionHandler) {
+		instance.sesionHandler = sesionHandler;
 	}
 }

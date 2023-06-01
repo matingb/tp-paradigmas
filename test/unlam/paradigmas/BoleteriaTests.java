@@ -20,18 +20,18 @@ import unlam.paradigmas.repositorios.promocionRepository.IPromocionRepository;
 
 public class BoleteriaTests {
 
-	private IAtraccionRepository atraccionRepository;
-	private IPromocionRepository promocionRepository;
+	private static IAtraccionRepository atraccionRepository = Mockito.mock(IAtraccionRepository.class);;
+	private static IPromocionRepository promocionRepository = Mockito.mock(IPromocionRepository.class);;
 	private Sesion sesion;
 	private Boleteria boleteria;
 	private Usuario usuario;
 	
 	public BoleteriaTests() {
 		this.usuario = new Usuario();
-		this.atraccionRepository = Mockito.mock(IAtraccionRepository.class);
-		this.promocionRepository = Mockito.mock(IPromocionRepository.class);
+
 		SesionHandler sesionHandler = Mockito.mock(SesionHandler.class);
-		this.boleteria = new Boleteria(atraccionRepository, promocionRepository, sesionHandler);
+		this.boleteria = Boleteria.init(atraccionRepository, promocionRepository, sesionHandler);
+		Boleteria.setSesionHandler(sesionHandler);
 
 		this.sesion = Mockito.mock(Sesion.class);
 		Mockito.when(sesionHandler.generarSesion(any(Usuario.class), anyList(), anyList())).thenReturn(sesion);

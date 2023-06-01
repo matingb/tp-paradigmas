@@ -1,8 +1,7 @@
 package unlam.paradigmas;
 
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;

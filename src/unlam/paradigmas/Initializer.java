@@ -19,9 +19,11 @@ public class Initializer {
 			input = getClass().getClassLoader().getResourceAsStream("config.properties");
 			properties.load(input);
 
-			IUsuarioRepository usuarioRepository = ArchivoUsuarioRepository.init(properties);
+			ArchivoUsuarioRepository.init(properties);
 			IAtraccionRepository atraccionRepository = ArchivoAtraccionRepository.init(properties);
 			IPromocionRepository promocionRepository = ArchivoPromocionRepository.init(properties, atraccionRepository);
+			
+			Boleteria.init(atraccionRepository, promocionRepository, new SesionHandler());
 
 		} catch (Exception e) {
 			e.printStackTrace();
