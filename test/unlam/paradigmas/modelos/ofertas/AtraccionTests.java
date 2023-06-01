@@ -1,9 +1,10 @@
-package unlam.paradigmas.modelos;
+package unlam.paradigmas.modelos.ofertas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
+import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 
 public class AtraccionTests {
