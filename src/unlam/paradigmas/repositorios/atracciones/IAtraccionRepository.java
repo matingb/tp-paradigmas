@@ -1,4 +1,4 @@
-package unlam.paradigmas.repositorios.atraccionRepository;
+package unlam.paradigmas.repositorios.atracciones;
 
 import java.util.List;
 

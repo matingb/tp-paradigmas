@@ -2,7 +2,7 @@ package unlam.paradigmas.modelos.ofertas;
 
 import java.util.List;
 
-import unlam.paradigmas.modelos.TipoActividad;
+import unlam.paradigmas.enums.TipoActividad;
 
 public abstract class Oferta {
 	

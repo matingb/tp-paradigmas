@@ -4,8 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
-import unlam.paradigmas.modelos.TipoActividad;
-import unlam.paradigmas.modelos.ofertas.Atraccion;
+import unlam.paradigmas.enums.TipoActividad;
 
 public class AtraccionTests {
 

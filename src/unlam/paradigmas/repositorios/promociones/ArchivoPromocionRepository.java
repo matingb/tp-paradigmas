@@ -1,4 +1,4 @@
-package unlam.paradigmas.repositorios.promocionRepository;
+package unlam.paradigmas.repositorios.promociones;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,14 +7,14 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.Scanner;
 
-import unlam.paradigmas.modelos.TipoActividad;
-import unlam.paradigmas.modelos.TipoPromocion;
+import unlam.paradigmas.enums.TipoActividad;
+import unlam.paradigmas.enums.TipoPromocion;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
 import unlam.paradigmas.modelos.ofertas.promociones.PromocionCombo;
 import unlam.paradigmas.modelos.ofertas.promociones.PromocionMontoFijo;
 import unlam.paradigmas.modelos.ofertas.promociones.PromocionPorcentual;
-import unlam.paradigmas.repositorios.atraccionRepository.IAtraccionRepository;
+import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
 
 public class ArchivoPromocionRepository implements IPromocionRepository{
 	

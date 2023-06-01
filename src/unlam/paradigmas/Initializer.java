@@ -3,12 +3,11 @@ package unlam.paradigmas;
 import java.io.InputStream;
 import java.util.Properties;
 
-import unlam.paradigmas.repositorios.atraccionRepository.ArchivoAtraccionRepository;
-import unlam.paradigmas.repositorios.atraccionRepository.IAtraccionRepository;
-import unlam.paradigmas.repositorios.promocionRepository.ArchivoPromocionRepository;
-import unlam.paradigmas.repositorios.promocionRepository.IPromocionRepository;
-import unlam.paradigmas.repositorios.usuarioRepository.ArchivoUsuarioRepository;
-import unlam.paradigmas.repositorios.usuarioRepository.IUsuarioRepository;
+import unlam.paradigmas.repositorios.atracciones.ArchivoAtraccionRepository;
+import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
+import unlam.paradigmas.repositorios.promociones.ArchivoPromocionRepository;
+import unlam.paradigmas.repositorios.promociones.IPromocionRepository;
+import unlam.paradigmas.repositorios.usuarios.ArchivoUsuarioRepository;
 
 public class Initializer {
 	public void initialize() {

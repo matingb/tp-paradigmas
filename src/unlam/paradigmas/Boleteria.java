@@ -6,8 +6,8 @@ import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
 import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
-import unlam.paradigmas.repositorios.atraccionRepository.IAtraccionRepository;
-import unlam.paradigmas.repositorios.promocionRepository.IPromocionRepository;
+import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
+import unlam.paradigmas.repositorios.promociones.IPromocionRepository;
 
 public class Boleteria {
 	
@@ -31,6 +31,8 @@ public class Boleteria {
 
 			if(sesion.sugerir(oferta)) {
 				sesion.aceptarOferta(oferta);
+			} else {
+				sesion.rechazarOferta(oferta);
 			}
 
 			oferta = sesion.generarOferta();

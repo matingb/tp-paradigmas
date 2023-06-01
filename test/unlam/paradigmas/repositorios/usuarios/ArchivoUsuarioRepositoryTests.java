@@ -1,4 +1,4 @@
-package unlam.paradigmas.repositorios;
+package unlam.paradigmas.repositorios.usuarios;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 
@@ -16,15 +15,8 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
 
-import unlam.paradigmas.modelos.TipoActividad;
-import unlam.paradigmas.modelos.TipoPromocion;
+import unlam.paradigmas.enums.TipoActividad;
 import unlam.paradigmas.modelos.Usuario;
-import unlam.paradigmas.modelos.ofertas.Atraccion;
-import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
-import unlam.paradigmas.modelos.ofertas.promociones.PromocionCombo;
-import unlam.paradigmas.modelos.ofertas.promociones.PromocionMontoFijo;
-import unlam.paradigmas.modelos.ofertas.promociones.PromocionPorcentual;
-import unlam.paradigmas.repositorios.usuarioRepository.ArchivoUsuarioRepository;
 
 public class ArchivoUsuarioRepositoryTests {
 

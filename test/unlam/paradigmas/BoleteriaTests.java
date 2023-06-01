@@ -11,12 +11,12 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-import unlam.paradigmas.modelos.TipoActividad;
+import unlam.paradigmas.enums.TipoActividad;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
-import unlam.paradigmas.repositorios.atraccionRepository.IAtraccionRepository;
-import unlam.paradigmas.repositorios.promocionRepository.IPromocionRepository;
+import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
+import unlam.paradigmas.repositorios.promociones.IPromocionRepository;
 
 public class BoleteriaTests {
 
@@ -69,6 +69,17 @@ public class BoleteriaTests {
 		boleteria.atender(usuario);
 		
 		verify(sesion, times(1)).aceptarOferta(oferta1);
+	}
+	
+	@Test
+	public void DadoUnUsuarioConUnOferta_AlRechazarLaSugerencia_LaSesionRechazaLaOferta() {
+		Oferta oferta1 = dadaUnaAtraccion();
+		Mockito.when(this.sesion.generarOferta()).thenReturn(oferta1).thenReturn(null);
+		Mockito.when(this.sesion.sugerir(oferta1)).thenReturn(false);
+		
+		boleteria.atender(usuario);
+		
+		verify(sesion, times(1)).rechazarOferta(oferta1);
 	}
 	
 	public Atraccion dadaUnaAtraccion() {

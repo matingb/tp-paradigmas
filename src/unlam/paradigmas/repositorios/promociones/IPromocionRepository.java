@@ -1,4 +1,4 @@
-package unlam.paradigmas.repositorios.promocionRepository;
+package unlam.paradigmas.repositorios.promociones;
 
 import java.util.List;
 

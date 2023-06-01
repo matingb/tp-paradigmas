@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import unlam.paradigmas.modelos.TipoActividad;
+import unlam.paradigmas.enums.TipoActividad;
 
 public class Atraccion extends Oferta{
 

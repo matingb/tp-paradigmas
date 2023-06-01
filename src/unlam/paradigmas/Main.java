@@ -3,8 +3,8 @@ package unlam.paradigmas;
 import java.util.List;
 
 import unlam.paradigmas.modelos.Usuario;
-import unlam.paradigmas.repositorios.usuarioRepository.ArchivoUsuarioRepository;
-import unlam.paradigmas.repositorios.usuarioRepository.IUsuarioRepository;
+import unlam.paradigmas.repositorios.usuarios.ArchivoUsuarioRepository;
+import unlam.paradigmas.repositorios.usuarios.IUsuarioRepository;
 
 public class Main {
 
@@ -19,7 +19,6 @@ public class Main {
 		
 		for(Usuario usuario : usuarios) {			
 			boleteria.atender(usuario);
-		}
-		
+		}	
 	}
 }

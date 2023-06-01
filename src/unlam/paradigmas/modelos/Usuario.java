@@ -1,5 +1,7 @@
 package unlam.paradigmas.modelos;
 
+import unlam.paradigmas.enums.TipoActividad;
+
 public class Usuario {
 
 	private Double presupuesto;

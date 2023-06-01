@@ -40,6 +40,7 @@ public class Sesion {
 	}
 	
 	public Boolean sugerir(Oferta oferta) {
+		//TODO IMPLEMENTAR LA INTERACCION CON EL USUARIO
 		System.out.println(oferta);
 		return true;
 	}
@@ -53,6 +54,13 @@ public class Sesion {
 			this.atracciones = atracciones.stream().filter(a -> !a.getAtraccionesIncluidas().contains(atraccion)).toList();
 			this.promociones = promociones.stream().filter(promocion -> !promocion.getAtraccionesIncluidas().contains(atraccion)).toList();
 		}
+		
+		//CREAR UNA ESPECIE DE VENTA O ALGO PARA ESCRIBIR EL ARCHIVO CON TODO AL TERMINAR
+	}
+	
+	public void rechazarOferta(Oferta oferta) {
+		this.atracciones.remove(oferta);	
+		this.promociones.remove(oferta);
 	}
 	
 	private Oferta obtenerOferta(List<Oferta> ofertas, Boolean preferidas) {
@@ -66,6 +74,8 @@ public class Sesion {
 		oferta.getPrecio() < usuario.getPresupuesto() &&
 		oferta.getDuracion() < usuario.getTiempo() &&
 		oferta.hayDisponibilidad()).toList();
+		
+		//TODO FALTA AGREGAR EL SORT PARA QUE TRAIGA LAS MAS CARAS Y LAS DE MAYOR TIEMPO PRIMERO
 		
 		return ofertas.size() > 0 ? ofertas.get(0) : null;
 	}

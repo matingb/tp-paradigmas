@@ -2,7 +2,7 @@ package unlam.paradigmas.modelos.ofertas.promociones;
 
 import java.util.List;
 
-import unlam.paradigmas.modelos.TipoActividad;
+import unlam.paradigmas.enums.TipoActividad;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
 

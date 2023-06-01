@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import unlam.paradigmas.modelos.TipoActividad;
+import unlam.paradigmas.enums.TipoActividad;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 
 public class PromocionComboTests {

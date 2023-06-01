@@ -1,4 +1,4 @@
-package unlam.paradigmas.repositorios.usuarioRepository;
+package unlam.paradigmas.repositorios.usuarios;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.Scanner;
 
-import unlam.paradigmas.modelos.TipoActividad;
+import unlam.paradigmas.enums.TipoActividad;
 import unlam.paradigmas.modelos.Usuario;
 
 public class ArchivoUsuarioRepository implements IUsuarioRepository {

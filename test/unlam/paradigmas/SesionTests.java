@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import unlam.paradigmas.modelos.TipoActividad;
+import unlam.paradigmas.enums.TipoActividad;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
