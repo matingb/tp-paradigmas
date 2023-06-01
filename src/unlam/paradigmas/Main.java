@@ -1,15 +1,15 @@
 package unlam.paradigmas;
 
-import unlam.paradigmas.modelos.Atraccion;
-import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.Usuario;
-import unlam.paradigmas.repositorios.ArchivoAtraccionRepository;
-import unlam.paradigmas.repositorios.ArchivoPromocionRepository;
-import unlam.paradigmas.repositorios.ArchivoUsuarioRepository;
-import unlam.paradigmas.repositorios.IAtraccionRepository;
-import unlam.paradigmas.repositorios.IPromocionRepository;
-import unlam.paradigmas.repositorios.IUsuarioRepository;
+import unlam.paradigmas.modelos.ofertas.Atraccion;
+import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
+import unlam.paradigmas.repositorios.atraccionRepository.ArchivoAtraccionRepository;
+import unlam.paradigmas.repositorios.atraccionRepository.IAtraccionRepository;
+import unlam.paradigmas.repositorios.promocionRepository.ArchivoPromocionRepository;
+import unlam.paradigmas.repositorios.promocionRepository.IPromocionRepository;
+import unlam.paradigmas.repositorios.usuarioRepository.ArchivoUsuarioRepository;
+import unlam.paradigmas.repositorios.usuarioRepository.IUsuarioRepository;
 
 import java.util.List;
 

@@ -2,12 +2,12 @@ package unlam.paradigmas;
 
 import java.util.List;
 
-import unlam.paradigmas.modelos.Atraccion;
-import unlam.paradigmas.modelos.Oferta;
-import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.Usuario;
-import unlam.paradigmas.repositorios.IAtraccionRepository;
-import unlam.paradigmas.repositorios.IPromocionRepository;
+import unlam.paradigmas.modelos.ofertas.Atraccion;
+import unlam.paradigmas.modelos.ofertas.Oferta;
+import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
+import unlam.paradigmas.repositorios.atraccionRepository.IAtraccionRepository;
+import unlam.paradigmas.repositorios.promocionRepository.IPromocionRepository;
 
 public class Boleteria {
 	

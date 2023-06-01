@@ -1,8 +1,10 @@
-package unlam.paradigmas.modelos;
+package unlam.paradigmas.modelos.ofertas;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import unlam.paradigmas.modelos.TipoActividad;
 
 public class Atraccion extends Oferta{
 
@@ -76,7 +78,7 @@ public class Atraccion extends Oferta{
 
 	@Override
 	public Boolean hayDisponibilidad() {
-		return this.cupo >= 0;
+		return this.cupo > 0;
 	}
 	
 	@Override

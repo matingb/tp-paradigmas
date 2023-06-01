@@ -6,7 +6,16 @@ public class Usuario {
 	private Double tiempo;
 	private TipoActividad actividadFavorita;
 	private String nombre;
-
+	
+	public Usuario() {}
+	public Usuario(String nombre, Double presupuesto, Double tiempo, TipoActividad actividad) {
+		this.nombre = nombre;
+		this.presupuesto = presupuesto;
+		this.tiempo = tiempo;
+		this.actividadFavorita = actividad;
+	}
+	
+	
 	public Double getPresupuesto() {
 		return presupuesto;
 	}

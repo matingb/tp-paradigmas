@@ -16,12 +16,14 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
 
-import unlam.paradigmas.modelos.Atraccion;
-import unlam.paradigmas.modelos.Promocion;
-import unlam.paradigmas.modelos.PromocionCombo;
-import unlam.paradigmas.modelos.PromocionMontoFijo;
-import unlam.paradigmas.modelos.PromocionPorcentual;
 import unlam.paradigmas.modelos.TipoActividad;
+import unlam.paradigmas.modelos.ofertas.Atraccion;
+import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionCombo;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionMontoFijo;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionPorcentual;
+import unlam.paradigmas.repositorios.atraccionRepository.IAtraccionRepository;
+import unlam.paradigmas.repositorios.promocionRepository.ArchivoPromocionRepository;
 
 public class ArchivoPromocionRepositoryTests {
 
@@ -66,7 +68,7 @@ public class ArchivoPromocionRepositoryTests {
 		
 		assertEquals(PromocionMontoFijo.class , promociones.get(0).getClass());
 		PromocionMontoFijo promocionDeMontoFijo = (PromocionMontoFijo) promociones.get(0); 
-		assertEquals(50, promocionDeMontoFijo.getPrecioFinal(), 0);
+		assertEquals(50, promocionDeMontoFijo.getPrecio(), 0);
 	}
 	
 	@Test

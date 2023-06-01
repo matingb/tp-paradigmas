@@ -16,14 +16,15 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
 
-import unlam.paradigmas.modelos.Atraccion;
-import unlam.paradigmas.modelos.Promocion;
-import unlam.paradigmas.modelos.PromocionCombo;
-import unlam.paradigmas.modelos.PromocionMontoFijo;
-import unlam.paradigmas.modelos.PromocionPorcentual;
 import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.TipoPromocion;
 import unlam.paradigmas.modelos.Usuario;
+import unlam.paradigmas.modelos.ofertas.Atraccion;
+import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionCombo;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionMontoFijo;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionPorcentual;
+import unlam.paradigmas.repositorios.usuarioRepository.ArchivoUsuarioRepository;
 
 public class ArchivoUsuarioRepositoryTests {
 

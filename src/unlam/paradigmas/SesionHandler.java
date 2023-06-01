@@ -2,9 +2,9 @@ package unlam.paradigmas;
 
 import java.util.List;
 
-import unlam.paradigmas.modelos.Atraccion;
-import unlam.paradigmas.modelos.Promocion;
 import unlam.paradigmas.modelos.Usuario;
+import unlam.paradigmas.modelos.ofertas.Atraccion;
+import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
 
 public class SesionHandler {
 

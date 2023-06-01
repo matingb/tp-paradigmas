@@ -1,6 +1,8 @@
-package unlam.paradigmas.modelos;
+package unlam.paradigmas.modelos.ofertas;
 
 import java.util.List;
+
+import unlam.paradigmas.modelos.TipoActividad;
 
 public abstract class Oferta {
 

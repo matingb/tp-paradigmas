@@ -1,6 +1,9 @@
-package unlam.paradigmas.modelos;
+package unlam.paradigmas.modelos.ofertas.promociones;
 
 import java.util.List;
+
+import unlam.paradigmas.modelos.TipoActividad;
+import unlam.paradigmas.modelos.ofertas.Atraccion;
 
 public class PromocionMontoFijo extends Promocion {
 

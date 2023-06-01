@@ -1,7 +1,8 @@
-package unlam.paradigmas.repositorios;
+package unlam.paradigmas.repositorios.atraccionRepository;
 
 import java.util.List;
-import unlam.paradigmas.modelos.Atraccion;
+
+import unlam.paradigmas.modelos.ofertas.Atraccion;
 
 public interface IAtraccionRepository {
 	public List<Atraccion> getAtracciones();

@@ -17,14 +17,15 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
 
-import unlam.paradigmas.modelos.Atraccion;
-import unlam.paradigmas.modelos.Promocion;
-import unlam.paradigmas.modelos.PromocionCombo;
-import unlam.paradigmas.modelos.PromocionMontoFijo;
-import unlam.paradigmas.modelos.PromocionPorcentual;
 import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.TipoPromocion;
 import unlam.paradigmas.modelos.Usuario;
+import unlam.paradigmas.modelos.ofertas.Atraccion;
+import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionCombo;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionMontoFijo;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionPorcentual;
+import unlam.paradigmas.repositorios.atraccionRepository.ArchivoAtraccionRepository;
 
 public class ArchivoAtraccionRepositoryTests {
 
@@ -71,7 +72,7 @@ public class ArchivoAtraccionRepositoryTests {
 		Atraccion moria = repository.getAtraccionByNombre("MORIA");
 
 		assertEquals(12.0, moria.getPrecio(), 0);
-		assertEquals(12, moria.getDuracionHoras(), 0);
+		assertEquals(12, moria.getDuracion(), 0);
 		assertEquals(2, moria.getCupo(), 0);
 		assertEquals(TipoActividad.AVENTURA, moria.getTipoActividad());
 	}
@@ -90,7 +91,7 @@ public class ArchivoAtraccionRepositoryTests {
 			Atraccion atraccion) {
 		assertEquals(nombre, atraccion.getNombre());
 		assertEquals(costo, atraccion.getPrecio());
-		assertEquals(duracionHoras, atraccion.getDuracionHoras());
+		assertEquals(duracionHoras, atraccion.getDuracion());
 		assertEquals(cupo, atraccion.getCupo());
 		assertEquals(tipoActividad, (atraccion.getTipoActividad()));
 

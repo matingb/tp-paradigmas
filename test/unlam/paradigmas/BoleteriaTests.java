@@ -11,11 +11,11 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-import unlam.paradigmas.modelos.Atraccion;
-import unlam.paradigmas.modelos.Oferta;
 import unlam.paradigmas.modelos.Usuario;
-import unlam.paradigmas.repositorios.IAtraccionRepository;
-import unlam.paradigmas.repositorios.IPromocionRepository;
+import unlam.paradigmas.modelos.ofertas.Atraccion;
+import unlam.paradigmas.modelos.ofertas.Oferta;
+import unlam.paradigmas.repositorios.atraccionRepository.IAtraccionRepository;
+import unlam.paradigmas.repositorios.promocionRepository.IPromocionRepository;
 
 public class BoleteriaTests {
 
@@ -23,8 +23,10 @@ public class BoleteriaTests {
 	private IPromocionRepository promocionRepository;
 	private Sesion sesion;
 	private Boleteria boleteria;
+	private Usuario usuario;
 	
 	public BoleteriaTests() {
+		this.usuario = new Usuario();
 		this.atraccionRepository = Mockito.mock(IAtraccionRepository.class);
 		this.promocionRepository = Mockito.mock(IPromocionRepository.class);
 		SesionHandler sesionHandler = Mockito.mock(SesionHandler.class);
@@ -36,7 +38,6 @@ public class BoleteriaTests {
 	
 	@Test
 	public void DadoUnUsuarioSinOfertasPosibles_AlAtenderlo_NoSeLeMuestranSugerencias() {
-		Usuario usuario = new Usuario();
 		Mockito.when(this.sesion.generarOferta()).thenReturn(null);
 			
 		boleteria.atender(usuario);
@@ -46,7 +47,6 @@ public class BoleteriaTests {
 	
 	@Test
 	public void DadoUnUsuarioConDosOfertasPosibles_AlAtenderlo_SeLeSugieronAmbas() {
-		Usuario usuario = new Usuario();
 		Oferta oferta1 = new Atraccion();
 		Oferta oferta2 = new Atraccion();
 		Mockito.when(this.sesion.generarOferta()).thenReturn(oferta1).thenReturn(oferta2).thenReturn(null);
@@ -57,5 +57,16 @@ public class BoleteriaTests {
 		verify(sesion, times(2)).sugerir(ofertaCaptor.capture());
 		assertEquals(oferta1, ofertaCaptor.getValue());
 		assertEquals(oferta2, ofertaCaptor.getValue());
+	}
+	
+	@Test
+	public void DadoUnUsuarioConUnOferta_AlAceptarLaSugerencia_LaSesionAceptaLaOferta() {
+		Oferta oferta1 = new Atraccion();
+		Mockito.when(this.sesion.generarOferta()).thenReturn(oferta1).thenReturn(null);
+		Mockito.when(this.sesion.sugerir(oferta1)).thenReturn(true);
+		
+		boleteria.atender(usuario);
+		
+		verify(sesion, times(1)).aceptarOferta(oferta1);
 	}
 }

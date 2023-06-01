@@ -1,4 +1,4 @@
-package unlam.paradigmas.repositorios;
+package unlam.paradigmas.repositorios.atraccionRepository;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -6,16 +6,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
-import unlam.paradigmas.modelos.Atraccion;
-import unlam.paradigmas.modelos.Promocion;
-import unlam.paradigmas.modelos.PromocionCombo;
-import unlam.paradigmas.modelos.PromocionMontoFijo;
-import unlam.paradigmas.modelos.PromocionPorcentual;
 import unlam.paradigmas.modelos.TipoActividad;
-import unlam.paradigmas.modelos.TipoPromocion;
-import unlam.paradigmas.modelos.Usuario;
+import unlam.paradigmas.modelos.ofertas.Atraccion;
 
 public class ArchivoAtraccionRepository implements IAtraccionRepository {
 

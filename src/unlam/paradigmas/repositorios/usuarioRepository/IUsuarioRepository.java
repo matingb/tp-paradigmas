@@ -1,4 +1,4 @@
-package unlam.paradigmas.repositorios;
+package unlam.paradigmas.repositorios.usuarioRepository;
 
 import java.util.List;
 import unlam.paradigmas.modelos.Usuario;
