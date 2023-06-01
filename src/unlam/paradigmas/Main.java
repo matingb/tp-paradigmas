@@ -23,8 +23,8 @@ public class Main {
 		IPromocionRepository promocionRepository = ArchivoPromocionRepository.getInstance();
 		
 		Usuario usuario = new Usuario();
-		usuario.setPresupuesto(50.0);
-		usuario.setTiempo(20.0);
+		usuario.setPresupuesto(500.0);
+		usuario.setTiempo(200.0);
 		usuario.setActividadFavorita(TipoActividad.AVENTURA);
 		
 		Boleteria boleteria = new Boleteria(atraccionRepository, promocionRepository, new SesionHandler());

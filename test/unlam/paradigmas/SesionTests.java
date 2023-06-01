@@ -3,12 +3,14 @@ package unlam.paradigmas;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.Usuario;
@@ -127,6 +129,30 @@ public class SesionTests {
 		
 		assertNull(oferta);
 	}
+	
+	@Test
+	public void dadaUnaOferta_AlAceptarla_ElUsuarioDebeDescontarSuPrecioYTiempo() {
+		Oferta oferta = new Atraccion("Nombre", 20.0, 15.0, 1, TipoActividad.AVENTURA);
+		Usuario usuario = Mockito.mock(Usuario.class);
+		Sesion sesion = new Sesion(usuario, Arrays.asList(), Arrays.asList());
+		
+		sesion.aceptarOferta(oferta);
+		
+		verify(usuario).pagarBoleteria(20);
+		verify(usuario).reducirTiempo(15);
+	}
+	
+	@Test
+	public void dadaUnaOferta_AlAceptarla_LaOfertaDebeDescontarSuCupo() {
+		Oferta oferta = Mockito.mock(Oferta.class);
+		Usuario usuario = Mockito.mock(Usuario.class);
+		Sesion sesion = new Sesion(usuario, Arrays.asList(), Arrays.asList());
+		
+		sesion.aceptarOferta(oferta);
+		
+		verify(oferta).descontarCupo();
+	}
+	
 	
 	public Atraccion atraccionDeTipo(TipoActividad tipoActividad) {
 		return new Atraccion("Nombre", 1.0, 1.0, 1, tipoActividad);
