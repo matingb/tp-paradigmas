@@ -11,19 +11,14 @@ public abstract class Promocion extends Oferta {
 	private TipoActividad tipoActividad;
 	private List<Atraccion> atraccionesIncluidas;
 
-	public Promocion(TipoActividad tipoPaquete, List<Atraccion> atracciones) {
-		this.tipoActividad = tipoPaquete;
+	public Promocion(TipoActividad tipoActividad, List<Atraccion> atracciones) {
+		super(tipoActividad);
 		this.atraccionesIncluidas = atracciones;
 	}
 
 	@Override
 	public List<Atraccion> getAtraccionesIncluidas() {
 		return atraccionesIncluidas;
-	}
-
-	@Override
-	public TipoActividad getTipoActividad() {
-		return tipoActividad;
 	}
 
 	@Override

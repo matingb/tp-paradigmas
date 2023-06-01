@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
+import unlam.paradigmas.modelos.TipoActividad;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
@@ -47,8 +48,8 @@ public class BoleteriaTests {
 	
 	@Test
 	public void DadoUnUsuarioConDosOfertasPosibles_AlAtenderlo_SeLeSugieronAmbas() {
-		Oferta oferta1 = new Atraccion();
-		Oferta oferta2 = new Atraccion();
+		Oferta oferta1 = dadaUnaAtraccion();
+		Oferta oferta2 = dadaUnaAtraccion();
 		Mockito.when(this.sesion.generarOferta()).thenReturn(oferta1).thenReturn(oferta2).thenReturn(null);
 			
 		boleteria.atender(usuario);
@@ -61,12 +62,16 @@ public class BoleteriaTests {
 	
 	@Test
 	public void DadoUnUsuarioConUnOferta_AlAceptarLaSugerencia_LaSesionAceptaLaOferta() {
-		Oferta oferta1 = new Atraccion();
+		Oferta oferta1 = dadaUnaAtraccion();
 		Mockito.when(this.sesion.generarOferta()).thenReturn(oferta1).thenReturn(null);
 		Mockito.when(this.sesion.sugerir(oferta1)).thenReturn(true);
 		
 		boleteria.atender(usuario);
 		
 		verify(sesion, times(1)).aceptarOferta(oferta1);
+	}
+	
+	public Atraccion dadaUnaAtraccion() {
+		return new Atraccion("Nombre", 50.0, 10.0, 5, TipoActividad.AVENTURA);
 	}
 }
