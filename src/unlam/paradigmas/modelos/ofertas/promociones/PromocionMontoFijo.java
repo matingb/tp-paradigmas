@@ -11,16 +11,12 @@ public class PromocionMontoFijo extends Promocion {
 
 	public PromocionMontoFijo(TipoActividad tipoPaquete, Double precioFinal, List<Atraccion> atracciones) {
 		super(tipoPaquete, atracciones);
-		this.setPrecioFinal(precioFinal);
+		this.precioFinal = precioFinal;
 	}
 
 	@Override
 	public Double getPrecio(){
 		return precioFinal;
-	}
-
-	private void setPrecioFinal(Double precioFinal) {
-		this.precioFinal = precioFinal;
 	}
 
 	@Override

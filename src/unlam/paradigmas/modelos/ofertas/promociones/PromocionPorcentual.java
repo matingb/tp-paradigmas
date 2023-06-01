@@ -9,8 +9,8 @@ public class PromocionPorcentual extends Promocion {
 
 	private Double porcentajeDescuento;
 
-	public PromocionPorcentual(TipoActividad tipoPaquete, Double porcentajeDescuento, List<Atraccion> atracciones) {
-		super(tipoPaquete, atracciones);
+	public PromocionPorcentual(TipoActividad tipoActividad, Double porcentajeDescuento, List<Atraccion> atracciones) {
+		super(tipoActividad, atracciones);
 		setPorcentajeDescuento(porcentajeDescuento);
 	}
 

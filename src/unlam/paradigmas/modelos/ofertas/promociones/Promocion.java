@@ -8,7 +8,6 @@ import unlam.paradigmas.modelos.ofertas.Oferta;
 
 public abstract class Promocion extends Oferta {
 
-	private TipoActividad tipoActividad;
 	private List<Atraccion> atraccionesIncluidas;
 
 	public Promocion(TipoActividad tipoActividad, List<Atraccion> atracciones) {
