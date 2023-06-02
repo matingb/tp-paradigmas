@@ -29,10 +29,6 @@ public class Atraccion extends Oferta{
 		return cupo;
 	}
 
-	@Override
-	public String toString() {
-		return nombre;
-	}
 	
 	@Override
 	public Double getPrecio() {
@@ -74,4 +70,15 @@ public class Atraccion extends Oferta{
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(precio, other.precio)
 				&& Objects.equals(this.getTipoActividad(), other.getTipoActividad());
 	}
+
+	@Override
+	public String toString() {
+		return "Atraccion" 
+				+" \n  -Nombre=" + nombre
+				+ "\n -Precio=" + precio
+				+ "\n -DuracionHoras=" + duracionHoras
+				+" \n";
+	}
+	
+	
 }

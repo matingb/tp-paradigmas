@@ -21,4 +21,6 @@ public abstract class Oferta {
 	public TipoActividad getTipoActividad() {
 		return this.tipoActividad;
 	}
+
+	
 }

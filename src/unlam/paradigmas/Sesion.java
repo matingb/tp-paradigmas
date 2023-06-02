@@ -1,7 +1,9 @@
 package unlam.paradigmas;
 
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
@@ -40,9 +42,26 @@ public class Sesion {
 	}
 	
 	public Boolean sugerir(Oferta oferta) {
-		//TODO IMPLEMENTAR LA INTERACCION CON EL USUARIO
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		String ingreso;
+		
 		System.out.println(oferta);
-		return true;
+		
+		while(true) {
+			 System.out.println("¿Acepta Sugerencia?,Ingrese S o N");
+			 ingreso = scanner.nextLine();
+			 ingreso.toUpperCase();
+			 
+			 if(ingreso.equals("S") || ingreso.equals("N")) {
+				 break;
+			 }
+		}
+		
+		scanner.close();
+		
+		return ingreso.equals("S");
 	}
 	
 	public void aceptarOferta(Oferta oferta) {
