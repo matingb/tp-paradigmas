@@ -50,7 +50,7 @@ public class Sesion {
 		System.out.println(oferta);
 		
 		while(true) {
-			 System.out.println("¿Acepta Sugerencia?,Ingrese S o N");
+			 System.out.println("¿Acepta sugerencia? Ingrese S o N");
 			 ingreso = scanner.nextLine();
 			 ingreso.toUpperCase();
 			 
