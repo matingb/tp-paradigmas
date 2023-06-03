@@ -52,8 +52,7 @@ public class Sesion {
 		
 		do {
 			 System.out.println("¿Acepta sugerencia? Ingrese S o N");
-			 ingreso = scanner.nextLine();
-			 ingreso.toUpperCase();
+			 ingreso = scanner.nextLine().toUpperCase();
 		}while(!ingreso.equals("S") && !ingreso.equals("N"));
 		
 		scanner.close();
