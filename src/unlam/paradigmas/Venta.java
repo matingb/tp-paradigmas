@@ -33,7 +33,7 @@ public class Venta {
 	
 	private void actualizarTiempoyPrecio(Oferta oferta) {
 		tiempoTotal+=oferta.getDuracion();
-		precioTotal+=oferta.getDuracion();
+		precioTotal+=oferta.getPrecio();
 	}
 	
 	
