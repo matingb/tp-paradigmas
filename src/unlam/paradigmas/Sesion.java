@@ -2,6 +2,7 @@ package unlam.paradigmas;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,7 +65,7 @@ public class Sesion {
 		return ingreso.equals("S");
 	}
 	
-	public void aceptarOferta(Oferta oferta) {
+	public void aceptarOferta(Oferta oferta,Venta venta) {
 		usuario.pagarBoleteria(oferta.getPrecio());
 		usuario.reducirTiempo(oferta.getDuracion());
 		oferta.descontarCupo();
@@ -75,6 +76,8 @@ public class Sesion {
 		}
 		
 		//CREAR UNA ESPECIE DE VENTA O ALGO PARA ESCRIBIR EL ARCHIVO CON TODO AL TERMINAR
+		
+		venta.escribirOferta(oferta);
 	}
 	
 	public void rechazarOferta(Oferta oferta) {
@@ -94,7 +97,7 @@ public class Sesion {
 		oferta.getDuracion() < usuario.getTiempo() &&
 		oferta.hayDisponibilidad()).toList();
 		
-		//TODO FALTA AGREGAR EL SORT PARA QUE TRAIGA LAS MAS CARAS Y LAS DE MAYOR TIEMPO PRIMERO
+		Collections.sort(ofertas);
 		
 		return ofertas.size() > 0 ? ofertas.get(0) : null;
 	}

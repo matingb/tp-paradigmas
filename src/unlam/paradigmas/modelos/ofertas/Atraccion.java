@@ -80,5 +80,4 @@ public class Atraccion extends Oferta{
 				+"\n";
 	}
 	
-	
 }

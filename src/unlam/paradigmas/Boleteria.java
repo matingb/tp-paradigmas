@@ -23,20 +23,28 @@ public class Boleteria {
 	}
 	
 	public void atender(Usuario usuario) {
-		Sesion sesion = this.sesionHandler.generarSesion(usuario, atracciones, promociones);
+		 Sesion sesion = this.sesionHandler.generarSesion(usuario, atracciones, promociones);
+		 
+		 //creo el objeto venta para crear el archivo de salida por cada usuario
+		 Venta venta = new Venta(usuario);
+		 venta.crearArchivo();
 
-		Oferta oferta = sesion.generarOferta();
-		
-		while (oferta != null) {
+		 Oferta oferta = sesion.generarOferta();
+		 
+		 while (oferta != null) {
 
 			if(sesion.sugerir(oferta)) {
-				sesion.aceptarOferta(oferta);
+				//aceptarOferta tiene que mandar como parametro a venta
+				sesion.aceptarOferta(oferta,venta);
 			} else {
 				sesion.rechazarOferta(oferta);
 			}
-
+			
 			oferta = sesion.generarOferta();
 		}
+		
+		//escribir totales en el archivo y cerrarlo	
+		venta.escribirTotales();
 	}
 	
 	public static Boleteria getInstance() {

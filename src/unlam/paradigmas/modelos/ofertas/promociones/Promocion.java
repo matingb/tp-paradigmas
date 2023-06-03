@@ -6,7 +6,7 @@ import unlam.paradigmas.enums.TipoActividad;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
 
-public abstract class Promocion extends Oferta {
+public abstract class Promocion extends Oferta{
 
 	private List<Atraccion> atraccionesIncluidas;
 
@@ -56,4 +56,5 @@ public abstract class Promocion extends Oferta {
 		}
 		return precioOriginal;
 	}
+	
 }
