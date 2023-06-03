@@ -56,7 +56,7 @@ public class Sesion {
 			 ingreso.toUpperCase();
 		}while(!ingreso.equals("S") || !ingreso.equals("N"));
 		
-		
+		scanner.close();
 		
 		return ingreso.equals("S");
 	}
