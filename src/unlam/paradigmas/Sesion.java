@@ -3,6 +3,7 @@ package unlam.paradigmas;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -45,14 +46,13 @@ public class Sesion {
 	public Boolean sugerir(Oferta oferta) {
 		
 		Scanner scanner = new Scanner(System.in);
-		
 		String ingreso;
 		
 		System.out.println(oferta);
 		
 		do {
 			 System.out.println("¿Acepta sugerencia? Ingrese S o N");
-			 ingreso = scanner.nextLine().toUpperCase();
+			 ingreso = scanner.next().toUpperCase();
 		}while(!ingreso.equals("S") && !ingreso.equals("N"));
 		
 		scanner.close();
@@ -81,6 +81,7 @@ public class Sesion {
 	}
 	
 	private Oferta obtenerOferta(List<Oferta> ofertas, Boolean preferidas) {
+		
 		if(preferidas) {
 			ofertas = ofertas.stream().filter(oferta -> oferta.getTipoActividad().equals(usuario.getActividadFavorita())).toList();			
 		} else {
@@ -92,8 +93,14 @@ public class Sesion {
 		oferta.getDuracion() < usuario.getTiempo() &&
 		oferta.hayDisponibilidad()).toList();
 		
-		Collections.sort(ofertas);
+		List <Oferta> ofertasFiltrada = new ArrayList <Oferta>();
+		for(Oferta o: ofertas) {
+			ofertasFiltrada.add(o);
+		}
 		
-		return ofertas.size() > 0 ? ofertas.get(0) : null;
+		Collections.sort(ofertasFiltrada);
+		//Oferta ofertaMayorCostoDuracion = Collections.max(ofertas, Comparator.comparingDouble(Oferta::getPrecio).thenComparingDouble(Oferta::getDuracion));
+		
+		return ofertas.size() > 0 ? ofertasFiltrada.get(0) : null;
 	}
 }

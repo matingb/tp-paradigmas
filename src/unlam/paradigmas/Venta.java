@@ -20,9 +20,9 @@ public class Venta {
 	public void crearArchivo() {
 		FileWriter archivo = null;
 		PrintWriter escribirArch = null;
-
 		try {
-			archivo = new FileWriter("./salidas/" + usuario.getNombre() + ".out");// chequear si ruta OK
+			String usuarioSinSaltoDeLinea = usuario.getNombre().split("\n")[0];
+			archivo = new FileWriter("./salidas/" + usuarioSinSaltoDeLinea + ".out");// chequear si ruta OK
 			escribirArch = new PrintWriter(archivo);
 
 			// TODO escribir los datos del usuario
@@ -57,7 +57,8 @@ public class Venta {
 		PrintWriter escribirArch = null;
 
 		try {
-			archivo = new FileWriter("./salidas/" + usuario.getNombre() + ".out", true);// chequear si ruta OK
+			String usuarioSinSaltoDeLinea = usuario.getNombre().split("\n")[0];
+			archivo = new FileWriter("./salidas/" + usuarioSinSaltoDeLinea + ".out", true);// chequear si ruta OK
 			escribirArch = new PrintWriter(archivo);
 
 			escribirArch.println(oferta);
@@ -88,7 +89,8 @@ public class Venta {
 		PrintWriter printerWriter = null;
 
 		try {
-			archivo = new FileWriter("./salidas/" + usuario.getNombre() + ".out");
+			String usuarioSinSaltoDeLinea = usuario.getNombre().split("\n")[0];
+			archivo = new FileWriter("./salidas/" + usuarioSinSaltoDeLinea + ".out");
 			printerWriter = new PrintWriter(archivo);
 			printerWriter.println("Total a pagar: $" + precioTotal);
 			printerWriter.println("Tiempo total: " + tiempoTotal + " hrs.");
