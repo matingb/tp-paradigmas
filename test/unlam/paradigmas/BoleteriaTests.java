@@ -12,6 +12,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import unlam.paradigmas.enums.TipoActividad;
+import unlam.paradigmas.modelos.Recibo;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
@@ -39,6 +40,7 @@ public class BoleteriaTests {
 
 		this.sesion = Mockito.mock(Sesion.class);
 		Mockito.when(sesionHandler.abrir(any(Usuario.class), anyList(), anyList())).thenReturn(sesion);
+		Mockito.when(sesion.getRecibo()).thenReturn(new Recibo(usuario));
 	}
 	
 	@Test

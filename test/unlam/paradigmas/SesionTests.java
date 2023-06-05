@@ -130,6 +130,28 @@ public class SesionTests {
 	}
 	
 	@Test
+	public void dadoUnaOfertaDeValorIgualAlPresupuesto_AlGenerarOfertas_SeLeOfreceLaOferta() {
+		Atraccion ofertaEsperada = new Atraccion("Nombre", 50.0, 1.0, 1, TipoActividad.DEGUSTACION);
+		Usuario usuario = new Usuario("Nombre", 50.0, 50.0, TipoActividad.DEGUSTACION);
+		Sesion sesion = new Sesion(usuario, Arrays.asList(ofertaEsperada), Arrays.asList());
+		
+		Oferta oferta = sesion.generarOferta();
+		
+		assertEquals(ofertaEsperada, oferta);
+	}
+	
+	@Test
+	public void dadoUnaOfertaDeDuracionIgualAlTiempoDisponible_AlGenerarOfertas_SeLeOfreceLaOferta() {
+		Atraccion ofertaEsperada = new Atraccion("Nombre", 1.0, 50.0, 1, TipoActividad.DEGUSTACION);
+		Usuario usuario = new Usuario("Nombre", 50.0, 50.0, TipoActividad.DEGUSTACION);
+		Sesion sesion = new Sesion(usuario, Arrays.asList(ofertaEsperada), Arrays.asList());
+		
+		Oferta oferta = sesion.generarOferta();
+		
+		assertEquals(ofertaEsperada, oferta);
+	}
+	
+	@Test
 	public void dadaUnaOferta_AlAceptarla_ElUsuarioDebeDescontarSuPrecioYTiempo() {
 		Oferta oferta = new Atraccion("Nombre", 20.0, 15.0, 1, TipoActividad.AVENTURA);
 		Usuario usuario = Mockito.mock(Usuario.class);

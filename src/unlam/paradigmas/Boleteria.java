@@ -1,7 +1,9 @@
 package unlam.paradigmas;
 
 import java.util.List;
+import java.util.Scanner;
 
+import unlam.paradigmas.modelos.Recibo;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
@@ -17,6 +19,7 @@ public class Boleteria {
 	private List<Promocion> promociones;
 	private SesionService sesionService;
 	private IReciboRepository reciboRepository;
+	private Scanner scanner = new Scanner(System.in);
 	private static Boleteria instance;
 	
 	private Boleteria(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, IReciboRepository reciboRepository, SesionService sesionService) {
@@ -28,12 +31,11 @@ public class Boleteria {
 	
 	public void atender(Usuario usuario) {
 		 Sesion sesion = this.sesionService.abrir(usuario, atracciones, promociones);
-
 		 Oferta oferta = sesion.generarOferta();
 		 
 		 while (oferta != null) {
 
-			if(sesion.sugerir(oferta)) {
+			if(sesion.sugerir(oferta, scanner)) {
 				sesion.aceptarOferta(oferta);
 			} else {
 				sesion.rechazarOferta(oferta);
@@ -42,7 +44,10 @@ public class Boleteria {
 			oferta = sesion.generarOferta();
 		}
 		 
-		 this.reciboRepository.escribir(sesion.getVenta());
+		 Recibo recibo = sesion.getRecibo();
+		 if(recibo.hayVentas()) {			 
+			 this.reciboRepository.escribir(recibo);
+		 }
 	}
 	
 	public static Boleteria getInstance() {

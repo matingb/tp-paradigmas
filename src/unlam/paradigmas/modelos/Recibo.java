@@ -36,4 +36,8 @@ public class Recibo {
 	public List<Oferta> getOfertasVendidas() {
 		return ofertasVendidas;
 	}
+
+	public boolean hayVentas() {
+		return this.ofertasVendidas.size() > 0;
+	}
 }

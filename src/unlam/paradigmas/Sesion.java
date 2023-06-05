@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import unlam.paradigmas.modelos.Recibo;
 import unlam.paradigmas.modelos.Usuario;
@@ -17,13 +18,14 @@ public class Sesion {
 	Usuario usuario;
 	List<Oferta> atracciones = new ArrayList<Oferta>();
 	List<Oferta> promociones = new ArrayList<Oferta>();
-	Recibo venta;
+	Recibo recibo;
 	
 	public Sesion(Usuario usuario, List<Atraccion> atracciones, List<Promocion> promociones) {
 		this.usuario = usuario;
-		this.venta = new Recibo(usuario);
+		this.recibo = new Recibo(usuario);
 		this.atracciones.addAll(atracciones);
 		this.promociones.addAll(promociones);
+		System.out.println("Buenos días " + usuario.getNombre());
 	}
 	
 	public Oferta generarOferta() {
@@ -45,21 +47,21 @@ public class Sesion {
 		return oferta;
 	}
 	
-	public Boolean sugerir(Oferta oferta) {
-		
-		Scanner scanner = new Scanner(System.in);
+	public Boolean sugerir(Oferta oferta, Scanner scanner) {
 		String ingreso;
 		
+		System.out.println("Presupuesto disponible: " + this.usuario.getPresupuesto());
+		System.out.println("Tiempo disponible: " + this.usuario.getTiempo());
+		System.out.println();
 		System.out.println(oferta);
 		System.out.println("¿Acepta sugerencia? Ingrese S o N");
-		ingreso = scanner.next().toUpperCase();
+		ingreso = scanner.nextLine().toUpperCase();
 		
 		while(!ingreso.equals("S") && !ingreso.equals("N")) {
 			 System.out.println("Valor invalido. Ingrese S o N");
-			 ingreso = scanner.next().toUpperCase();
+			 ingreso = scanner.nextLine().toUpperCase();
 		}
 
-		scanner.close();	
 		return ingreso.equals("S");
 	}
 	
@@ -69,11 +71,11 @@ public class Sesion {
 		oferta.descontarCupo();
 		
 		for(Atraccion atraccion : oferta.getAtraccionesIncluidas()) {
-			this.atracciones = atracciones.stream().filter(a -> !a.getAtraccionesIncluidas().contains(atraccion)).toList();
-			this.promociones = promociones.stream().filter(promocion -> !promocion.getAtraccionesIncluidas().contains(atraccion)).toList();
+			this.atracciones = atracciones.stream().filter(a -> !a.getAtraccionesIncluidas().contains(atraccion)).collect(Collectors.toCollection(ArrayList::new));
+			this.promociones = promociones.stream().filter(promocion -> !promocion.getAtraccionesIncluidas().contains(atraccion)).collect(Collectors.toCollection(ArrayList::new));
 		}
 		
-		venta.agregarVenta(oferta);
+		recibo.agregarVenta(oferta);
 	}
 	
 	public void rechazarOferta(Oferta oferta) {
@@ -81,21 +83,21 @@ public class Sesion {
 		this.promociones.remove(oferta);
 	}
 	
-	public Recibo getVenta() {
-		return this.venta;
+	public Recibo getRecibo() {
+		return this.recibo;
 	}
 	
 	private Oferta obtenerOferta(List<Oferta> ofertas, Boolean preferidas) {
 		
 		if(preferidas) {
-			ofertas = ofertas.stream().filter(oferta -> oferta.getTipoActividad().equals(usuario.getActividadFavorita())).toList();			
+			ofertas = ofertas.stream().filter(oferta -> oferta.getTipoActividad().equals(usuario.getActividadFavorita())).collect(Collectors.toCollection(ArrayList::new));	
 		} else {
-			ofertas = ofertas.stream().filter(oferta -> !oferta.getTipoActividad().equals(usuario.getActividadFavorita())).toList();			
+			ofertas = ofertas.stream().filter(oferta -> !oferta.getTipoActividad().equals(usuario.getActividadFavorita())).collect(Collectors.toCollection(ArrayList::new));			
 		}
 		
 		ofertas = ofertas.stream().filter(oferta ->
-		oferta.getPrecio() < usuario.getPresupuesto() &&
-		oferta.getDuracion() < usuario.getTiempo() &&
+		oferta.getPrecio() <= usuario.getPresupuesto() &&
+		oferta.getDuracion() <= usuario.getTiempo() &&
 		oferta.hayDisponibilidad()).toList();
 		
 		List <Oferta> ofertasFiltrada = new ArrayList <Oferta>();
