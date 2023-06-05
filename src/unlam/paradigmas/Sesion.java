@@ -19,7 +19,7 @@ public class Sesion {
 	List<Oferta> promociones = new ArrayList<Oferta>();
 	Recibo recibo;
 	//TODO Estaría bueno que esto sea inyectable a traves del constructor
-	Lector lector = new Lector();
+	Lector lector = Lector.getInstance();
 	
 	public Sesion(Usuario usuario, List<Atraccion> atracciones, List<Promocion> promociones) {
 		this.usuario = usuario;

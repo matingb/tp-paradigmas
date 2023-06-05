@@ -25,6 +25,8 @@ public class Initializer {
 			IPromocionRepository promocionRepository = ArchivoPromocionRepository.init(properties, atraccionRepository);
 			
 			Boleteria.init(atraccionRepository, promocionRepository, new ArchivoRecibosRepository(), new SesionFactory());
+			
+			Lector.init();
 
 		} catch (Exception e) {
 			e.printStackTrace();
