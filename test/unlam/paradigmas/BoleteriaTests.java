@@ -12,6 +12,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import unlam.paradigmas.enums.TipoActividad;
+import unlam.paradigmas.factories.SesionFactory;
 import unlam.paradigmas.modelos.Recibo;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
@@ -19,7 +20,6 @@ import unlam.paradigmas.modelos.ofertas.Oferta;
 import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
 import unlam.paradigmas.repositorios.promociones.IPromocionRepository;
 import unlam.paradigmas.repositorios.recibos.IReciboRepository;
-import unlam.paradigmas.services.SesionService;
 
 public class BoleteriaTests {
 
@@ -32,13 +32,13 @@ public class BoleteriaTests {
 	public BoleteriaTests() {
 		this.usuario = new Usuario();
 
-		SesionService sesionHandler = Mockito.mock(SesionService.class);
+		SesionFactory sesionHandler = Mockito.mock(SesionFactory.class);
 		IReciboRepository reciboRepository = Mockito.mock(IReciboRepository.class);
 		this.boleteria = Boleteria.init(atraccionRepository, promocionRepository, reciboRepository, sesionHandler);
 		Boleteria.setSesionHandler(sesionHandler);
 
 		this.sesion = Mockito.mock(Sesion.class);
-		Mockito.when(sesionHandler.abrir(any(Usuario.class), anyList(), anyList())).thenReturn(sesion);
+		Mockito.when(sesionHandler.create(any(Usuario.class), anyList(), anyList())).thenReturn(sesion);
 		Mockito.when(sesion.getRecibo()).thenReturn(new Recibo(usuario));
 	}
 	

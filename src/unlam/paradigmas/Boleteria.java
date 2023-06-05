@@ -2,6 +2,7 @@ package unlam.paradigmas;
 
 import java.util.List;
 
+import unlam.paradigmas.factories.SesionFactory;
 import unlam.paradigmas.modelos.Recibo;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
@@ -10,25 +11,24 @@ import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
 import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
 import unlam.paradigmas.repositorios.promociones.IPromocionRepository;
 import unlam.paradigmas.repositorios.recibos.IReciboRepository;
-import unlam.paradigmas.services.SesionService;
 
 public class Boleteria {
 	
 	private List<Atraccion> atracciones;
 	private List<Promocion> promociones;
-	private SesionService sesionService;
+	private SesionFactory sesionFactory;
 	private IReciboRepository reciboRepository;
 	private static Boleteria instance;
 	
-	private Boleteria(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, IReciboRepository reciboRepository, SesionService sesionService) {
+	private Boleteria(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, IReciboRepository reciboRepository, SesionFactory sesionFactory) {
 		this.atracciones = atraccionRepository.getAtracciones();
 		this.promociones = promocionRepository.getPromociones();
-		this.sesionService = sesionService;
+		this.sesionFactory = sesionFactory;
 		this.reciboRepository = reciboRepository;
 	}
 	
 	public void atender(Usuario usuario) {
-		 Sesion sesion = this.sesionService.abrir(usuario, atracciones, promociones);
+		 Sesion sesion = this.sesionFactory.create(usuario, atracciones, promociones);
 		 Oferta oferta = sesion.generarOferta();
 		 
 		 while (oferta != null) {
@@ -56,14 +56,14 @@ public class Boleteria {
 		return instance;
 	}
 
-	public synchronized static Boleteria init(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, IReciboRepository reciboRepository ,SesionService sesionHandler) {
+	public synchronized static Boleteria init(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, IReciboRepository reciboRepository ,SesionFactory sesionHandler) {
 		if (instance == null) {
 			instance = new Boleteria(atraccionRepository, promocionRepository, reciboRepository, sesionHandler);
 		}
 		return instance;
 	}
 	
-	public static void setSesionHandler(SesionService sesionHandler) {
-		instance.sesionService = sesionHandler;
+	public static void setSesionHandler(SesionFactory sesionHandler) {
+		instance.sesionFactory = sesionHandler;
 	}
 }

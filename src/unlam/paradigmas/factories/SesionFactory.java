@@ -1,4 +1,4 @@
-package unlam.paradigmas.services;
+package unlam.paradigmas.factories;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
 
-public class SesionService {
+public class SesionFactory {
 
-	public Sesion abrir(Usuario usuario, List<Atraccion> atracciones, List<Promocion> promociones) {
+	public Sesion create(Usuario usuario, List<Atraccion> atracciones, List<Promocion> promociones) {
 		return new Sesion(usuario, atracciones, promociones);
 	}
 }
