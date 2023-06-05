@@ -25,7 +25,6 @@ public class Sesion {
 		this.recibo = new Recibo(usuario);
 		this.atracciones.addAll(atracciones);
 		this.promociones.addAll(promociones);
-		System.out.println("Buenos días " + usuario.getNombre());
 	}
 	
 	public Oferta generarOferta() {

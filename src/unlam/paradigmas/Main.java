@@ -17,8 +17,11 @@ public class Main {
 		IUsuarioRepository usuarioRepository = ArchivoUsuarioRepository.getInstance();
 		List<Usuario> usuarios =  usuarioRepository.getUsuarios();
 		
-		for(Usuario usuario : usuarios) {			
+		for(Usuario usuario : usuarios) {
+			System.out.println("Buenos días " + usuario.getNombre());
 			boleteria.atender(usuario);
 		}	
+		
+		System.out.println("Programa Finalizado");
 	}
 }
