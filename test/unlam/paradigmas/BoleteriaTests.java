@@ -18,7 +18,6 @@ import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
 import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
 import unlam.paradigmas.repositorios.promociones.IPromocionRepository;
-import unlam.paradigmas.repositorios.recibos.ArchivoRecibosRepository;
 import unlam.paradigmas.repositorios.recibos.IReciboRepository;
 import unlam.paradigmas.services.SesionService;
 

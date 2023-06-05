@@ -4,7 +4,6 @@ package unlam.paradigmas;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import unlam.paradigmas.modelos.Recibo;
@@ -19,6 +18,8 @@ public class Sesion {
 	List<Oferta> atracciones = new ArrayList<Oferta>();
 	List<Oferta> promociones = new ArrayList<Oferta>();
 	Recibo recibo;
+	//TODO Estaría bueno que esto sea inyectable a traves del constructor
+	Lector lector = new Lector();
 	
 	public Sesion(Usuario usuario, List<Atraccion> atracciones, List<Promocion> promociones) {
 		this.usuario = usuario;
@@ -46,7 +47,7 @@ public class Sesion {
 		return oferta;
 	}
 	
-	public Boolean sugerir(Oferta oferta, Scanner scanner) {
+	public Boolean sugerir(Oferta oferta) {
 		String ingreso;
 		
 		System.out.println("Presupuesto disponible: " + this.usuario.getPresupuesto());
@@ -54,11 +55,11 @@ public class Sesion {
 		System.out.println();
 		System.out.println(oferta);
 		System.out.println("¿Acepta sugerencia? Ingrese S o N");
-		ingreso = scanner.nextLine().toUpperCase();
+		ingreso = lector.leer().toUpperCase();
 		
 		while(!ingreso.equals("S") && !ingreso.equals("N")) {
 			 System.out.println("Valor invalido. Ingrese S o N");
-			 ingreso = scanner.nextLine().toUpperCase();
+			 ingreso = lector.leer().toUpperCase();
 		}
 
 		return ingreso.equals("S");
@@ -70,6 +71,8 @@ public class Sesion {
 		oferta.descontarCupo();
 		
 		for(Atraccion atraccion : oferta.getAtraccionesIncluidas()) {
+			//TODO Fijarse si se puede escribir de una forma más prolija esto
+			//Asegurarse que la lista que devuelve sea mutable porque antes haciamos toList y esa era inmutable
 			this.atracciones = atracciones.stream().filter(a -> !a.getAtraccionesIncluidas().contains(atraccion)).collect(Collectors.toCollection(ArrayList::new));
 			this.promociones = promociones.stream().filter(promocion -> !promocion.getAtraccionesIncluidas().contains(atraccion)).collect(Collectors.toCollection(ArrayList::new));
 		}
@@ -88,6 +91,8 @@ public class Sesion {
 	
 	private Oferta obtenerOferta(List<Oferta> ofertas, Boolean preferidas) {
 		
+		//TODO Fijarse si se puede escribir de una forma más prolija esto
+		//Asegurarse que la lista que devuelve sea mutable porque antes haciamos toList y esa era inmutable
 		if(preferidas) {
 			ofertas = ofertas.stream().filter(oferta -> oferta.getTipoActividad().equals(usuario.getActividadFavorita())).collect(Collectors.toCollection(ArrayList::new));	
 		} else {
