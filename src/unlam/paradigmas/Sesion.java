@@ -49,18 +49,20 @@ public class Sesion {
 		String ingreso;
 		
 		System.out.println(oferta);
+		System.out.println("¿Acepta sugerencia? Ingrese S o N");
+		ingreso = scanner.next().toUpperCase();
 		
-		do {
-			 System.out.println("¿Acepta sugerencia? Ingrese S o N");
+		while(!ingreso.equals("S") && !ingreso.equals("N")) {
+			 System.out.println("Valor invalido. Ingrese S o N");
 			 ingreso = scanner.next().toUpperCase();
-		}while(!ingreso.equals("S") && !ingreso.equals("N"));
-		
+		}
+
 		scanner.close();
 		
 		return ingreso.equals("S");
 	}
 	
-	public void aceptarOferta(Oferta oferta,Venta venta) {
+	public void aceptarOferta(Oferta oferta) {
 		usuario.pagarBoleteria(oferta.getPrecio());
 		usuario.reducirTiempo(oferta.getDuracion());
 		oferta.descontarCupo();
@@ -69,10 +71,6 @@ public class Sesion {
 			this.atracciones = atracciones.stream().filter(a -> !a.getAtraccionesIncluidas().contains(atraccion)).toList();
 			this.promociones = promociones.stream().filter(promocion -> !promocion.getAtraccionesIncluidas().contains(atraccion)).toList();
 		}
-		
-		//CREAR UNA ESPECIE DE VENTA O ALGO PARA ESCRIBIR EL ARCHIVO CON TODO AL TERMINAR
-		
-		venta.escribirOferta(oferta);
 	}
 	
 	public void rechazarOferta(Oferta oferta) {
