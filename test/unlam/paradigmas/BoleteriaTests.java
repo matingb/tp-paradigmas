@@ -17,6 +17,9 @@ import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
 import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
 import unlam.paradigmas.repositorios.promociones.IPromocionRepository;
+import unlam.paradigmas.repositorios.recibos.ArchivoRecibosRepository;
+import unlam.paradigmas.repositorios.recibos.IReciboRepository;
+import unlam.paradigmas.services.SesionService;
 
 public class BoleteriaTests {
 
@@ -29,12 +32,13 @@ public class BoleteriaTests {
 	public BoleteriaTests() {
 		this.usuario = new Usuario();
 
-		SesionHandler sesionHandler = Mockito.mock(SesionHandler.class);
-		this.boleteria = Boleteria.init(atraccionRepository, promocionRepository, sesionHandler);
+		SesionService sesionHandler = Mockito.mock(SesionService.class);
+		IReciboRepository reciboRepository = Mockito.mock(IReciboRepository.class);
+		this.boleteria = Boleteria.init(atraccionRepository, promocionRepository, reciboRepository, sesionHandler);
 		Boleteria.setSesionHandler(sesionHandler);
 
 		this.sesion = Mockito.mock(Sesion.class);
-		Mockito.when(sesionHandler.generarSesion(any(Usuario.class), anyList(), anyList())).thenReturn(sesion);
+		Mockito.when(sesionHandler.abrir(any(Usuario.class), anyList(), anyList())).thenReturn(sesion);
 	}
 	
 	@Test

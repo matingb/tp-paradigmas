@@ -8,25 +8,26 @@ import unlam.paradigmas.modelos.ofertas.Oferta;
 import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
 import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
 import unlam.paradigmas.repositorios.promociones.IPromocionRepository;
+import unlam.paradigmas.repositorios.recibos.IReciboRepository;
+import unlam.paradigmas.services.SesionService;
 
 public class Boleteria {
 	
 	private List<Atraccion> atracciones;
 	private List<Promocion> promociones;
-	private SesionHandler sesionHandler;
+	private SesionService sesionService;
+	private IReciboRepository reciboRepository;
 	private static Boleteria instance;
 	
-	private Boleteria(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, SesionHandler sesionHandler) {
+	private Boleteria(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, IReciboRepository reciboRepository, SesionService sesionService) {
 		this.atracciones = atraccionRepository.getAtracciones();
 		this.promociones = promocionRepository.getPromociones();
-		this.sesionHandler = sesionHandler;
+		this.sesionService = sesionService;
+		this.reciboRepository = reciboRepository;
 	}
 	
 	public void atender(Usuario usuario) {
-		 Sesion sesion = this.sesionHandler.generarSesion(usuario, atracciones, promociones);
-		 
-		 //Venta venta = new Venta(usuario);
-		 //venta.crearArchivo();
+		 Sesion sesion = this.sesionService.abrir(usuario, atracciones, promociones);
 
 		 Oferta oferta = sesion.generarOferta();
 		 
@@ -40,9 +41,8 @@ public class Boleteria {
 			
 			oferta = sesion.generarOferta();
 		}
-		
-		//escribir totales en el archivo y cerrarlo	
-		//venta.escribirTotales();
+		 
+		 this.reciboRepository.escribir(sesion.getVenta());
 	}
 	
 	public static Boleteria getInstance() {
@@ -53,14 +53,14 @@ public class Boleteria {
 		return instance;
 	}
 
-	public synchronized static Boleteria init(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, SesionHandler sesionHandler) {
+	public synchronized static Boleteria init(IAtraccionRepository atraccionRepository, IPromocionRepository promocionRepository, IReciboRepository reciboRepository ,SesionService sesionHandler) {
 		if (instance == null) {
-			instance = new Boleteria(atraccionRepository, promocionRepository, sesionHandler);
+			instance = new Boleteria(atraccionRepository, promocionRepository, reciboRepository, sesionHandler);
 		}
 		return instance;
 	}
 	
-	public static void setSesionHandler(SesionHandler sesionHandler) {
-		instance.sesionHandler = sesionHandler;
+	public static void setSesionHandler(SesionService sesionHandler) {
+		instance.sesionService = sesionHandler;
 	}
 }

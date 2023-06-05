@@ -3,10 +3,10 @@ package unlam.paradigmas;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import unlam.paradigmas.modelos.Recibo;
 import unlam.paradigmas.modelos.Usuario;
 import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
@@ -17,9 +17,11 @@ public class Sesion {
 	Usuario usuario;
 	List<Oferta> atracciones = new ArrayList<Oferta>();
 	List<Oferta> promociones = new ArrayList<Oferta>();
+	Recibo venta;
 	
 	public Sesion(Usuario usuario, List<Atraccion> atracciones, List<Promocion> promociones) {
 		this.usuario = usuario;
+		this.venta = new Recibo(usuario);
 		this.atracciones.addAll(atracciones);
 		this.promociones.addAll(promociones);
 	}
@@ -57,8 +59,7 @@ public class Sesion {
 			 ingreso = scanner.next().toUpperCase();
 		}
 
-		scanner.close();
-		
+		scanner.close();	
 		return ingreso.equals("S");
 	}
 	
@@ -71,11 +72,17 @@ public class Sesion {
 			this.atracciones = atracciones.stream().filter(a -> !a.getAtraccionesIncluidas().contains(atraccion)).toList();
 			this.promociones = promociones.stream().filter(promocion -> !promocion.getAtraccionesIncluidas().contains(atraccion)).toList();
 		}
+		
+		venta.agregarVenta(oferta);
 	}
 	
 	public void rechazarOferta(Oferta oferta) {
 		this.atracciones.remove(oferta);	
 		this.promociones.remove(oferta);
+	}
+	
+	public Recibo getVenta() {
+		return this.venta;
 	}
 	
 	private Oferta obtenerOferta(List<Oferta> ofertas, Boolean preferidas) {
