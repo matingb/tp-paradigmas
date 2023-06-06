@@ -71,10 +71,8 @@ public class Sesion {
 		oferta.descontarCupo();
 		
 		for(Atraccion atraccion : oferta.getAtraccionesIncluidas()) {
-			//TODO Fijarse si se puede escribir de una forma más prolija esto
-			//Asegurarse que la lista que devuelve sea mutable porque antes haciamos toList y esa era inmutable
-			this.atracciones = atracciones.stream().filter(a -> !a.getAtraccionesIncluidas().contains(atraccion)).collect(Collectors.toCollection(ArrayList::new));
-			this.promociones = promociones.stream().filter(promocion -> !promocion.getAtraccionesIncluidas().contains(atraccion)).collect(Collectors.toCollection(ArrayList::new));
+			this.atracciones = atracciones.stream().filter(a -> !a.getAtraccionesIncluidas().contains(atraccion)).collect(Collectors.toList());
+			this.promociones = promociones.stream().filter(promocion -> !promocion.getAtraccionesIncluidas().contains(atraccion)).collect(Collectors.toList());
 		}
 		
 		recibo.agregarVenta(oferta);
@@ -90,28 +88,24 @@ public class Sesion {
 	}
 	
 	private Oferta obtenerOferta(List<Oferta> ofertas, Boolean preferidas) {
-		
-		//TODO Fijarse si se puede escribir de una forma más prolija esto
-		//Asegurarse que la lista que devuelve sea mutable porque antes haciamos toList y esa era inmutable
-		if(preferidas) {
-			ofertas = ofertas.stream().filter(oferta -> oferta.getTipoActividad().equals(usuario.getActividadFavorita())).collect(Collectors.toCollection(ArrayList::new));	
-		} else {
-			ofertas = ofertas.stream().filter(oferta -> !oferta.getTipoActividad().equals(usuario.getActividadFavorita())).collect(Collectors.toCollection(ArrayList::new));			
-		}
-		
+
+		ofertas = preferidas ? filtrarPorOfertasPreferidas(ofertas) : filtrarPorOfertasNoPreferidas(ofertas);
+	
 		ofertas = ofertas.stream().filter(oferta ->
 		oferta.getPrecio() <= usuario.getPresupuesto() &&
 		oferta.getDuracion() <= usuario.getTiempo() &&
-		oferta.hayDisponibilidad()).toList();
+		oferta.hayDisponibilidad()).collect(Collectors.toList());
 		
-		List <Oferta> ofertasFiltrada = new ArrayList <Oferta>();
-		for(Oferta o: ofertas) {
-			ofertasFiltrada.add(o);
-		}
+		Collections.sort(ofertas);
 		
-		Collections.sort(ofertasFiltrada);
-		//Oferta ofertaMayorCostoDuracion = Collections.max(ofertas, Comparator.comparingDouble(Oferta::getPrecio).thenComparingDouble(Oferta::getDuracion));
-		
-		return ofertas.size() > 0 ? ofertasFiltrada.get(0) : null;
+		return ofertas.size() > 0 ? ofertas.get(0) : null;
+	}
+
+	private List<Oferta> filtrarPorOfertasNoPreferidas(List<Oferta> ofertas) {
+		return ofertas.stream().filter(oferta -> !oferta.getTipoActividad().equals(usuario.getActividadFavorita())).collect(Collectors.toList());
+	}
+
+	private List<Oferta> filtrarPorOfertasPreferidas(List<Oferta> ofertas) {
+		return ofertas.stream().filter(oferta -> oferta.getTipoActividad().equals(usuario.getActividadFavorita())).collect(Collectors.toList());
 	}
 }
