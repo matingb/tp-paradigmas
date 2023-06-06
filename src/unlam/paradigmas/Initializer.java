@@ -9,6 +9,7 @@ import unlam.paradigmas.repositorios.atracciones.IAtraccionRepository;
 import unlam.paradigmas.repositorios.promociones.ArchivoPromocionRepository;
 import unlam.paradigmas.repositorios.promociones.IPromocionRepository;
 import unlam.paradigmas.repositorios.recibos.ArchivoRecibosRepository;
+import unlam.paradigmas.repositorios.recibos.IReciboRepository;
 import unlam.paradigmas.repositorios.usuarios.ArchivoUsuarioRepository;
 
 public class Initializer {
@@ -23,8 +24,9 @@ public class Initializer {
 			ArchivoUsuarioRepository.init(properties);
 			IAtraccionRepository atraccionRepository = ArchivoAtraccionRepository.init(properties);
 			IPromocionRepository promocionRepository = ArchivoPromocionRepository.init(properties, atraccionRepository);
+			IReciboRepository reciboRepository = ArchivoRecibosRepository.init(properties);
 			
-			Boleteria.init(atraccionRepository, promocionRepository, new ArchivoRecibosRepository(), new SesionFactory());
+			Boleteria.init(atraccionRepository, promocionRepository, reciboRepository, new SesionFactory());
 			
 			Lector.init();
 
