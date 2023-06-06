@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.mockito.Mockito.verify;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,44 +21,58 @@ import unlam.paradigmas.modelos.ofertas.promociones.PromocionMontoFijo;
 
 public class SesionTests {
 	
+	public SesionTests() {
+		Lector.init();
+	}
+	
+	@Test
+	public void dadoUnUsuarioConPreferencias_AlGenerarOfertas_EntoncesSeOfrecenEnElOrdenCorrespondiente() {
+		TipoActividad actividadPreferida = TipoActividad.AVENTURA;
+		TipoActividad actividadNoPreferida = TipoActividad.DEGUSTACION;
+		Sesion sesion = new Sesion(usuarioDeActividad(actividadPreferida), 
+				Arrays.asList(atraccionDeTipo(actividadPreferida),atraccionDeTipo(actividadNoPreferida)), 
+				Arrays.asList(promocionDeTipoDeActividad(actividadPreferida), promocionDeTipoDeActividad(actividadNoPreferida)));
+		
+		List<Oferta> ofertas = cuandoSeGeneranLasOfertas(sesion);
+		
+		entoncesLaOfertaEsDelTipoYActividadEsperados(ofertas.get(0), Promocion.class, actividadPreferida);
+		entoncesLaOfertaEsDelTipoYActividadEsperados(ofertas.get(1), Atraccion.class, actividadPreferida);
+		entoncesLaOfertaEsDelTipoYActividadEsperados(ofertas.get(2), Promocion.class, actividadNoPreferida);
+		entoncesLaOfertaEsDelTipoYActividadEsperados(ofertas.get(3), Atraccion.class, actividadNoPreferida);
+	}
+
 	@Test
 	public void dadasPromocionesYAtracciones_AlGenerarOfertas_EntoncesObtengoUnaPromocionDeLaPreferenciaDelUsuario() {
-		List<Atraccion> atracciones = Arrays.asList(atraccionDeTipo(TipoActividad.AVENTURA),atraccionDeTipo(TipoActividad.DEGUSTACION));
-		List<Promocion> promociones = Arrays.asList(
-				new PromocionMontoFijo(TipoActividad.AVENTURA, 1.0, Arrays.asList(atraccionDeTipo(TipoActividad.AVENTURA))),
-				new PromocionMontoFijo(TipoActividad.AVENTURA, 1.0, Arrays.asList(atraccionDeTipo(TipoActividad.AVENTURA))));
-		Usuario usuario = new Usuario("Nombre", 50.0, 50.0, TipoActividad.AVENTURA);
-		Sesion sesion = new Sesion(usuario, atracciones, promociones);
+		TipoActividad actividadPreferida = TipoActividad.AVENTURA;
+		Sesion sesion = new Sesion(usuarioDeActividad(actividadPreferida), 
+				Arrays.asList(atraccionDeTipo(actividadPreferida),atraccionDeTipo(TipoActividad.DEGUSTACION)), 
+				Arrays.asList(promocionDeTipoDeActividad(actividadPreferida),promocionDeTipoDeActividad(TipoActividad.PAISAJE)));
 		
 		Oferta oferta = sesion.generarOferta();
 		
 		assertInstanceOf(Promocion.class, oferta);
-		assertEquals(TipoActividad.AVENTURA, oferta.getTipoActividad());
+		assertEquals(actividadPreferida, oferta.getTipoActividad());
 	}
 	
 	@Test
 	public void dadoQueNoHayPromocionesPreferidasPorElUsuario_AlGenerarOfertas_EntonceObtengoUnaAtraccionPreferida() {
-		List<Atraccion> atracciones = Arrays.asList(atraccionDeTipo(TipoActividad.AVENTURA), atraccionDeTipo(TipoActividad.DEGUSTACION));
-		List<Promocion> promociones = Arrays.asList(
-				new PromocionMontoFijo(TipoActividad.AVENTURA, 1.0, Arrays.asList(atraccionDeTipo(TipoActividad.AVENTURA))),
-				new PromocionMontoFijo(TipoActividad.AVENTURA, 1.0, Arrays.asList(atraccionDeTipo(TipoActividad.AVENTURA))));
-		Usuario usuario = new Usuario("Nombre", 50.0, 50.0, TipoActividad.DEGUSTACION);
-		Sesion sesion = new Sesion(usuario, atracciones, promociones);
+		TipoActividad actividadPreferida = TipoActividad.DEGUSTACION;
+		Sesion sesion = new Sesion(usuarioDeActividad(actividadPreferida), 
+				Arrays.asList(atraccionDeTipo(actividadPreferida),atraccionDeTipo(TipoActividad.AVENTURA)), 
+				Arrays.asList(promocionDeTipoDeActividad(TipoActividad.AVENTURA),promocionDeTipoDeActividad(TipoActividad.PAISAJE)));
 		
 		Oferta oferta = sesion.generarOferta();
 		
 		assertInstanceOf(Atraccion.class, oferta);
-		assertEquals(TipoActividad.DEGUSTACION, oferta.getTipoActividad());
+		assertEquals(actividadPreferida, oferta.getTipoActividad());
 	}
 	
 	@Test
 	public void dadoQueNoHayPromocionesNiAtraccionesPreferidasPorElUsuario_AlGenerarOfertas_EntonceObtengoUnaPromocionNoPreferida() {
-		List<Atraccion> atracciones = Arrays.asList(atraccionDeTipo(TipoActividad.AVENTURA), atraccionDeTipo(TipoActividad.PAISAJE));
-		List<Promocion> promociones = Arrays.asList(
-				new PromocionMontoFijo(TipoActividad.AVENTURA, 1.0, Arrays.asList(atraccionDeTipo(TipoActividad.AVENTURA))),
-				new PromocionMontoFijo(TipoActividad.AVENTURA, 1.0, Arrays.asList(atraccionDeTipo(TipoActividad.AVENTURA))));
-		Usuario usuario = new Usuario("Nombre", 50.0, 50.0, TipoActividad.DEGUSTACION);
-		Sesion sesion = new Sesion(usuario, atracciones, promociones);
+		TipoActividad actividadPreferida = TipoActividad.PAISAJE;
+		Sesion sesion = new Sesion(usuarioDeActividad(actividadPreferida), 
+				Arrays.asList(atraccionDeTipo(TipoActividad.DEGUSTACION),atraccionDeTipo(TipoActividad.AVENTURA)), 
+				Arrays.asList(promocionDeTipoDeActividad(TipoActividad.AVENTURA),promocionDeTipoDeActividad(TipoActividad.AVENTURA)));
 		
 		Oferta oferta = sesion.generarOferta();
 		
@@ -175,7 +190,31 @@ public class SesionTests {
 	}
 	
 	
-	public Atraccion atraccionDeTipo(TipoActividad tipoActividad) {
+	private Atraccion atraccionDeTipo(TipoActividad tipoActividad) {
 		return new Atraccion("Nombre", 1.0, 1.0, 1, tipoActividad);
+	}
+	
+	private PromocionMontoFijo promocionDeTipoDeActividad(TipoActividad actividadPreferida) {
+		return new PromocionMontoFijo(actividadPreferida, 1.0, Arrays.asList(atraccionDeTipo(actividadPreferida)));
+	}
+
+	private Usuario usuarioDeActividad(TipoActividad actividadPreferida) {
+		return new Usuario("Nombre", 50.0, 50.0, actividadPreferida);
+	}
+
+	private List<Oferta> cuandoSeGeneranLasOfertas(Sesion sesion) {
+		List<Oferta> ofertas = new ArrayList<Oferta>();
+		for(int i=0; i<4; i++) {
+			Oferta oferta = sesion.generarOferta();
+			sesion.rechazarOferta(oferta);
+			ofertas.add(oferta);
+		}
+		
+		return ofertas;
+	}
+	
+	private void entoncesLaOfertaEsDelTipoYActividadEsperados(Oferta oferta, Class<?> tipoOferta, TipoActividad tipoActividad) {
+	    assertInstanceOf(tipoOferta, oferta);
+	    assertEquals(tipoActividad, oferta.getTipoActividad());
 	}
 }
