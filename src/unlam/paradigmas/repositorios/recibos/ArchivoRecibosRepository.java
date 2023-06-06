@@ -35,7 +35,7 @@ public class ArchivoRecibosRepository implements IReciboRepository {
 			}
 
 			writer.println("Costo Total: " + "$" + recibo.getPrecioTotal());
-			writer.println("Tiempo Total: " + recibo.getTiempoTotal() + "Hrs");
+			writer.println("Tiempo Total: " + recibo.getTiempoTotal() + " Hrs");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
