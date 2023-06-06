@@ -70,8 +70,8 @@ public class ArchivoRecibosRepository implements IReciboRepository {
 		writer.println("					Resumen Itinerario				");
 		writer.println("-----------------------------------------------------------");
 		writer.println("Visitante: " + usuario.getNombre());
-		writer.println("Presupuesto: " + "$" + usuario.getPresupuesto());
-		writer.println("Tiempo Disponible: " + usuario.getTiempo() + "Hrs");
+		writer.println("Presupuesto Restante: " + "$" + usuario.getPresupuesto());
+		writer.println("Tiempo Sobrante: " + usuario.getTiempo() + " Hrs");
 		writer.println("Actividad Favorita: " + usuario.getActividadFavorita());
 		writer.println("-----------------------------------------------------------");
 	}
