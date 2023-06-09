@@ -50,7 +50,7 @@ public class Sesion {
 	public Boolean sugerir(Oferta oferta) {
 		String ingreso;
 		
-		System.out.println("Presupuesto disponible: " + this.usuario.getPresupuesto());
+		System.out.println("\nPresupuesto disponible: " + this.usuario.getPresupuesto());
 		System.out.println("Tiempo disponible: " + this.usuario.getTiempo());
 		System.out.println();
 		System.out.println(oferta);
@@ -66,6 +66,7 @@ public class Sesion {
 	}
 	
 	public void aceptarOferta(Oferta oferta) {
+		System.out.println("¡Aceptada!");
 		usuario.pagarBoleteria(oferta.getPrecio());
 		usuario.reducirTiempo(oferta.getDuracion());
 		oferta.descontarCupo();
@@ -79,6 +80,7 @@ public class Sesion {
 	}
 	
 	public void rechazarOferta(Oferta oferta) {
+		System.out.println("¡Rechazada!");
 		this.atracciones.remove(oferta);	
 		this.promociones.remove(oferta);
 	}
