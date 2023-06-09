@@ -20,6 +20,7 @@ public class Main {
 		for(Usuario usuario : usuarios) {
 			System.out.println("Buenos días " + usuario.getNombre());
 			boleteria.atender(usuario);
+			System.out.println("\n-------------------------------------------------------------\n");
 		}	
 		
 		System.out.println("Programa Finalizado");
