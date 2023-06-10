@@ -31,11 +31,11 @@ public class ArchivoRecibosRepository implements IReciboRepository {
 			escribirEncabezado(writer, usuario);
 			
 			for (Oferta venta : recibo.getOfertasVendidas()) {				
-				writer.println(venta);
+				writer.print(venta + "\n");
 			}
 
-			writer.println("Costo Total: " + "$" + recibo.getPrecioTotal());
-			writer.println("Tiempo Total: " + recibo.getTiempoTotal() + " Hrs");
+			writer.print("Costo Total: " + "$" + recibo.getPrecioTotal() + "\n");
+			writer.print("Tiempo Total: " + recibo.getTiempoTotal() + " Hrs" + "\n");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,12 +67,12 @@ public class ArchivoRecibosRepository implements IReciboRepository {
 	}
 
 	private void escribirEncabezado(PrintWriter writer, Usuario usuario) {
-		writer.println("					Resumen Itinerario				");
-		writer.println("-----------------------------------------------------------");
-		writer.println("Visitante: " + usuario.getNombre());
-		writer.println("Presupuesto Restante: " + "$" + usuario.getPresupuesto());
-		writer.println("Tiempo Sobrante: " + usuario.getTiempo() + " Hrs");
-		writer.println("Actividad Favorita: " + usuario.getActividadFavorita());
-		writer.println("-----------------------------------------------------------");
+		writer.print("					Resumen Itinerario				\n");
+		writer.print("-----------------------------------------------------------\n");
+		writer.print("Visitante: " + usuario.getNombre() + "\n");
+		writer.print("Presupuesto Restante: " + "$" + usuario.getPresupuesto() + "\n");
+		writer.print("Tiempo Sobrante: " + usuario.getTiempo() + " Hrs \n");
+		writer.print("Actividad Favorita: " + usuario.getActividadFavorita() + "\n");
+		writer.print("-----------------------------------------------------------\n");
 	}
 }

@@ -1,0 +1,14 @@
+					Resumen Itinerario				
+-----------------------------------------------------------
+Visitante: Nombre
+Presupuesto Restante: $17.0
+Tiempo Sobrante: 11.0 Hrs 
+Actividad Favorita: AVENTURA
+-----------------------------------------------------------
+Atraccion:
+	- Nombre = atraccionPrueba
+	- Precio = 50.0
+	- Duracion en horas = 30.0
+
+Costo Total: $50.0
+Tiempo Total: 30.0 Hrs

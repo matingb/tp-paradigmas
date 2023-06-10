@@ -18,6 +18,7 @@ import unlam.paradigmas.modelos.ofertas.Atraccion;
 import unlam.paradigmas.modelos.ofertas.Oferta;
 import unlam.paradigmas.modelos.ofertas.promociones.Promocion;
 import unlam.paradigmas.modelos.ofertas.promociones.PromocionMontoFijo;
+import unlam.paradigmas.modelos.ofertas.promociones.PromocionPorcentual;
 
 public class SesionTests {
 	
@@ -189,6 +190,61 @@ public class SesionTests {
 		verify(oferta).descontarCupo();
 	}
 	
+	@Test
+	public void dadasDosOfertas_traerLaDeMayorPrecio () {
+		Atraccion ofertaCara = new Atraccion("Nombre", 50.0, 1.0, 1, TipoActividad.DEGUSTACION);
+		Atraccion ofertaBarata = new Atraccion("Nombre", 20.0, 1.0, 1, TipoActividad.DEGUSTACION);
+		Usuario usuario = new Usuario("Nombre", 50.0, 50.0, TipoActividad.DEGUSTACION);
+		Sesion sesion = new Sesion(usuario, Arrays.asList(ofertaCara,ofertaBarata), Arrays.asList());
+		
+		Oferta oferta = sesion.generarOferta();
+		
+		assertEquals(ofertaCara, oferta);
+	}
+	
+	@Test
+	public void dadasDosOfertasConIgualPrecio_traerLaDeMayorTiempo () {
+		Atraccion ofertaPocoTiempo = new Atraccion("Nombre", 50.0, 1.0, 1, TipoActividad.DEGUSTACION);
+		Atraccion ofertaMuchoTiempo = new Atraccion("Nombre", 50.0, 60.0, 1, TipoActividad.DEGUSTACION);
+		Usuario usuario = new Usuario("Nombre", 50.0, 70.0, TipoActividad.DEGUSTACION);
+		Sesion sesion = new Sesion(usuario, Arrays.asList(ofertaPocoTiempo,ofertaMuchoTiempo), Arrays.asList());
+		
+		Oferta oferta = sesion.generarOferta();
+		
+		assertEquals(ofertaMuchoTiempo, oferta);
+	}
+	
+	@Test
+	public void dadoQueSeAceptaUnaPromocion_entoncesNoSeMuestranLasAtraccionesIncluidas () {
+		Atraccion atraccionIncluida = new Atraccion("atraccionIncluida", 50.0, 30.0, 1, TipoActividad.DEGUSTACION);
+		Atraccion atraccionNoIncluida = new Atraccion("atraccionNoIncluida", 40.0, 20.0, 1, TipoActividad.DEGUSTACION);
+		
+		List<Atraccion> atracciones = Arrays.asList(atraccionIncluida, atraccionNoIncluida);
+		Promocion promocion = new PromocionMontoFijo(TipoActividad.DEGUSTACION, 1.0, Arrays.asList(atraccionIncluida));
+		Usuario usuario = new Usuario("Nombre", 200.0, 200.0, TipoActividad.DEGUSTACION);
+		Sesion sesion = new Sesion(usuario, atracciones, Arrays.asList(promocion));
+		sesion.aceptarOferta(promocion);
+		
+		Oferta oferta = sesion.generarOferta();
+		
+		assertEquals(atraccionNoIncluida, oferta);
+	}
+	
+	@Test
+	public void dadoQueSeAceptaUnaPromocion_entoncesNoSeMuestraOtraPromocionQueTieneAtraccionesDeLaPrimera () {
+		Atraccion atraccionIncluida = new Atraccion("atraccionIncluida", 50.0, 30.0, 1, TipoActividad.DEGUSTACION);
+		Promocion promocionAceptada = new PromocionMontoFijo(TipoActividad.DEGUSTACION, 1.0, Arrays.asList(atraccionIncluida));
+		Promocion promocionNoMostrar = new PromocionPorcentual(TipoActividad.DEGUSTACION, 25.0, Arrays.asList(atraccionIncluida));
+		
+		Usuario usuario = new Usuario("Nombre", 200.0, 200.0, TipoActividad.DEGUSTACION);
+		Sesion sesion = new Sesion(usuario, Arrays.asList(atraccionIncluida), Arrays.asList(promocionAceptada, promocionNoMostrar));
+		
+		sesion.aceptarOferta(promocionAceptada);
+		
+		Oferta oferta = sesion.generarOferta();
+		
+		assertNull(oferta);
+	}
 	
 	private Atraccion atraccionDeTipo(TipoActividad tipoActividad) {
 		return new Atraccion("Nombre", 1.0, 1.0, 1, tipoActividad);
