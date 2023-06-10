@@ -73,7 +73,7 @@ public class Atraccion extends Oferta{
 
 	@Override
 	public String toString() {
-		return "Atraccion:" 
+		return "Atraccion ("+ this.getTipoActividad() +"):" 
 				+"\n\t- Nombre = " + nombre
 				+"\n\t- Precio = " + precio
 				+"\n\t- Duracion en horas = " + duracionHoras 
