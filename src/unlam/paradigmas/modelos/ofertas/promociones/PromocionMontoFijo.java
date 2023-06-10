@@ -25,8 +25,8 @@ public class PromocionMontoFijo extends Promocion {
 				+ "\n-Duracion en Horas del paquete = " + this.getDuracion()
 				+ "\n-Precio Original = " + this.getPrecioOriginal() 
 				+ "\n-Precio Final = " + this.getPrecio() 
-				+ "\n-Atracciones Incluidas: "
-				+ this.getAtraccionesIncluidas() + "\n";
+				+ "\n-Atracciones Incluidas: \n" 
+				+ this.mostrarAtraccionesIncluidas() + "\n";
 	}
 
 }

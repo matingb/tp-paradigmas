@@ -28,12 +28,13 @@ public abstract class Oferta implements Comparable<Oferta>{
 	
 	@Override
 	public int compareTo(Oferta o) {	
-		int resultado = Double.compare(this.getPrecio(), o.getPrecio());
+		int resultado = Double.compare(o.getPrecio(),this.getPrecio());
 		
 		if(resultado == 0)
-			resultado = Double.compare(this.getDuracion(), o.getDuracion());
+			resultado = Double.compare(o.getDuracion(), this.getDuracion());
 		
 		return resultado;
 	}
+	
 	
 }

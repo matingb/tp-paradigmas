@@ -73,10 +73,10 @@ public class Atraccion extends Oferta{
 
 	@Override
 	public String toString() {
-		return "Atraccion" 
-				+"\n- Nombre = " + nombre
-				+"\n- Precio = " + precio
-				+"\n- Duracion en horas = " + duracionHoras
+		return "Atraccion:" 
+				+"\n\t- Nombre = " + nombre
+				+"\n\t- Precio = " + precio
+				+"\n\t- Duracion en horas = " + duracionHoras 
 				+"\n";
 	}
 	

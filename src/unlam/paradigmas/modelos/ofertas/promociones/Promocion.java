@@ -57,4 +57,12 @@ public abstract class Promocion extends Oferta{
 		return precioOriginal;
 	}
 	
+	protected String mostrarAtraccionesIncluidas () {
+		String atracciones = "";
+		for (Atraccion a : this.atraccionesIncluidas) {
+			atracciones += "*" + a.toString();
+		}
+		return atracciones;
+	}
+	
 }

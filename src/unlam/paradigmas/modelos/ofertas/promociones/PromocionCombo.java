@@ -18,6 +18,14 @@ public class PromocionCombo extends Promocion {
 		return cantAtraccionesGratis;
 	}
 	
+	private String nombreAtraccionesGratis (List<Atraccion> atraccionesIncluidas) {
+		String atraccionesGratis = atraccionesIncluidas.get(0).getNombre();
+		for (int i = 1; i < this.getCantAtraccionesGratis(); i++) {
+			atraccionesGratis += ", " + atraccionesIncluidas.get(i).getNombre();
+		}
+		return atraccionesGratis;
+	}
+	
 	@Override
 	public Double getPrecio() {
 		Double precio = this.getPrecioOriginal();
@@ -35,6 +43,8 @@ public class PromocionCombo extends Promocion {
 				+ "\n-Precio Original = " + this.getPrecioOriginal()
 				+ "\n-Precio Final = " + this.getPrecio() 
 				+ "\n-Cantidad de atracciones gratis = " + this.getCantAtraccionesGratis()
-				+ "\n-Atracciones Incluidas: " + this.getAtraccionesIncluidas() + "\n";
+				+ "\n-Atracciones gratis = " + this.nombreAtraccionesGratis(getAtraccionesIncluidas())
+				+ "\n-Atracciones Incluidas: \n" 
+				+ this.mostrarAtraccionesIncluidas() + "\n";
 	}
 }

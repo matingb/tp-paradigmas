@@ -34,7 +34,8 @@ public class PromocionPorcentual extends Promocion {
 				+ "\n-Precio Original = " + this.getPrecioOriginal()
 				+ "\n-Porcentaje de descuento = " + this.getPorcentajeDescuento() + "%"
 				+ "\n-Precio final = " +  this.getPrecio()
-				+ "\n-Atracciones Incluidas: " + this.getAtraccionesIncluidas() + "\n";
+				+ "\n-Atracciones Incluidas: \n" 
+				+ this.mostrarAtraccionesIncluidas() + "\n";
 	}
 
 }

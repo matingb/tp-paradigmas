@@ -1,29 +1,14 @@
 					Resumen Itinerario				
 -----------------------------------------------------------
 Visitante: MATI GARCIA
-Presupuesto Restante: $3.3999999999999986
-Tiempo Sobrante: 4.0 Hrs
+Presupuesto Restante: $0.0
+Tiempo Sobrante: 19.0 Hrs
 Actividad Favorita: DEGUSTACION
 -----------------------------------------------------------
-Promocion Porcentual (AVENTURA):
--Duracion en Horas del paquete = 14.0
--Precio Original = 27.0
--Porcentaje de descuento = 20.0%
--Precio final = 21.6
--Atracciones Incluidas: [Atraccion
-- Nombre = BOSQUE NEGRO
-- Precio = 15.0
-- Duracion en horas = 2.0
-, Atraccion
-- Nombre = MORDOR
-- Precio = 12.0
-- Duracion en horas = 12.0
-]
+Atraccion:
+	- Nombre = LA COMARCA
+	- Precio = 30.0
+	- Duracion en horas = 1.0
 
-Atraccion
-- Nombre = ABISMO DE HELM
-- Precio = 5.0
-- Duracion en horas = 2.0
-
-Costo Total: $26.6
-Tiempo Total: 16.0 Hrs
+Costo Total: $30.0
+Tiempo Total: 1.0 Hrs
