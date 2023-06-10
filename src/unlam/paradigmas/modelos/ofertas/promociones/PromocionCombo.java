@@ -37,7 +37,6 @@ public class PromocionCombo extends Promocion {
 	
 	@Override
 	public String toString() {
-		//TODO Arreglar esta salida, se ve feo el output y estaría bueno especificar cual es la gratis, 
 		return "Promocion combo (" + this.getTipoActividad() + "):" 
 				+ "\n-Duracion en Horas del paquete = " + this.getDuracion()
 				+ "\n-Precio Original = " + this.getPrecioOriginal()
