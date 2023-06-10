@@ -1,6 +1,7 @@
 package unlam.paradigmas;
 
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -50,7 +51,8 @@ public class Sesion {
 	public Boolean sugerir(Oferta oferta) {
 		String ingreso;
 		
-		System.out.println("\nPresupuesto disponible: " + this.usuario.getPresupuesto());
+		DecimalFormat formato = new DecimalFormat("#0.00");
+		System.out.println("\nPresupuesto disponible: " + formato.format(this.usuario.getPresupuesto()));
 		System.out.println("Tiempo disponible: " + this.usuario.getTiempo());
 		System.out.println();
 		System.out.println(oferta);

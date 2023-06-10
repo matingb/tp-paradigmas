@@ -2,13 +2,18 @@
 -----------------------------------------------------------
 Visitante: AGOS MOTTU
 Presupuesto Restante: $2.0
-Tiempo Sobrante: 9.0 Hrs
+Tiempo Sobrante: 7.0 Hrs 
 Actividad Favorita: AVENTURA
 -----------------------------------------------------------
 Atraccion:
-	- Nombre = BOSQUE NEGRO
-	- Precio = 15.0
+	- Nombre = MORIA
+	- Precio = 10.0
+	- Duracion en horas = 2.0
+
+Atraccion:
+	- Nombre = ABISMO DE HELM
+	- Precio = 5.0
 	- Duracion en horas = 2.0
 
 Costo Total: $15.0
-Tiempo Total: 2.0 Hrs
+Tiempo Total: 4.0 Hrs
