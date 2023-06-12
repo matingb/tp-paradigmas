@@ -31,6 +31,11 @@ public class Boleteria {
 		 Sesion sesion = this.sesionFactory.create(usuario, atracciones, promociones);
 		 Oferta oferta = sesion.generarOferta();
 		 
+		if(oferta == null) {
+			System.out.println("\nNo existen ofertas disponibles para este usuario.");
+		}
+
+		 
 		 while (oferta != null) {
 
 			if(sesion.sugerir(oferta)) {
@@ -40,6 +45,9 @@ public class Boleteria {
 			}
 			
 			oferta = sesion.generarOferta();
+			if(oferta == null) {
+				System.out.println("\nNo hay mas ofertas disponibles para este usuario.");
+			}
 		}
 		 
 		 Recibo recibo = sesion.getRecibo();
