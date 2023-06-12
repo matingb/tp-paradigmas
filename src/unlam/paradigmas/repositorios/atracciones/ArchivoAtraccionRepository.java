@@ -81,6 +81,6 @@ public class ArchivoAtraccionRepository implements IAtraccionRepository {
 	}
 
 	private void seteaPipeYSaltoDeLineaComoDelimitador(Scanner scanner) {
-		scanner.useDelimiter("\\||\n");
+		scanner.useDelimiter("\\||\n|\r\n");
 	}
 }

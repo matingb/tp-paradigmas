@@ -5,7 +5,7 @@ Presupuesto Restante: $17.0
 Tiempo Sobrante: 11.0 Hrs 
 Actividad Favorita: AVENTURA
 -----------------------------------------------------------
-Atraccion:
+Atraccion (AVENTURA):
 	- Nombre = atraccionPrueba
 	- Precio = 50.0
 	- Duracion en horas = 30.0

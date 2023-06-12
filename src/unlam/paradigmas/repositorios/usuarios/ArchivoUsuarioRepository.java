@@ -68,6 +68,6 @@ public class ArchivoUsuarioRepository implements IUsuarioRepository {
 	}
 
 	private void seteaPipeYSaltoDeLineaComoDelimitador(Scanner scanner) {
-		scanner.useDelimiter("\\||\n");
+		scanner.useDelimiter("\\||\n|\r\n");
 	}
 }

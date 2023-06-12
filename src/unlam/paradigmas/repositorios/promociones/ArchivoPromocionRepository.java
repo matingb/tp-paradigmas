@@ -91,6 +91,6 @@ public class ArchivoPromocionRepository implements IPromocionRepository{
 	}
 
 	private void seteaPipeYSaltoDeLineaComoDelimitador(Scanner scanner) {
-		scanner.useDelimiter("\\||\n");
+		scanner.useDelimiter("\\||\n|\r\n");
 	}
 }
