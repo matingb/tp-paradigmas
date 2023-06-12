@@ -1,24 +1,14 @@
 					Resumen Itinerario				
 -----------------------------------------------------------
 Visitante: FRODO
-Presupuesto Restante: $2.0
-Tiempo Sobrante: 0.0 Hrs 
+Presupuesto Restante: $3.0
+Tiempo Sobrante: 1.0 Hrs 
 Actividad Favorita: DEGUSTACION
 -----------------------------------------------------------
-Promocion de monto fijo (DEGUSTACION):
--Duracion en Horas del paquete = 2.0
--Precio Original = 65.0
--Precio Final = 36.0
--Atracciones Incluidas: 
-*Atraccion (DEGUSTACION):
+Atraccion (DEGUSTACION):
 	- Nombre = LOTHLORIEN
 	- Precio = 35.0
 	- Duracion en horas = 1.0
-*Atraccion (DEGUSTACION):
-	- Nombre = LA COMARCA
-	- Precio = 30.0
-	- Duracion en horas = 1.0
-
 
 Promocion combo (PAISAJE):
 -Duracion en Horas del paquete = 6.0
@@ -41,5 +31,5 @@ Promocion combo (PAISAJE):
 	- Duracion en horas = 2.0
 
 
-Costo Total: $48.0
-Tiempo Total: 8.0 Hrs
+Costo Total: $47.0
+Tiempo Total: 7.0 Hrs

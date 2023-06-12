@@ -1,8 +1,8 @@
 					Resumen Itinerario				
 -----------------------------------------------------------
 Visitante: Nombre
-Presupuesto Restante: $17.0
-Tiempo Sobrante: 11.0 Hrs 
+Presupuesto Restante: $100.0
+Tiempo Sobrante: 60.0 Hrs 
 Actividad Favorita: AVENTURA
 -----------------------------------------------------------
 Atraccion (AVENTURA):
@@ -10,5 +10,22 @@ Atraccion (AVENTURA):
 	- Precio = 50.0
 	- Duracion en horas = 30.0
 
-Costo Total: $50.0
-Tiempo Total: 30.0 Hrs
+Promocion combo (AVENTURA):
+-Duracion en Horas del paquete = 21.0
+-Precio Original = 50.0
+-Precio Final = 30.0
+-Cantidad de atracciones gratis = 1
+-Atracciones gratis = atraccionPrueba2
+-Atracciones Incluidas: 
+*Atraccion (AVENTURA):
+	- Nombre = atraccionPrueba2
+	- Precio = 20.0
+	- Duracion en horas = 15.0
+*Atraccion (AVENTURA):
+	- Nombre = atraccionPrueba3
+	- Precio = 30.0
+	- Duracion en horas = 6.0
+
+
+Costo Total: $80.0
+Tiempo Total: 51.0 Hrs
