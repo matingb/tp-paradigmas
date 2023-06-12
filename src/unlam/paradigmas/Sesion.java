@@ -67,7 +67,6 @@ public class Sesion {
 	}
 	
 	public void aceptarOferta(Oferta oferta) {
-		System.out.println("¡Aceptada!");
 		usuario.pagarBoleteria(oferta.getPrecio());
 		usuario.reducirTiempo(oferta.getDuracion());
 		oferta.descontarCupo();
@@ -81,7 +80,6 @@ public class Sesion {
 	}
 	
 	public void rechazarOferta(Oferta oferta) {
-		System.out.println("¡Rechazada!");
 		this.atracciones.remove(oferta);	
 		this.promociones.remove(oferta);
 	}

@@ -39,8 +39,10 @@ public class Boleteria {
 		 while (oferta != null) {
 
 			if(sesion.sugerir(oferta)) {
+				System.out.println("¡Aceptada!");
 				sesion.aceptarOferta(oferta);
 			} else {
+				System.out.println("¡Rechazada!");
 				sesion.rechazarOferta(oferta);
 			}
 			
