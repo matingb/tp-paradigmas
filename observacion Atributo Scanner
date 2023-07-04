@@ -20,4 +20,7 @@ public Boolean sugerir(Oferta oferta) {
 		}
 
 		return ingreso.equals("S");
-	}
+}
+
+
+Nota: Además se deberá, eliminar la clase Lector y todas las lineas de código en otras clases que la involucren (Class Inicializer, Class Sesion, Test SesionTest)
