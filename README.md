@@ -1,4 +1,4 @@
-# tp-paradigmas
+# README | tp-paradigmas
 
 Para ejecutar este proyecto deberá:
 1. Hacer el siguiente recorrido en el directorio:
