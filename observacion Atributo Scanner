@@ -1,0 +1,23 @@
+public Boolean sugerir(Oferta oferta) {
+		String ingreso;
+//se agrega
+		Scanner scanner = new Scanner(System.in);
+		
+		
+		DecimalFormat formato = new DecimalFormat("#0.00");
+		System.out.println("\nPresupuesto disponible: " + formato.format(this.usuario.getPresupuesto()));
+		System.out.println("Tiempo disponible: " + this.usuario.getTiempo());
+		System.out.println();
+		System.out.println(oferta);
+		System.out.println("¿Acepta sugerencia? Ingrese S o N");
+		//ingreso = lector.leer().toUpperCase();
+		ingreso = scanner.nextLine().toUpperCase();
+				
+		while(!ingreso.equals("S") && !ingreso.equals("N")) {
+			 System.out.println("Valor invalido. Ingrese S o N");
+			//ingreso = lector.leer().toUpperCase();
+			 ingreso = scanner.nextLine().toUpperCase();
+		}
+
+		return ingreso.equals("S");
+	}
