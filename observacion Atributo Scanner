@@ -1,3 +1,4 @@
+@SuppressWarnings("resource")
 public Boolean sugerir(Oferta oferta) {
 		String ingreso;
 //se agrega
