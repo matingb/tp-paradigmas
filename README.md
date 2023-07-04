@@ -2,11 +2,11 @@
 
 Para ejecutar este proyecto deberá:
 1. Hacer el siguiente recorrido en el directorio:
-tp-paradigmas -> src -> unlam.paradigmas -> Main.java
-2. Clic derecho del mouse sobre el codigo
-3. Seleccionar Run As
-4. Seleccionar Java aplication.
-5. El sistema comenzará a correr (Si desea conocer acerca de su uso, dejamos un link con un video que lo demuestra)
+       tp-paradigmas -> src -> unlam.paradigmas -> Main.java
+3. Clic derecho del mouse sobre el codigo
+4. Seleccionar Run As
+5. Seleccionar Java aplication.
+6. El sistema comenzará a correr (Si desea conocer acerca de su uso, dejamos un link con un video que lo demuestra)
 
 Se adjunta video que demuestra y explica brevemente el funcionamiento del proyecto:
 https://1drv.ms/v/s!Ai56PeUaIreKg88nJV4XC69BH2HejQ?e=j9PG2h
